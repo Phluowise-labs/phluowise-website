@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phluowise - About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for glassmorphism, animations, and other effects - Replicated from Landing Page for consistency */
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0D1117;
+            color: #E6EDF3;
+            scroll-behavior: smooth;
+        }
+        
+        .glassmorphism {
+            background: rgba(59, 116, 255, 0.1);
+            /* Updated brand color tint */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(59, 116, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .glassmorphism:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 116, 255, 0.2);
+        }
+        
+        .glassmorphism-nav {
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Enhanced Animation classes */
+        
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+        }
+        
+        .slide-in-from-bottom {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        
+        .slide-in-from-bottom.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-from-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        
+        .slide-in-from-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-from-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        
+        .slide-in-from-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        /* Animated Border */
+        
+        @keyframes animated-border-flow {
+            0% {
+                background-position: -100% 50%;
+                box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(59, 116, 255, 0.3);
+            }
+            100% {
+                background-position: 100% 50%;
+                box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
+            }
+        }
+        
+        .animated-border {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(59, 116, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .animated-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(90deg, transparent, #3B74FF, #60A5FA, #3B74FF, transparent);
+            background-size: 200% 100%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            animation: animated-border-flow 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        
+        .animated-border:hover::before {
+            opacity: 1;
+        }
+        /* Button styles (Replicated for consistency) */
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3B74FF, #60A5FA);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #508bff, #7BB3FF);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #374151, #4B5563);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #4B5563, #6B7280);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        /* Text colors */
+        
+        .text-brand {
+            color: #3B74FF;
+        }
+        /* App store button styles (Replicated for consistency) */
+        
+        .app-store-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+            min-width: 140px;
+            height: 48px;
+        }
+        
+        .app-store-btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .app-store-btn svg {
+            margin-right: 8px;
+        }
+        /* Team member card styles */
+        
+        .team-card {
+            background: rgba(59, 116, 255, 0.05);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(59, 116, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 116, 255, 0.15);
+        }
+        /* Section specific animations */
+        
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .animate-zoom-in {
+            animation: zoomIn 1s ease-out forwards;
+        }
+        /* Stagger animation delays for sections */
+        
+        .section-animated:nth-child(1) {
+            animation-delay: 0s;
+        }
+        
+        .section-animated:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .section-animated:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .section-animated:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+        
+        .section-animated:nth-child(5) {
+            animation-delay: 0.8s;
+        }
+        
+        .section-animated:nth-child(6) {
+            animation-delay: 1.0s;
+        }
+        
+        .section-animated:nth-child(7) {
+            animation-delay: 1.2s;
+        }
+        
+        .section-animated:nth-child(8) {
+            animation-delay: 1.4s;
+        }
+        /* Added for the new section */
+    </style>
+</head>
+
+<body class="bg-black">
+
+    <!-- Header - Consistent with Landing and Pricing Pages -->
+    <header class="glassmorphism-nav fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-brand">Phluowise</h1>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html#home" class="text-gray-300 hover:text-white transition">Home</a>
+                <a href="index.html#features" class="text-gray-300 hover:text-white transition">Features</a>
+                <a href="about.html" class="text-white font-semibold transition">About Us</a>
+                <a href="index.html#faq" class="text-gray-300 hover:text-white transition">FAQ</a>
+                <a href="index.html#contact" class="text-gray-300 hover:text-white transition">Contact</a>
+                <a href="pricing.html" class="text-gray-300 hover:text-white transition">Pricing</a>
+            </nav>
+            <a href="https://phluowise-labs.github.io/company/pages/user-signup.html" class="btn-primary text-white font-semibold px-4 py-2 rounded-lg shadow-lg hidden md:block">Get Started</a>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 flex flex-col items-center justify-center z-50 hidden">
+        <button id="close-mobile-menu" class="absolute top-6 right-6 text-white focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <nav class="flex flex-col items-center space-y-8 text-xl">
+            <a href="index.html#home" class="text-gray-300 hover:text-white transition mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">Home</a>
+            <a href="index.html#features" class="text-gray-300 hover:text-white transition mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">Features</a>
+            <a href="about.html" class="text-gray-300 hover:text-white transition mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">About Us</a>
+            <a href="index.html#faq" class="text-gray-300 hover:text-white transition mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">FAQ</a>
+            <a href="index.html#contact" class="text-gray-300 hover:text-white transition mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">Contact</a>
+            <a href="pricing.html" class="text-gray-300 hover:text-white transition mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">Pricing</a>
+            <a href="https://phluowise-labs.github.io/company/pages/user-signup.html" class="btn-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg mt-4 mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">Get Started</a>
+        </nav>
+    </div>
+
+    <main class="min-h-screen pt-24 pb-16 px-4 sm:px-6">
+        <div class="container mx-auto space-y-20 lg:space-y-28">
+
+            <!-- Welcome Section (Added based on previous conversation) -->
+            <section class="text-center py-12 section-animated fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-8 animate-fade-in-down">Welcome to Phluowise</h2>
+                <div class="glassmorphism animated-border rounded-3xl p-8 md:p-12 slide-in-from-bottom">
+                    <p class="text-gray-300 leading-relaxed">
+                        Welcome to Phluowise, where we are reshaping the dynamics of the water delivery industry, offering a comprehensive platform that seamlessly integrates transport and logistics management for water delivery companies. Here's a glimpse into our identity,
+                        principles, and the vision that propels us forward.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Large Team Photo Section -->
+            <section class="text-center py-12 section-animated fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-8 animate-fade-in-down">Our Dedicated Team</h2>
+                <div class="glassmorphism animated-border rounded-3xl p-4 sm:p-8 flex items-center justify-center overflow-hidden slide-in-from-bottom">
+                    <img src="https://placehold.co/1200x600/0D1117/3B74FF?text=Your+Team+Photo+Here" alt="Phluowise Team" class="rounded-2xl shadow-xl w-full h-auto object-cover max-h-[600px]" onerror="this.onerror=null;this.src='https://placehold.co/1200x600/0D1117/3B74FF?text=Phluowise+Team';">
+                </div>
+            </section>
+
+            <!-- Phluowise's Mission and Vision Section -->
+            <section class="text-center py-12 section-animated fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-brand mb-8 animate-fade-in-down">Phluowise's Mission and Vision</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+                    <div class="glassmorphism animated-border rounded-3xl p-8 slide-in-from-left">
+                        <h3 class="text-3xl font-bold text-white mb-4">Mission Statement</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            At Phluowise, our mission is to revolutionize the water delivery landscape by providing an unparalleled platform for companies. We are committed to facilitating access to high-quality drinking water through a structured and efficient logistics framework.
+                            Our goal is to empower water delivery businesses with the tools they need to thrive, ensuring every drop meets the highest standards of purity and reliability.
+                        </p>
+                    </div>
+                    <div class="glassmorphism animated-border rounded-3xl p-8 slide-in-from-right">
+                        <h3 class="text-3xl font-bold text-white mb-4">Vision Statement</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Phluowise envisions a future where water delivery companies operate with unparalleled efficiency and precision, setting new standards for excellence in the industry. Our vision goes beyond providing a platform; it's about fostering a community where water
+                            delivery is not just a service but a vital element of healthy living and sustainable practices.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Our Story Section -->
+            <section class="py-12 section-animated fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-white text-center mb-12">Our Story: Nurturing the Vision from Campus to a Logistics Revolution</h2>
+                <div class="glassmorphism animated-border rounded-3xl p-8 md:p-12 slide-in-from-bottom">
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        Phluowise is more than a platform; it's a testament to the power of visionary thinking and the determination to revolutionize an entire industry. Our journey began in the minds of two university students at the University of Cape Coast (UCC), Oppong Asare-Quayson
+                        (BSc. Computer Science), and Eben Sakyi Mensah (BCom. Accounting).
+                    </p>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        The seed of our idea sprouted during our freshman year (Level 100), a moment when the excitement of new challenges and boundless possibilities fueled our imaginations. What if we could reshape the way water is delivered, making it not just a service but
+                        an experience? This simple yet powerful question marked the genesis of Phluowise.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        For an entire year, we nurtured the idea, carefully sculpting it into a vision that held the promise of transforming water delivery logistics. The initial stages were marked by brainstorming sessions, late-night discussions, and a constant pursuit of
+                        perfection. The conviction that we could bring about positive change in the water delivery landscape fueled our determination.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        The next chapter of our story unfolded with the invaluable support of four friends, Bright Adjei Awuah (BSc. Computer Science: Database Engineer), Michael Mireku ( BSc. Information Technology: Full Stack Developer), Samuel K. Mensah ( BSc. Information
+                        Technology: Full Stack Developer), Theophilus (BSc. Information Technology: Full Stack Developer) and Enoch Kumi Asamoah (BSc. Computer Science: Data Science Engineer & Cloud Engineer). Together, we embarked on the development
+                        phase, translating our vision into a tangible platform. Their expertise added a new dimension to our team, and we worked tirelessly to build a platform that would not only simplify logistics but redefine industry standards.
+                    </p>
+                </div>
+
+                <!-- Team Images Section -->
+                <div class="mt-16 text-center">
+                    <h3 class="text-3xl font-bold text-brand mb-8 animate-fade-in-down">Meet the Team</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                        <!-- Team Member 1 -->
+                        <div class="team-card rounded-2xl p-6 slide-in-from-bottom">
+                            <img src="https://placehold.co/120x120/0D1117/3B74FF?text=Oppong+Asare-Quayson" alt="Oppong Asare-Quayson" class="rounded-full w-32 h-32 object-cover mx-auto mb-4 border-2 border-brand">
+                            <h4 class="text-xl font-semibold text-white">Oppong Asare-Quayson</h4>
+                            <p class="text-gray-400 text-sm">BSc. Computer Science</p>
+                            <p class="text-gray-300 text-sm mt-2">Co-Founder, Visionary</p>
+                        </div>
+                        <!-- Team Member 2 -->
+                        <div class="team-card rounded-2xl p-6 slide-in-from-bottom" style="animation-delay: 0.1s;">
+                            <img src="https://placehold.co/120x120/0D1117/3B74FF?text=Eben+Sakyi+Mensah" alt="Eben Sakyi Mensah" class="rounded-full w-32 h-32 object-cover mx-auto mb-4 border-2 border-brand">
+                            <h4 class="text-xl font-semibold text-white">Eben Sakyi Mensah</h4>
+                            <p class="text-gray-400 text-sm">BCom. Accounting</p>
+                            <p class="text-gray-300 text-sm mt-2">Co-Founder, Strategist</p>
+                        </div>
+                        <!-- Team Member 3 -->
+                        <div class="team-card rounded-2xl p-6 slide-in-from-bottom" style="animation-delay: 0.2s;">
+                            <img src="https://placehold.co/120x120/0D1117/3B74FF?text=Bright+Adjei+Awuah" alt="Bright Adjei Awuah" class="rounded-full w-32 h-32 object-cover mx-auto mb-4 border-2 border-brand">
+                            <h4 class="text-xl font-semibold text-white">Bright Adjei Awuah</h4>
+                            <p class="text-gray-400 text-sm">BSc. Computer Science</p>
+                            <p class="text-gray-300 text-sm mt-2">Database Engineer</p>
+                        </div>
+                        <!-- Team Member 4 -->
+                        <div class="team-card rounded-2xl p-6 slide-in-from-bottom" style="animation-delay: 0.3s;">
+                            <img src="https://placehold.co/120x120/0D1117/3B74FF?text=Michael+Mireku" alt="Michael Mireku" class="rounded-full w-32 h-32 object-cover mx-auto mb-4 border-2 border-brand">
+                            <h4 class="text-xl font-semibold text-white">Michael Mireku</h4>
+                            <p class="text-gray-400 text-sm">BSc. Information Technology</p>
+                            <p class="text-gray-300 text-sm mt-2">Full Stack Developer</p>
+                        </div>
+                        <!-- Team Member 5 -->
+                        <div class="team-card rounded-2xl p-6 slide-in-from-bottom" style="animation-delay: 0.4s;">
+                            <img src="https://placehold.co/120x120/0D1117/3B74FF?text=Samuel+K.+Mensah" alt="Samuel K. Mensah" class="rounded-full w-32 h-32 object-cover mx-auto mb-4 border-2 border-brand">
+                            <h4 class="text-xl font-semibold text-white">Samuel K. Mensah</h4>
+                            <p class="text-gray-400 text-sm">BSc. Information Technology</p>
+                            <p class="text-gray-300 text-sm mt-2">Full Stack Developer</p>
+                        </div>
+                        <!-- Team Member 6 -->
+                        <div class="team-card rounded-2xl p-6 slide-in-from-bottom" style="animation-delay: 0.5s;">
+                            <img src="https://placehold.co/120x120/0D1117/3B74FF?text=Theophilus" alt="Theophilus" class="rounded-full w-32 h-32 object-cover mx-auto mb-4 border-2 border-brand">
+                            <h4 class="text-xl font-semibold text-white">Theophilus</h4>
+                            <p class="text-gray-400 text-sm">BSc. Information Technology</p>
+                            <p class="text-gray-300 text-sm mt-2">Full Stack Developer</p>
+                        </div>
+                        <!-- Team Member 7 -->
+                        <div class="team-card rounded-2xl p-6 slide-in-from-bottom" style="animation-delay: 0.6s;">
+                            <img src="https://placehold.co/120x120/0D1117/3B74FF?text=Enoch+Kumi+Asamoah" alt="Enoch Kumi Asamoah" class="rounded-full w-32 h-32 object-cover mx-auto mb-4 border-2 border-brand">
+                            <h4 class="text-xl font-semibold text-white">Enoch Kumi Asamoah</h4>
+                            <p class="text-gray-400 text-sm">BSc. Computer Science</p>
+                            <p class="text-300 text-sm mt-2">Data Science & Cloud Engineer</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Encouraging the Idea Process Section -->
+            <section class="py-12 section-animated fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-white text-center mb-12">Encouraging the Idea Process</h2>
+                <div class="glassmorphism animated-border rounded-3xl p-8 md:p-12 slide-in-from-bottom">
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        In the tapestry of innovation, every idea is a thread, and it takes careful weaving to create a masterpiece. The journey from the inception of an idea to the realization of a platform demands patience, perseverance, and a collaborative spirit.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        Phluowise stands as a testament to the notion that great ideas can emerge from the most unexpected places – a university campus where two students dared to dream big. The encouraging approach we embraced during the idea's infancy was vital. Every challenge
+                        was seen as an opportunity, and every setback was a lesson.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        The belief that every drop of water could be delivered with precision and care became the driving force behind Phluowise. Today, as our platform seamlessly connects water delivery companies with efficient logistics management, we reflect on those early
+                        days with gratitude.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Join Us in Rewriting the Narrative Section -->
+            <section class="py-12 section-animated fade-in text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-12">Join Us in Rewriting the Narrative</h2>
+                <div class="glassmorphism animated-border rounded-3xl p-8 md:p-12 slide-in-from-bottom">
+                    <p class="text-gray-300 leading-relaxed">
+                        Phluowise invites you to be part of our story, a narrative that started with a spark of imagination on a university campus and evolved into a logistical revolution. Together, let's rewrite the future of water delivery, one drop at a time.
+                    </p>
+                </div>
+            </section>
+
+            <!-- What Sets Us Apart Section -->
+            <section class="py-12 section-animated fade-in">
+                <h2 class="text-4xl md:text-5xl font-bold text-white text-center mb-12">What Sets Us Apart</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="glassmorphism animated-border rounded-3xl p-8 slide-in-from-bottom">
+                        <h3 class="text-2xl font-bold text-brand mb-4">Quality Logistics</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Our commitment to quality extends beyond water purity. We deliver logistics solutions that are structured, reliable, and efficient, ensuring that water reaches its destination with precision.
+                        </p>
+                    </div>
+                    <div class="glassmorphism animated-border rounded-3xl p-8 slide-in-from-bottom" style="animation-delay: 0.1s;">
+                        <h3 class="text-2xl font-bold text-brand mb-4">Transport Innovation</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            We embrace innovation in transport and logistics management. Our platform leverages the latest technologies to optimize routes, monitor deliveries in real-time, and enhance the overall efficiency of water delivery operations.
+                        </p>
+                    </div>
+                    <div class="glassmorphism animated-border rounded-3xl p-8 slide-in-from-bottom" style="animation-delay: 0.2s;">
+                        <h3 class="text-2xl font-bold text-brand mb-4">Research-Driven Logistics</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Phluowise is not just a platform; it's a hub of research-driven logistics solutions. We continually explore and implement the latest advancements to ensure that the logistical aspects of water delivery align with the highest industry standards.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Join Us on the Journey Section -->
+            <section class="py-12 section-animated fade-in text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-white mb-12">Join Us on the Journey</h2>
+                <div class="glassmorphism animated-border rounded-3xl p-8 md:p-12 slide-in-from-bottom">
+                    <p class="text-gray-300 leading-relaxed">
+                        Phluowise is more than a logistics platform; it's a collaborative community. We invite water delivery companies to join us on this transformative journey towards operational excellence and sustainable practices. Together, let's redefine the way the world
+                        experiences water delivery.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Contact Us Section -->
+            <section class="py-12 section-animated fade-in text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-brand mb-12">Contact Us</h2>
+                <div class="glassmorphism animated-border rounded-3xl p-8 md:p-12 slide-in-from-bottom">
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        Curious to know more about how Phluowise can elevate your water delivery operations? Reach out to us at <a href="mailto:contact@phluowise.com" class="text-brand hover:underline">contact@phluowise.com</a>.
+                    </p>
+                    <p class="text-300 leading-relaxed">
+                        We're here to redefine the logistics of water delivery – efficient, innovative, and poised for the future. Thank you for choosing Phluowise. Let's chart the course for a future where every water delivery is a mark of excellence!
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer - Consistent with Landing and Pricing Pages -->
+    <footer class="text-white py-8 sm:py-10 mt-16 sm:mt-20 border-t border-gray-800 px-4">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-sm">
+            <p class="text-gray-500 text-center md:text-left">&copy; Phluowise Company, 2025</p>
+            <p class="text-gray-500 text-center md:text-center">From: <span class="text-brand">Phluowise</span>, All rights reserved.</p>
+            <div class="flex space-x-6 justify-center md:justify-end">
+                <a href="#" class="hover:text-brand transition-colors">Instagram</a>
+                <a href="#" class="hover:text-brand transition-colors">Facebook</a>
+                <a href="#" class="hover:text-brand transition-colors">X</a>
+                <a href="#" class="hover:text-brand transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-brand transition-colors">Youtube</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle logic
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            if (mobileMenuButton && closeMobileMenuButton && mobileMenuOverlay) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenuOverlay.classList.add('open');
+                });
+
+                closeMobileMenuButton.addEventListener('click', () => {
+                    mobileMenuOverlay.classList.remove('open');
+                });
+
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenuOverlay.classList.remove('open');
+                    });
+                });
+            }
+
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            };
+
+            const sectionObserver = new IntersectionObserver(observerCallback, observerOptions);
+            const animatedElements = document.querySelectorAll('.section-animated, .slide-in-from-left, .slide-in-from-right, .slide-in-from-bottom');
+
+            animatedElements.forEach(el => {
+                sectionObserver.observe(el);
+            });
+
+            // Manually trigger the observer callback for elements already in view on load
+            observerCallback(sectionObserver.takeRecords(), sectionObserver);
+        });
+    </script>
+</body>
+
+</html>
