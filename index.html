@@ -12,6 +12,7 @@
             font-family: 'Inter', sans-serif;
             background-color: #0D1117;
             color: #E6EDF3;
+            scroll-behavior: smooth;
         }
 
         .glassmorphism {
@@ -28,7 +29,7 @@
         }
         
         .glassmorphism-nav {
-            background: rgba(13, 17, 23, 0.7);
+            background: rgba(13, 17, 23, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -46,10 +47,10 @@
             filter: brightness(0.4);
         }
 
-        /* Animation classes */
+        /* Enhanced Animation classes */
         .fade-in {
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1.2s ease-in-out;
         }
 
         .fade-in.visible {
@@ -58,8 +59,8 @@
 
         .slide-in-from-bottom {
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(60px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
 
         .slide-in-from-bottom.visible {
@@ -69,8 +70,8 @@
         
         .slide-in-from-left {
             opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateX(-60px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
 
         .slide-in-from-left.visible {
@@ -80,8 +81,8 @@
         
         .slide-in-from-right {
             opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateX(60px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
         }
 
         .slide-in-from-right.visible {
@@ -89,16 +90,57 @@
             transform: translateX(0);
         }
 
-        /* Animated Border */
+        /* Hero animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-down {
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        /* Enhanced Animated Border */
         @keyframes animated-border-flow {
-            0% { background-position: -100% 50%; }
-            100% { background-position: 100% 50%; }
+            0% { 
+                background-position: -100% 50%; 
+                box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(59, 116, 255, 0.3);
+            }
+            100% { 
+                background-position: 100% 50%; 
+                box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
+            }
         }
 
         .animated-border {
             position: relative;
             overflow: hidden;
-            border: 1px solid transparent;
+            border: 1px solid rgba(59, 116, 255, 0.3);
+            transition: all 0.3s ease;
         }
 
         .animated-border::before {
@@ -106,15 +148,15 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             border-radius: inherit;
-            padding: 1px; /* Border width */
-            background: linear-gradient(90deg, transparent, #3B74FF, transparent);
+            padding: 2px;
+            background: linear-gradient(90deg, transparent, #3B74FF, #60A5FA, #3B74FF, transparent);
             background-size: 200% 100%;
             -webkit-mask: 
                 linear-gradient(#fff 0 0) content-box, 
                 linear-gradient(#fff 0 0);
             -webkit-mask-composite: destination-out;
             mask-composite: exclude;
-            animation: animated-border-flow 3s linear infinite;
+            animation: animated-border-flow 4s linear infinite;
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
         }
@@ -123,176 +165,447 @@
             opacity: 1;
         }
 
-        /* Accordion styles */
+        /* Enhanced Accordion styles */
         .accordion-content {
             max-height: 0;
+            opacity: 0; 
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-            padding: 0 1.5rem;
+            padding: 0 1.5rem; /* Initial padding when collapsed */
+            transform: translateY(-10px);
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        padding 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
         }
 
         .accordion-item.active .accordion-content {
-            padding: 1rem 1.5rem 1.5rem 1.5rem;
-            max-height: 500px; /* Adjust as needed */
+            /* max-height is now controlled by JS using scrollHeight. No fixed max-height here. */
+            padding-top: 1.5rem; 
+            padding-bottom: 1.5rem; 
+            opacity: 1; 
+            transform: translateY(0); 
         }
         
         .accordion-item.active .accordion-icon {
             transform: rotate(45deg);
+            color: #3B74FF;
         }
         
         .accordion-icon {
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+            font-size: 1.5rem;
+            font-weight: 300;
         }
 
-        /* Custom button style */
-        .btn-primary {
-            background-color: #3B74FF;
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-            animation: pulse-glow 2.5s infinite ease-in-out;
+        .accordion-header {
+            transition: background-color 0.3s ease;
         }
+
+        .accordion-item.active .accordion-header {
+            background: rgba(59, 116, 255, 0.05);
+        }
+
+        /* Enhanced button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #3B74FF, #60A5FA);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
         .btn-primary:hover {
-            background-color: #508bff;
+            background: linear-gradient(135deg, #508bff, #7BB3FF);
             transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(59, 116, 255, 0.5);
+            box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
         }
         
         .btn-secondary {
-             background-color: #374151;
-             transition: background-color 0.3s, transform 0.3s;
+            background: linear-gradient(135deg, #374151, #4B5563);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .btn-secondary:hover {
-            background-color: #4B5563;
+            background: linear-gradient(135deg, #4B5563, #6B7280);
             transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 5px rgba(59, 116, 255, 0.3); }
-            50% { box-shadow: 0 0 20px rgba(59, 116, 255, 0.6); }
-            100% { box-shadow: 0 0 5px rgba(59, 116, 255, 0.3); }
+        /* Feature card hover effects */
+        .feature-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Update text and form colors */
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(59, 116, 255, 0.15);
+        }
+
+        /* Text and form colors */
         .text-brand {
             color: #3B74FF;
         }
         .form-input:focus {
             border-color: #3B74FF;
-            box-shadow: 0 0 0 2px rgba(59, 116, 255, 0.4);
+            box-shadow: 0 0 0 3px rgba(59, 116, 255, 0.1);
+            outline: none;
         }
 
+        /* Mobile navigation overlay styles */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 60;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+
+        .mobile-menu-overlay.open {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* App store button styles */
+        .app-store-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+            min-width: 140px;
+            height: 48px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Initial shadow */
+        }
+
+        .app-store-btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Larger shadow on hover */
+        }
+
+        .app-store-btn svg {
+            margin-right: 8px;
+        }
+
+        /* Stagger animation delays for feature cards */
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Loading animation for form */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Success message */
+        .success-message {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .success-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scroll progress bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #3B74FF, #60A5FA);
+            z-index: 100;
+            transition: width 0.1s ease;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #3B74FF, #60A5FA);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 50;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
+        }
+
+        /* Parallax effect for hero */
+        .parallax-bg {
+            transform: translateZ(0);
+        }
+
+        /* Enhanced image loading */
+        img {
+            transition: opacity 0.3s ease;
+        }
+
+        img:not([src]) {
+            opacity: 0;
+        }
     </style>
 </head>
 <body class="bg-black">
+    <!-- Scroll progress bar -->
+    <div class="scroll-progress"></div>
 
     <!-- Header -->
     <header class="glassmorphism-nav fixed top-0 left-0 right-0 z-50">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-white">Phluowise</h1>
+        <div class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-brand">Phluowise</h1>
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="#" class="text-gray-300 hover:text-white transition">Products</a>
-                <a href="#" class="text-gray-300 hover:text-white transition">Resources</a>
-                <a href="#" class="text-gray-300 hover:text-white transition">Community</a>
-                <a href="#" class="text-gray-300 hover:text-white transition">About Us</a>
-                <a href="#" class="text-gray-300 hover:text-white transition">Pricing</a>
+                <a href="#home" class="text-gray-300 hover:text-white transition">Home</a>
+                <a href="#features" class="text-gray-300 hover:text-white transition">Features</a>
+                <a href="#about" class="text-gray-300 hover:text-white transition">About</a>
+                <a href="#faq" class="text-gray-300 hover:text-white transition">FAQ</a>
+                <a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a>
+                <a href="#pricing" class="text-gray-300 hover:text-white transition">Pricing</a>
             </nav>
-            <a href="#" class="btn-primary text-white font-semibold px-6 py-2 rounded-lg shadow-lg">Try Demo</a>
+            <a href="#" class="btn-primary text-white font-semibold px-4 py-2 rounded-lg shadow-lg hidden md:block">Try Demo</a>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
     </header>
 
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+        <button id="close-mobile-menu" class="absolute top-6 right-6 text-white focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+        </button>
+        <nav class="flex flex-col items-center space-y-8 text-xl">
+            <a href="#home" class="text-gray-300 hover:text-white transition mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">Home</a>
+            <a href="#features" class="text-gray-300 hover:text-white transition mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">Features</a>
+            <a href="#about" class="text-gray-300 hover:text-white transition mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">About</a>
+            <a href="#faq" class="text-gray-300 hover:text-white transition mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">FAQ</a>
+            <a href="#contact" class="text-gray-300 hover:text-white transition mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">Contact</a>
+            <a href="#pricing" class="text-gray-300 hover:text-white transition mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">Pricing</a>
+            <a href="#" class="btn-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg mt-4 mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">Try Demo</a>
+        </nav>
+    </div>
+
     <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center text-center overflow-hidden">
+    <section id="home" class="relative h-screen flex items-center justify-center text-center overflow-hidden parallax-bg">
         <video autoplay muted loop class="hero-video">
-            <source src="https://videos.pexels.com/video-files/3254013/3254013-hd_1920_1080_25fps.mp4" type="video/mp4">
+            <source src="https://videos.pexels.com/video-files/4208232/4208232-hd_1280_720_24fps.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <div class="relative z-10 px-4">
+        <div class="relative z-10 px-4 max-w-6xl mx-auto">
             <h2 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4 animate-fade-in-down">Get access to local water <br> providers in one platform</h2>
             <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 animate-fade-in-up">
                 Introducing Phluowise: a marketplace for you to connect with water management companies for your water needs; a logistics management platform for companies to connect with their users.
             </p>
-            <div class="flex justify-center space-x-4">
-                <a href="#" class="transform hover:scale-105 transition-transform">
-                    <img src="https://placehold.co/180x60/000000/FFFFFF?text=Get+it+on+Google+Play" alt="Google Play Store" class="h-14">
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 animate-fade-in-up">
+                <!-- Google Play Store Button -->
+                <a href="#" class="app-store-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                    </svg>
+                    <div class="text-left">
+                        <div class="text-xs">GET IT ON</div>
+                        <div class="text-sm font-semibold">Google Play</div>
+                    </div>
                 </a>
-                <a href="#" class="transform hover:scale-105 transition-transform">
-                    <img src="https://placehold.co/180x60/000000/FFFFFF?text=Download+on+the+App+Store" alt="Apple App Store" class="h-14">
+                
+                <!-- Apple App Store Button -->
+                <a href="#" class="app-store-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                    </svg>
+                    <div class="text-left">
+                        <div class="text-xs">Download on the</div>
+                        <div class="text-sm font-semibold">App Store</div>
+                    </div>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-6 py-20 space-y-28">
+    <main class="container mx-auto px-4 sm:px-6 py-16 sm:py-20 space-y-20 sm:space-y-28">
 
         <!-- Trusted By Section -->
-        <section class="text-center fade-in">
-            <h3 class="text-3xl font-bold text-brand mb-4">Trusted by</h3>
-            <div class="flex flex-wrap justify-center items-center gap-8 my-8">
-                <img src="https://placehold.co/150x60/FFFFFF/000000?text=Verna" alt="Verna" class="h-12 opacity-70 hover:opacity-100 transition-opacity">
-                <img src="https://placehold.co/150x60/FFFFFF/000000?text=Voltic" alt="Voltic" class="h-12 opacity-70 hover:opacity-100 transition-opacity">
-                <img src="https://placehold.co/150x60/FFFFFF/000000?text=Bel-Aqua" alt="Bel-Aqua" class="h-12 opacity-70 hover:opacity-100 transition-opacity">
-                <img src="https://placehold.co/150x60/FFFFFF/000000?text=Awake" alt="Awake" class="h-12 opacity-70 hover:opacity-100 transition-opacity">
+        <section id="about" class="text-center fade-in">
+            <h3 class="text-3xl sm:text-4xl font-bold text-brand mb-4">Trusted by</h3>
+            <div class="flex flex-wrap justify-center items-center gap-6 sm:gap-8 my-8">
+                <img src="https://placehold.co/150x60/FFFFFF/000000?text=Verna" alt="Verna" class="h-10 sm:h-12 opacity-70 hover:opacity-100 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/150x60/FFFFFF/000000?text=Verna';">
+                <img src="https://placehold.co/150x60/FFFFFF/000000?text=Voltic" alt="Voltic" class="h-10 sm:h-12 opacity-70 hover:opacity-100 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/150x60/FFFFFF/000000?text=Voltic';">
+                <img src="https://placehold.co/150x60/FFFFFF/000000?text=Bel-Aqua" alt="Bel-Aqua" class="h-10 sm:h-12 opacity-70 hover:opacity-100 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/150x60/FFFFFF/000000?text=Bel-Aqua';">
+                <img src="https://placehold.co/150x60/FFFFFF/000000?text=Awake" alt="Awake" class="h-10 sm:h-12 opacity-70 hover:opacity-100 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/150x60/FFFFFF/000000?text=Awake';">
             </div>
-            <p class="text-gray-400 mb-8">200+ water companies</p>
-            <div class="flex justify-center space-x-4">
+            <p class="text-gray-400 mb-8 text-base sm:text-lg">200+ water companies</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                 <a href="#" class="btn-secondary text-white font-semibold px-6 py-3 rounded-lg shadow-lg">View Driver Page</a>
                 <a href="#" class="btn-secondary text-white font-semibold px-6 py-3 rounded-lg shadow-lg">View Company Page</a>
             </div>
         </section>
 
         <!-- Mission Section -->
-        <section class="glassmorphism animated-border rounded-3xl p-12 text-center slide-in-from-bottom">
-            <p class="text-2xl md:text-3xl leading-relaxed max-w-4xl mx-auto">
+        <section class="glassmorphism animated-border rounded-3xl p-8 sm:p-12 text-center slide-in-from-bottom">
+            <p class="text-xl md:text-3xl leading-relaxed max-w-4xl mx-auto">
                 Phluowise aims to help make water delivery easy and accessible to all and contribute to environmental sustainability: waste reduction and pollution prevention.
             </p>
         </section>
 
         <!-- Feature Sections -->
-        <div class="space-y-28">
+        <div id="features" class="space-y-20 sm:space-y-28">
             <!-- Feature 1 -->
-            <section class="glassmorphism animated-border rounded-3xl p-8 md:p-12 slide-in-from-bottom">
-                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                    <div class="slide-in-from-left">
-                        <h3 class="text-3xl md:text-4xl font-bold mb-4">Search for water management companies in various vicinities.</h3>
-                        <div class="flex space-x-4 mt-8">
-                             <a href="#"><img src="https://placehold.co/180x60/000000/FFFFFF?text=Get+it+on+Google+Play" alt="Google Play Store" class="h-14"></a>
-                             <a href="#"><img src="https://placehold.co/180x60/000000/FFFFFF?text=Download+on+the+App+Store" alt="Apple App Store" class="h-14"></a>
+            <section class="glassmorphism animated-border rounded-3xl p-6 md:p-12 slide-in-from-bottom">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="slide-in-from-left text-center md:text-left">
+                        <h3 class="text-2xl md:text-4xl font-bold mb-4">Search for water management companies in various vicinities.</h3>
+                        <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+                            <a href="#" class="app-store-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                                </svg>
+                                <div class="text-left">
+                                    <div class="text-xs">GET IT ON</div>
+                                    <div class="text-sm font-semibold">Google Play</div>
+                                </div>
+                            </a>
+                            <a href="#" class="app-store-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                                </svg>
+                                <div class="text-left">
+                                    <div class="text-xs">Download on the</div>
+                                    <div class="text-sm font-semibold">App Store</div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="slide-in-from-right">
-                        <img src="http://googleusercontent.com/file_content/4" alt="App Screenshot 1" class="rounded-2xl shadow-2xl w-full">
+                        <img src="https://placehold.co/600x400/0D1117/3B74FF?text=App+Screenshot+1" alt="App Screenshot 1" class="rounded-2xl shadow-2xl w-full" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D1117/3B74FF?text=App+Screenshot+1';">
                     </div>
                 </div>
             </section>
 
             <!-- Feature 2 -->
-            <section class="glassmorphism animated-border rounded-3xl p-8 md:p-12 slide-in-from-bottom">
-                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <section class="glassmorphism animated-border rounded-3xl p-6 md:p-12 slide-in-from-bottom">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                      <div class="slide-in-from-left order-last md:order-first">
-                        <img src="http://googleusercontent.com/file_content/3" alt="App Screenshot 2" class="rounded-2xl shadow-2xl w-full">
+                        <img src="https://placehold.co/600x400/0D1117/3B74FF?text=App+Screenshot+2" alt="App Screenshot 2" class="rounded-2xl shadow-2xl w-full" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D1117/3B74FF?text=App+Screenshot+2';">
                     </div>
-                    <div class="slide-in-from-right md:text-right">
-                        <h3 class="text-3xl md:text-4xl font-bold mb-4">Find the nearest and most suitable water service providers around your current location.</h3>
-                         <div class="flex md:justify-end space-x-4 mt-8">
-                             <a href="#"><img src="https://placehold.co/180x60/000000/FFFFFF?text=Get+it+on+Google+Play" alt="Google Play Store" class="h-14"></a>
-                             <a href="#"><img src="https://placehold.co/180x60/000000/FFFFFF?text=Download+on+the+App+Store" alt="Apple App Store" class="h-14"></a>
+                    <div class="slide-in-from-right text-center md:text-right">
+                        <h3 class="text-2xl md:text-4xl font-bold mb-4">Find the nearest and most suitable water service providers around your current location.</h3>
+                         <div class="flex flex-col sm:flex-row justify-center md:justify-end space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+                            <a href="#" class="app-store-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                                </svg>
+                                <div class="text-left">
+                                    <div class="text-xs">GET IT ON</div>
+                                    <div class="text-sm font-semibold">Google Play</div>
+                                </div>
+                            </a>
+                            <a href="#" class="app-store-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                                </svg>
+                                <div class="text-left">
+                                    <div class="text-xs">Download on the</div>
+                                    <div class="text-sm font-semibold">App Store</div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
             </section>
             
             <!-- Feature 3 -->
-            <section class="glassmorphism animated-border rounded-3xl p-8 md:p-12 slide-in-from-bottom">
-                <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                    <div class="slide-in-from-left">
-                        <h3 class="text-3xl md:text-4xl font-bold mb-4">Schedule pickups through Phluowise app, eliminate the need for manual coordination and ensuring timeless service.</h3>
-                         <div class="flex space-x-4 mt-8">
-                             <a href="#"><img src="https://placehold.co/180x60/000000/FFFFFF?text=Get+it+on+Google+Play" alt="Google Play Store" class="h-14"></a>
-                             <a href="#"><img src="https://placehold.co/180x60/000000/FFFFFF?text=Download+on+the+App+Store" alt="Apple App Store" class="h-14"></a>
+            <section class="glassmorphism animated-border rounded-3xl p-6 md:p-12 slide-in-from-bottom">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="slide-in-from-left text-center md:text-left">
+                        <h3 class="text-2xl md:text-4xl font-bold mb-4">Schedule pickups through Phluowise app, eliminate the need for manual coordination and ensuring timeless service.</h3>
+                         <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+                            <a href="#" class="app-store-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                                </svg>
+                                <div class="text-left">
+                                    <div class="text-xs">GET IT ON</div>
+                                    <div class="text-sm font-semibold">Google Play</div>
+                                </div>
+                            </a>
+                            <a href="#" class="app-store-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                                </svg>
+                                <div class="text-left">
+                                    <div class="text-xs">Download on the</div>
+                                    <div class="text-sm font-semibold">App Store</div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                     <div class="slide-in-from-right">
-                        <img src="http://googleusercontent.com/file_content/2" alt="App Screenshot 3" class="rounded-2xl shadow-2xl w-full">
+                        <img src="https://images.pexels.com/photos/6802049/pexels-photo-6802049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Schedule Pickup" class="rounded-2xl shadow-2xl w-full">
                     </div>
                 </div>
             </section>
@@ -300,51 +613,67 @@
 
         <!-- Key Features Section -->
         <section class="text-center fade-in">
-            <h3 class="text-4xl font-bold text-brand mb-4">Phluowise marketplace Key features</h3>
-            <p class="text-xl text-gray-400 mb-12">User application</p>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-                <div class="glassmorphism animated-border rounded-2xl p-8 flex flex-col items-center justify-center">
-                    <img src="https://placehold.co/80x80/22C55E/FFFFFF?text=✓" class="mx-auto mb-4 rounded-full">
-                    <h4 class="text-xl font-semibold text-center">User Registration</h4>
+            <h3 class="text-3xl sm:text-4xl font-bold text-brand mb-4">Phluowise marketplace Key features</h3>
+            <p class="text-base sm:text-xl text-gray-400 mb-8 sm:mb-12">User application</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
+                <div class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
+                    <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl font-bold">✓</div>
+                    <h4 class="text-lg sm:text-xl font-semibold text-center">User Registration</h4>
                 </div>
-                <div class="glassmorphism animated-border rounded-2xl p-8 flex flex-col items-center justify-center">
-                    <img src="https://placehold.co/80x80/3B82F6/FFFFFF?text=🔍" class="mx-auto mb-4 rounded-full">
-                    <h4 class="text-xl font-semibold text-center">Search, filter water management companies</h4>
+                <div class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
+                    <div class="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">🔍</div>
+                    <h4 class="text-lg sm:text-xl font-semibold text-center">Search, filter water management companies</h4>
                 </div>
-                <div class="glassmorphism animated-border rounded-2xl p-8 flex flex-col items-center justify-center">
-                    <img src="https://placehold.co/80x80/F97316/FFFFFF?text=📄" class="mx-auto mb-4 rounded-full">
-                    <h4 class="text-xl font-semibold text-center">Detailed company profiles with service offerings, and ratings</h4>
+                <div class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
+                    <div class="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">📄</div>
+                    <h4 class="text-lg sm:text-xl font-semibold text-center">Detailed company profiles with service offerings, and ratings</h4>
                 </div>
-                <div class="glassmorphism animated-border rounded-2xl p-8 flex flex-col items-center justify-center">
-                    <img src="https://placehold.co/80x80/EF4444/FFFFFF?text=🔒" class="mx-auto mb-4 rounded-full">
-                    <h4 class="text-xl font-semibold text-center">Secure and easy payment</h4>
-                </div>
-            </div>
-             <div class="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                <div class="glassmorphism animated-border rounded-2xl p-8 flex flex-col items-center justify-center">
-                    <img src="https://placehold.co/80x80/EC4899/FFFFFF?text=📅" class="mx-auto mb-4 rounded-full">
-                    <h4 class="text-xl font-semibold text-center">Instant Booking & scheduling water pickup</h4>
-                </div>
-                <div class="glassmorphism animated-border rounded-2xl p-8 flex flex-col items-center justify-center">
-                    <img src="https://placehold.co/80x80/8B5CF6/FFFFFF?text=💬" class="mx-auto mb-4 rounded-full">
-                    <h4 class="text-xl font-semibold text-center">Support from companies</h4>
+                <div class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
+                    <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">🔒</div>
+                    <h4 class="text-lg sm:text-xl font-semibold text-center">Secure and easy payment</h4>
                 </div>
             </div>
-            <div class="flex justify-center space-x-4 mt-12">
-                <a href="#"><img src="https://placehold.co/180x60/000000/FFFFFF?text=Get+it+on+Google+Play" alt="Google Play Store" class="h-14"></a>
-                <a href="#"><img src="https://placehold.co/180x60/000000/FFFFFF?text=Download+on+the+App+Store" alt="Apple App Store" class="h-14"></a>
+             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto">
+                <div class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
+                    <div class="w-20 h-20 bg-pink-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">📅</div>
+                    <h4 class="text-lg sm:text-xl font-semibold text-center">Instant Booking & scheduling water pickup</h4>
+                </div>
+                <div class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
+                    <div class="w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">💬</div>
+                    <h4 class="text-lg sm:text-xl font-semibold text-center">Support from companies</h4>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8 sm:mt-12">
+                <a href="#" class="app-store-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+                    </svg>
+                    <div class="text-left">
+                        <div class="text-xs">GET IT ON</div>
+                        <div class="text-sm font-semibold">Google Play</div>
+                    </div>
+                </a>
+                <a href="#" class="app-store-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+                    </svg>
+                    <div class="text-left">
+                        <div class="text-xs">Download on the</div>
+                        <div class="text-sm font-semibold">App Store</div>
+                    </div>
+                </a>
             </div>
         </section>
 
         <!-- FAQ Section -->
-        <section class="max-w-4xl mx-auto fade-in">
-            <h3 class="text-4xl font-bold text-center text-brand mb-12">FAQ</h3>
+        <section id="faq" class="max-w-4xl mx-auto fade-in px-4 sm:px-0">
+            <h3 class="text-3xl sm:text-4xl font-bold text-center text-brand mb-8 sm:mb-12">FAQ</h3>
             <div class="space-y-4">
                 <!-- Accordion Item 1 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-6 text-left text-xl font-semibold">
+                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
                         <span>What is Phluowise Ecommerce?</span>
-                        <span class="accordion-icon text-2xl font-thin">+</span>
+                        <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content">
                         <p class="text-gray-300">Phluowise Ecommerce is a platform designed to connect water delivery companies with users, streamlining the process of ordering and receiving water. It serves as a bridge between companies providing water services and individuals or businesses seeking convenient and reliable water delivery.</p>
@@ -352,9 +681,9 @@
                 </div>
                 <!-- Accordion Item 2 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-6 text-left text-xl font-semibold">
+                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
                         <span>Does Phluowise Ecommerce charge?</span>
-                        <span class="accordion-icon text-2xl font-thin">+</span>
+                        <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content">
                         <p class="text-gray-300">Yes, Phluowise charges companies for utilizing its platform and logistics management services. Users are not charged for accessing and using the platform.</p>
@@ -362,9 +691,9 @@
                 </div>
                 <!-- Accordion Item 3 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-6 text-left text-xl font-semibold">
+                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
                         <span>What payment methods are available on Phluowise Ecommerce?</span>
-                        <span class="accordion-icon text-2xl font-thin">+</span>
+                        <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content">
                         <p class="text-gray-300">Phluowise Ecommerce accepts payments through mobile money and credit cards, providing users with flexibility and convenience in completing transactions.</p>
@@ -372,46 +701,103 @@
                 </div>
                 <!-- Accordion Item 4 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-6 text-left text-xl font-semibold">
+                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
                         <span>Can I find most companies on Phluowise Ecommerce?</span>
-                        <span class="accordion-icon text-2xl font-thin">+</span>
+                        <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content">
                         <p class="text-gray-300">Phluowise Ecommerce offers an opportunity for large water delivery companies to feature on the platform, providing users with a diverse range of options to meet their water needs.</p>
+                    </div>
+                </div>
+                <!-- Accordion Item 5 -->
+                <div class="accordion-item glassmorphism animated-border rounded-2xl">
+                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
+                        <span>Is Phluowise Ecommerce free?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-300">Yes, Phluowise Ecommerce is free for users. The platform charges water delivery companies for utilizing its services.</p>
+                    </div>
+                </div>
+                <!-- Accordion Item 6 -->
+                <div class="accordion-item glassmorphism animated-border rounded-2xl">
+                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
+                        <span>What problem does Phluowise Ecommerce solve?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-300">Phluowise Ecommerce addresses the challenges associated with water delivery by providing a centralized platform for users to easily connect with reputable water delivery companies. It streamlines the ordering process, enhances delivery logistics, and ensures users have access to high-quality water.</p>
+                    </div>
+                </div>
+                <!-- Accordion Item 7 -->
+                <div class="accordion-item glassmorphism animated-border rounded-2xl">
+                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
+                        <span>Is Phluowise Ecommerce easy to use?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-300">Absolutely. Phluowise Ecommerce is designed with user-friendly interfaces, making it easy for both companies and users to navigate the platform seamlessly.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section class="py-20 fade-in">
+        <section id="contact" class="py-16 sm:py-20 fade-in px-4 sm:px-0">
             <div class="text-center">
-                <h3 class="text-4xl font-bold text-brand mb-12">Contact Us</h3>
+                <h3 class="text-3xl sm:text-4xl font-bold text-brand mb-8 sm:mb-12">Contact Us</h3>
             </div>
-            <form class="max-w-2xl mx-auto space-y-6">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="Name" class="form-input w-full bg-gray-900 text-white p-4 rounded-lg border border-gray-700 focus:outline-none transition">
-                    <input type="email" placeholder="Email" class="form-input w-full bg-gray-900 text-white p-4 rounded-lg border border-gray-700 focus:outline-none transition">
+            <form class="max-w-2xl mx-auto space-y-6" id="contact-form">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" placeholder="Name" class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition">
+                    <input type="email" placeholder="Email" class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition">
                 </div>
                 <div>
-                    <textarea placeholder="Message" rows="6" class="form-input w-full bg-gray-900 text-white p-4 rounded-lg border border-gray-700 focus:outline-none transition"></textarea>
+                    <textarea placeholder="Message" rows="6" class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition"></textarea>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn-primary text-white font-semibold px-8 py-3 rounded-lg shadow-lg">Submit</button>
+                    <button type="submit" class="btn-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg">Submit</button>
                 </div>
+                <div id="form-messages" class="success-message hidden">Your message has been sent successfully!</div>
             </form>
         </section>
 
     </main>
     
     <!-- Footer -->
-    <footer class="text-center py-8 mt-20 border-t border-gray-800">
-        <p class="text-gray-500">&copy; 2025 Phluowise. All Rights Reserved.</p>
+    <footer class="text-white py-8 sm:py-10 mt-16 sm:mt-20 border-t border-gray-800 px-4">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-sm">
+            <div class="text-gray-500 text-center md:text-left">
+                <p>&copy; Phluowise Company, 2025</p>
+                <p class="mt-1">From: <span class="text-brand">Phluowise</span>, All rights reserved.</p>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-brand transition-colors">Instagram</a>
+                <a href="#" class="hover:text-brand transition-colors">Facebook</a>
+                <a href="#" class="hover:text-brand transition-colors">X</a>
+                <a href="#" class="hover:text-brand transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-brand transition-colors">Youtube</a>
+            </div>
+        </div>
     </footer>
 
+    <!-- Back to top button -->
+    <div id="back-to-top" class="back-to-top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Scroll progress bar
+            window.addEventListener('scroll', () => {
+                const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (scrollTop / scrollHeight) * 100;
+                document.querySelector('.scroll-progress').style.width = scrolled + '%';
+            });
+
             // Scroll Animations
             const animatedElements = document.querySelectorAll('.fade-in, .slide-in-from-bottom, .slide-in-from-left, .slide-in-from-right');
 
@@ -419,7 +805,6 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
                     }
                 });
             }, {
@@ -435,20 +820,124 @@
 
             accordionItems.forEach(item => {
                 const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const icon = item.querySelector('.accordion-icon');
+
+                // Ensure initial state is collapsed and hidden
+                content.style.maxHeight = '0px';
+                content.style.opacity = '0';
+                content.style.transform = 'translateY(-10px)'; // Ensure initial transform matches collapsed state
+
                 header.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-                    
-                    // Close all other items
-                    accordionItems.forEach(otherItem => {
-                        if(otherItem !== item) {
-                           otherItem.classList.remove('active');
+                    const isOpen = item.classList.contains('active');
+
+                    // Close all other accordion items
+                    document.querySelectorAll('.accordion-item.active').forEach(openItem => {
+                        if (openItem !== item) {
+                            const openContent = openItem.querySelector('.accordion-content');
+                            const openIcon = openItem.querySelector('.accordion-icon');
+                            openItem.classList.remove('active');
+                            openContent.style.maxHeight = '0px';
+                            openContent.style.opacity = '0';
+                            openContent.style.transform = 'translateY(-10px)'; // Ensure consistency for closing
+                            openIcon.style.transform = 'rotate(0deg)';
                         }
                     });
 
                     // Toggle the clicked item
-                    item.classList.toggle('active');
+                    if (isOpen) {
+                        // If open, close it
+                        item.classList.remove('active');
+                        content.style.maxHeight = '0px';
+                        content.style.opacity = '0';
+                        content.style.transform = 'translateY(-10px)'; // Apply collapsed transform
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        // If closed, open it
+                        item.classList.add('active');
+                        // Set max-height to scrollHeight for expansion transition
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.style.opacity = '1';
+                        content.style.transform = 'translateY(0)'; // Apply expanded transform
+                        icon.style.transform = 'rotate(45deg)';
+
+                        // After transition, set maxHeight to '' to allow content to naturally resize
+                        const transitionEndHandler = () => {
+                            if (item.classList.contains('active')) { // Check if it's still active
+                                content.style.maxHeight = ''; // Set to auto or 'none' for dynamic height
+                            }
+                            content.removeEventListener('transitionend', transitionEndHandler);
+                        };
+                        content.addEventListener('transitionend', transitionEndHandler);
+                    }
                 });
             });
+
+            // Mobile Menu Toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMobileMenuButton = document.getElementById('close-mobile-menu');
+            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link'); // Get all mobile nav links
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenuOverlay.classList.add('open');
+            });
+
+            closeMobileMenuButton.addEventListener('click', () => {
+                mobileMenuOverlay.classList.remove('open');
+            });
+
+            // Close mobile menu when a link is clicked
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuOverlay.classList.remove('open');
+                });
+            });
+
+            // Back to top button functionality
+            const backToTopButton = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) { // Show button after scrolling 300px
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Contact form submission (example - client-side only)
+            const contactForm = document.getElementById('contact-form');
+            const formMessages = document.getElementById('form-messages');
+
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                formMessages.classList.remove('show'); // Hide previous messages
+                formMessages.classList.remove('text-red-500'); // Remove error styling
+
+                // Simulate form submission
+                contactForm.classList.add('loading'); // Show loading state
+
+                setTimeout(() => {
+                    contactForm.classList.remove('loading');
+                    // In a real application, you'd send data to a server here.
+                    // If successful:
+                    formMessages.textContent = 'Your message has been sent successfully!';
+                    formMessages.classList.add('show');
+                    contactForm.reset(); // Clear the form
+
+                    // If there was an error:
+                    // formMessages.textContent = 'Failed to send message. Please try again.';
+                    // formMessages.classList.add('show', 'text-red-500');
+
+                }, 1500); // Simulate network delay
+            });
+
         });
     </script>
 
