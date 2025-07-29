@@ -8,619 +8,686 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-
-
-    <!-- In your index.html mobile menu overlay -->
-    <a href="pricing.html" class="text-gray-300 hover:text-white transition mobile-nav-link" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');">Pricing</a
-    >
-
     <style>
-      /* Custom styles for glassmorphism, animations, and other effects */
-      body {
-        font-family: "Inter", sans-serif;
-        background-color: #0d1117;
-        color: #e6edf3;
-        scroll-behavior: smooth;
-      }
-
-      .glassmorphism {
-        background: rgba(59, 116, 255, 0.1); /* Updated brand color tint */
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(59, 116, 255, 0.2);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .glassmorphism:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(59, 116, 255, 0.2);
-      }
-
-      .glassmorphism-nav {
-        background: rgba(13, 17, 23, 0.85);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .hero-video {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transform: translate(-50%, -50%);
-        z-index: -1;
-        filter: brightness(0.4);
-      }
-
-      /* Enhanced Animation classes */
-      .fade-in {
-        opacity: 0;
-        transition: opacity 1.2s ease-in-out;
-      }
-
-      .fade-in.visible {
-        opacity: 1;
-      }
-
-      .slide-in-from-bottom {
-        opacity: 0;
-        transform: translateY(60px);
-        transition: opacity 1s ease-out, transform 1s ease-out;
-      }
-
-      .slide-in-from-bottom.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .slide-in-from-left {
-        opacity: 0;
-        transform: translateX(-60px);
-        transition: opacity 1s ease-out, transform 1s ease-out;
-      }
-
-      .slide-in-from-left.visible {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      .slide-in-from-right {
-        opacity: 0;
-        transform: translateX(60px);
-        transition: opacity 1s ease-out, transform 1s ease-out;
-      }
-
-      .slide-in-from-right.visible {
-        opacity: 1;
-        transform: translateX(0);
-      }
-
-      /* Hero animations */
-      @keyframes fadeInDown {
-        from {
-          opacity: 0;
-          transform: translateY(-30px);
+        /* Custom styles for glassmorphism, animations, and other effects */
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #0d1117;
+            color: #e6edf3;
+            scroll-behavior: smooth;
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
+
+        .glassmorphism {
+            background: rgba(59, 116, 255, 0.1);
+            /* Updated brand color tint */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(59, 116, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-      }
 
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
+        .glassmorphism:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 116, 255, 0.2);
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
+
+        /* Navbar style from driver-page */
+        .header-nav {
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-      }
 
-      .animate-fade-in-down {
-        animation: fadeInDown 1s ease-out;
-      }
-
-      .animate-fade-in-up {
-        animation: fadeInUp 1s ease-out 0.3s both;
-      }
-
-      /* Enhanced Animated Border */
-      @keyframes animated-border-flow {
-        0% {
-          background-position: -100% 50%;
-          box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            filter: brightness(0.4);
         }
-        50% {
-          box-shadow: 0 0 30px rgba(59, 116, 255, 0.3);
+
+        /* Enhanced Animation classes */
+        .fade-in {
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
         }
-        100% {
-          background-position: 100% 50%;
-          box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
+
+        .fade-in.visible {
+            opacity: 1;
         }
-      }
 
-      .animated-border {
-        position: relative;
-        overflow: hidden;
-        border: 1px solid rgba(59, 116, 255, 0.3);
-        transition: all 0.3s ease;
-      }
+        .slide-in-from-bottom {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
 
-      .animated-border::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: inherit;
-        padding: 2px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          #3b74ff,
-          #60a5fa,
-          #3b74ff,
-          transparent
-        );
-        background-size: 200% 100%;
-        -webkit-mask: linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: destination-out;
-        mask-composite: exclude;
-        animation: animated-border-flow 4s linear infinite;
-        opacity: 0;
-        transition: opacity 0.4s ease-in-out;
-      }
+        .slide-in-from-bottom.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-      .animated-border:hover::before {
-        opacity: 1;
-      }
+        .slide-in-from-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
 
-      /* Enhanced Accordion styles */
-      .accordion-content {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        padding: 0 1.5rem; /* Initial padding when collapsed */
-        transform: translateY(-10px);
-        transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-          opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-          transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-          padding 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      }
+        .slide-in-from-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
-      .accordion-item.active .accordion-content {
-        /* max-height is now controlled by JS using scrollHeight. No fixed max-height here. */
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
-        opacity: 1;
-        transform: translateY(0);
-      }
+        .slide-in-from-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
 
-      .accordion-item.active .accordion-icon {
-        transform: rotate(45deg);
-        color: #3b74ff;
-      }
+        .slide-in-from-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
 
-      .accordion-icon {
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
-        font-size: 1.5rem;
-        font-weight: 300;
-      }
+        /* Hero animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-      .accordion-header {
-        transition: background-color 0.3s ease;
-      }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-      .accordion-item.active .accordion-header {
-        background: rgba(59, 116, 255, 0.05);
-      }
+        .animate-fade-in-down {
+            animation: fadeInDown 1s ease-out;
+        }
 
-      /* Enhanced button styles */
-      .btn-primary {
-        background: linear-gradient(135deg, #3b74ff, #60a5fa);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-      }
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
 
-      .btn-primary::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.2),
-          transparent
-        );
-        transition: left 0.5s;
-      }
+        /* Enhanced Animated Border (from driver-page) */
+        @keyframes animated-border-flow {
+            0% {
+                background-position: -100% 50%;
+                box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(59, 116, 255, 0.3);
+            }
+            100% {
+                background-position: 100% 50%;
+                box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
+            }
+        }
 
-      .btn-primary:hover::before {
-        left: 100%;
-      }
+        .animated-border {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(59, 116, 255, 0.3);
+            transition: all 0.3s ease;
+        }
 
-      .btn-primary:hover {
-        background: linear-gradient(135deg, #508bff, #7bb3ff);
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
-      }
+        .animated-border::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #3b74ff,
+                #60a5fa,
+                #3b74ff,
+                transparent
+            );
+            background-size: 200% 100%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            animation: animated-border-flow 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
 
-      .btn-secondary {
-        background: linear-gradient(135deg, #374151, #4b5563);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      .btn-secondary:hover {
-        background: linear-gradient(135deg, #4b5563, #6b7280);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      }
+        .animated-border:hover::before {
+            opacity: 1;
+        }
 
-      /* Feature card hover effects */
-      .feature-card {
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      }
+        /* Enhanced Accordion styles */
+        .accordion-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding: 0 1.5rem;
+            /* Initial padding when collapsed */
+            transform: translateY(-10px);
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                padding 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-      .feature-card:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 20px 40px rgba(59, 116, 255, 0.15);
-      }
+        .accordion-item.active .accordion-content {
+            /* max-height is now controlled by JS using scrollHeight. No fixed max-height here. */
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-      /* Text and form colors */
-      .text-brand {
-        color: #3b74ff;
-      }
-      .form-input:focus {
-        border-color: #3b74ff;
-        box-shadow: 0 0 0 3px rgba(59, 116, 255, 0.1);
-        outline: none;
-      }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
+            color: #3b74ff;
+        }
 
-      /* Mobile navigation overlay styles */
-      .mobile-menu-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(13, 17, 23, 0.95);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        z-index: 60;
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: opacity 0.3s ease-in-out;
-        opacity: 0;
-      }
+        .accordion-icon {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
 
-      .mobile-menu-overlay.open {
-        display: flex;
-        opacity: 1;
-      }
+        .accordion-header {
+            transition: background-color 0.3s ease;
+        }
 
-      /* App store button styles */
-      .app-store-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: #000;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        border: 1px solid #333;
-        min-width: 140px;
-        height: 48px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Initial shadow */
-      }
+        .accordion-item.active .accordion-header {
+            background: rgba(59, 116, 255, 0.05);
+        }
 
-      .app-store-btn:hover {
-        background: #333;
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Larger shadow on hover */
-      }
+        /* Enhanced button styles (from driver-page) */
+        .btn-get-started {
+            background: linear-gradient(135deg, #3B74FF, #60A5FA);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
 
-      .app-store-btn svg {
-        margin-right: 8px;
-      }
+        .btn-get-started::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
 
-      /* Stagger animation delays for feature cards */
-      .feature-card:nth-child(1) {
-        animation-delay: 0.1s;
-      }
-      .feature-card:nth-child(2) {
-        animation-delay: 0.2s;
-      }
-      .feature-card:nth-child(3) {
-        animation-delay: 0.3s;
-      }
-      .feature-card:nth-child(4) {
-        animation-delay: 0.4s;
-      }
-      .feature-card:nth-child(5) {
-        animation-delay: 0.5s;
-      }
-      .feature-card:nth-child(6) {
-        animation-delay: 0.6s;
-      }
+        .btn-get-started:hover::before {
+            left: 100%;
+        }
 
-      /* Loading animation for form */
-      .loading {
-        opacity: 0.7;
-        pointer-events: none;
-      }
+        .btn-get-started:hover {
+            background: linear-gradient(135deg, #508bff, #7BB3FF);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
+        }
 
-      /* Success message */
-      .success-message {
-        background: rgba(34, 197, 94, 0.1);
-        border: 1px solid rgba(34, 197, 94, 0.3);
-        color: #22c55e;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        margin-top: 1rem;
-        opacity: 0;
-        transform: translateY(10px);
-        transition: all 0.3s ease;
-      }
+        .btn-secondary {
+            background: linear-gradient(135deg, #374151, #4b5563);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-      .success-message.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #4b5563, #6b7280);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
 
-      /* Scroll progress bar */
-      .scroll-progress {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: linear-gradient(90deg, #3b74ff, #60a5fa);
-        z-index: 100;
-        transition: width 0.1s ease;
-      }
+        /* Feature card hover effects */
+        .feature-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-      /* Back to top button */
-      .back-to-top {
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-        background: linear-gradient(135deg, #3b74ff, #60a5fa);
-        color: white;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.3s ease;
-        z-index: 50;
-      }
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(59, 116, 255, 0.15);
+        }
 
-      .back-to-top.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
+        /* Text and form colors */
+        .text-brand {
+            color: #3b74ff;
+        }
 
-      .back-to-top:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
-      }
+        .form-input:focus {
+            border-color: #3b74ff;
+            box-shadow: 0 0 0 3px rgba(59, 116, 255, 0.1);
+            outline: none;
+        }
 
-      /* Parallax effect for hero */
-      .parallax-bg {
-        transform: translateZ(0);
-      }
+        /* Mobile navigation overlay styles */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 60;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
 
-      /* Enhanced image loading */
-      img {
-        transition: opacity 0.3s ease;
-      }
+        .mobile-menu-overlay.open {
+            display: flex;
+            opacity: 1;
+        }
 
-      img:not([src]) {
-        opacity: 0;
-      }
+        /* Mobile Dropdown specific styles */
+        .mobile-dropdown-menu {
+            display: none;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            opacity: 0;
+        }
+
+        .mobile-dropdown-menu.open {
+            display: block;
+            /* will be controlled by JS for max-height */
+        }
+
+        /* App store button styles */
+        .app-store-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+            min-width: 140px;
+            height: 48px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            /* Initial shadow */
+        }
+
+        .app-store-btn:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            /* Larger shadow on hover */
+        }
+
+        .app-store-btn svg {
+            margin-right: 8px;
+        }
+
+        /* Stagger animation delays for feature cards */
+        .feature-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .feature-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .feature-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .feature-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .feature-card:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .feature-card:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        /* Loading animation for form */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        /* Success message */
+        .success-message {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .success-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scroll progress bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #3b74ff, #60a5fa);
+            z-index: 100;
+            transition: width 0.1s ease;
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #3b74ff, #60a5fa);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 50;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
+        }
+
+        /* Parallax effect for hero */
+        .parallax-bg {
+            transform: translateZ(0);
+        }
+
+        /* Enhanced image loading */
+        img {
+            transition: opacity 0.3s ease;
+        }
+
+        img:not([src]) {
+            opacity: 0;
+        }
+
+        /* Dropdown specific styles (from driver-page) */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 0.5rem;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            z-index: 100;
+            min-width: 200px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.25rem;
+            color: #E6EDF3;
+            text-decoration: none;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: rgba(59, 116, 255, 0.1);
+            color: #3B74FF;
+        }
+
+        .dropdown-item svg {
+            margin-right: 0.75rem;
+        }
     </style>
-  </head>
-  <body class="bg-black">
+</head>
+
+<body class="bg-black">
     <!-- Scroll progress bar -->
     <div class="scroll-progress"></div>
 
     <!-- Header -->
-    <header class="glassmorphism-nav fixed top-0 left-0 right-0 z-50">
-      <div
-        class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center"
-      >
-        <h1 class="text-2xl font-bold text-brand">Phluowise</h1>
-        <nav class="hidden md:flex items-center space-x-8">
-          <a href="#home" class="text-gray-300 hover:text-white transition"
-            >Home</a
-          >
-          <a href="#features" class="text-gray-300 hover:text-white transition"
-            >Features</a
-          >
-          <a href="about_us.html" class="text-gray-300 hover:text-white transition"
-            >About</a
-          >
+    <header class="header-nav fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-brand">Phluowise</h1>
+            <nav class="hidden md:flex items-center space-x-4">
+                <!-- Products Dropdown -->
+                <div class="relative dropdown">
+                    <button class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center">
+                        Products
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="index.html" class="dropdown-item">
+                            <!-- Shopping Bag Icon -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5ZM7 7H17V17H7V7ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 11 12 11Z" />
+                                <path d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z" />
+                            </svg>
+                            Phluowise Ecommerce
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <!-- Users/Company Icon -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" />
+                            </svg>
+                            Phluowise Company
+                        </a>
+                        <a href="driver.html" class="dropdown-item">
+                            <!-- Truck/Delivery Icon -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M18 8H16V6H18V8ZM18 10H16V12H18V10ZM18 14H16V16H18V14ZM18 18H16V20H18V18ZM20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM4 6H14V18H4V6ZM16 6V18H20V6H16Z" />
+                            </svg>
+                            Phluowise Drive
+                        </a>
+                    </div>
+                </div>
+                <!-- Resources Dropdown -->
+                <div class="relative dropdown">
+                    <button class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center">
+                        Resources
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">
+                            <!-- Document Icon -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z" />
+                            </svg>
+                            Documentation
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <!-- Regulations/Newspaper Icon -->
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM5 5H19V19H5V5ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z" />
+                            </svg>
+                            Regulations
+                        </a>
+                    </div>
+                </div>
+                <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors">Community</a>
+                <a href="about_us.html" class="text-gray-300 hover:text-white transition">About Us</a>
+                <a href="pricing.html" class="text-gray-300 hover:text-white transition">Pricing</a>
+            </nav>
+            <a href="https://phluowise-labs.github.io/company/pages/user-signup.html" class="btn-get-started text-white font-semibold px-5 py-2.5 rounded-lg hidden md:block">Get Started</a>
 
-          <a href="#faq" class="text-gray-300 hover:text-white transition"
-            >FAQ</a
-          >
-          <a href="#contact" class="text-gray-300 hover:text-white transition"
-            >Contact</a
-          >
-          <a href="pricing.html" class="text-gray-300 hover:text-white transition"
-            >Pricing</a
-          >
-        </nav>
-        <a
-          href="https://phluowise-labs.github.io/company/pages/user-signup.html"
-          class="btn-primary text-white font-semibold px-4 py-2 rounded-lg shadow-lg hidden md:block"
-          >Get Started</a
-        >
-
-        <!-- Mobile Menu Button -->
-        <button
-          id="mobile-menu-button"
-          class="md:hidden text-white focus:outline-none"
-        >
-          <svg
-            class="w-8 h-8"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
-      </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
     </header>
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu-overlay" class="mobile-menu-overlay">
-      <button
-        id="close-mobile-menu"
-        class="absolute top-6 right-6 text-white focus:outline-none"
-      >
-        <svg
-          class="w-8 h-8"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          ></path>
-        </svg>
-      </button>
-      <nav class="flex flex-col items-center space-y-8 text-xl">
-        <a
-          href="#home"
-          class="text-gray-300 hover:text-white transition mobile-nav-link"
-          onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');"
-          >Home</a
-        >
-        <a
-          href="#features"
-          class="text-gray-300 hover:text-white transition mobile-nav-link"
-          onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');"
-          >Features</a
-        >
-        <a
-          href="about_us.html"
-          class="text-gray-300 hover:text-white transition mobile-nav-link"
-          onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');"
-          >About</a
-        >
-        <a
-          href="#faq"
-          class="text-gray-300 hover:text-white transition mobile-nav-link"
-          onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');"
-          >FAQ</a
-        >
-        <a
-          href="#contact"
-          class="text-gray-300 hover:text-white transition mobile-nav-link"
-          onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');"
-          >Contact</a
-        >
-        <a
-          href="pricing.html"
-          class="text-gray-300 hover:text-white transition mobile-nav-link"
-          onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');"
-          >Pricing</a
-        >
-        <a
-          href="https://phluowise-labs.github.io/company/pages/user-signup.html"
-          class="btn-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg mt-4 mobile-nav-link"
-          onclick="document.getElementById('mobile-menu-overlay').classList.remove('open');"
-          >Get Started</a
-        >
-      </nav>
+        <button id="close-mobile-menu" class="absolute top-6 right-6 text-white focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <nav class="flex flex-col items-center space-y-8 text-xl">
+            <!-- Products Dropdown (Mobile) -->
+            <div class="relative w-full text-center mobile-dropdown">
+                <button class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center text-xl" id="mobile-products-button">
+                    Products
+                    <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-menu mt-4 space-y-4">
+                    <a href="index.html" class="dropdown-item mobile-nav-link">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5ZM7 7H17V17H7V7ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 11 12 11Z" />
+                            <path d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z" />
+                        </svg>
+                        Phluowise Ecommerce
+                    </a>
+                    <a href="#" class="dropdown-item mobile-nav-link">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" />
+                        </svg>
+                        Phluowise Company
+                    </a>
+                    <a href="driver.html" class="dropdown-item mobile-nav-link">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18 8H16V6H18V8ZM18 10H16V12H18V10ZM18 14H16V16H18V14ZM18 18H16V20H18V18ZM20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM4 6H14V18H4V6ZM16 6V18H20V6H16Z" />
+                        </svg>
+                        Phluowise Drive
+                    </a>
+                </div>
+            </div>
+            <!-- Resources Dropdown (Mobile) -->
+            <div class="relative w-full text-center mobile-dropdown">
+                <button class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center text-xl" id="mobile-resources-button">
+                    Resources
+                    <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div class="mobile-dropdown-menu mt-4 space-y-4">
+                    <a href="#" class="dropdown-item mobile-nav-link">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z" />
+                        </svg>
+                        Documentation
+                    </a>
+                    <a href="#" class="dropdown-item mobile-nav-link">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM5 5H19V19H5V5ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z" />
+                        </svg>
+                        Regulations
+                    </a>
+                </div>
+            </div>
+            <a href="#home" class="text-gray-300 hover:text-white transition mobile-nav-link">Home</a>
+            <a href="#features" class="text-gray-300 hover:text-white transition mobile-nav-link">Features</a>
+            <a href="about_us.html" class="text-gray-300 hover:text-white transition mobile-nav-link">About Us</a>
+            <a href="#faq" class="text-gray-300 hover:text-white transition mobile-nav-link">FAQ</a>
+            <a href="#contact" class="text-gray-300 hover:text-white transition mobile-nav-link">Contact</a>
+            <a href="pricing.html" class="text-gray-300 hover:text-white transition mobile-nav-link">Pricing</a>
+            <a href="https://phluowise-labs.github.io/company/pages/user-signup.html" class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg mt-4 mobile-nav-link">Get Started</a>
+        </nav>
     </div>
 
     <!-- Hero Section -->
-    <section
-      id="home"
-      class="relative h-screen flex items-center justify-center text-center overflow-hidden parallax-bg"
-    >
-      <video autoplay muted loop class="hero-video">
-        <source
-          src="https://videos.pexels.com/video-files/4208232/4208232-hd_1280_720_24fps.mp4"
-          type="video/mp4"
-        />
-        Your browser does not support the video tag.
-      </video>
-      <div class="relative z-10 px-4 max-w-6xl mx-auto">
-        <h2
-          class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4 animate-fade-in-down"
-        >
-          Get access to local water <br />
-          providers in one platform
-        </h2>
-        <p
-          class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 animate-fade-in-up"
-        >
-          Introducing Phluowise: a marketplace for you to connect with water
-          management companies for your water needs; a logistics management
-          platform for companies to connect with their users.
-        </p>
-        <div
-          class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 animate-fade-in-up"
-        >
-          <!-- Google Play Store Button -->
-          <a href="#" class="app-store-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"
-              />
-            </svg>
-            <div class="text-left">
-              <div class="text-xs">GET IT ON</div>
-              <div class="text-sm font-semibold">Google Play</div>
-            </div>
-          </a>
+    <section id="home" class="relative h-screen flex items-center justify-center text-center overflow-hidden parallax-bg">
+        <video autoplay muted loop class="hero-video">
+            <source src="https://videos.pexels.com/video-files/4208232/4208232-hd_1280_720_24fps.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        <div class="relative z-10 px-4 max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4 animate-fade-in-down">
+                Get access to local water <br />
+                providers in one platform
+            </h2>
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 animate-fade-in-up">
+                Introducing Phluowise: a marketplace for you to connect with water
+                management companies for your water needs; a logistics management
+                platform for companies to connect with their users.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 animate-fade-in-up">
+                <!-- Google Play Store Button -->
+                <a href="#" class="app-store-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                    </svg>
+                    <div class="text-left">
+                        <div class="text-xs">GET IT ON</div>
+                        <div class="text-sm font-semibold">Google Play</div>
+                    </div>
+                </a>
 
-    <!-- Apple App Store Button -->
-    <a href="#" class="app-store-btn">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"
-              />
-            </svg>
-        <div class="text-left">
-            <div class="text-xs">Download on the</div>
-            <div class="text-sm font-semibold">App Store</div>
+                <!-- Apple App Store Button -->
+                <a href="#" class="app-store-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
+                    </svg>
+                    <div class="text-left">
+                        <div class="text-xs">Download on the</div>
+                        <div class="text-sm font-semibold">App Store</div>
+                    </div>
+                </a>
+            </div>
         </div>
-    </a>
-    </div>
-    </div>
     </section>
 
     <!-- Main Content -->
@@ -640,7 +707,7 @@
                 200+ water companies
             </p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="#" class="btn-secondary text-white font-semibold px-6 py-3 rounded-lg shadow-lg">View Driver Page</a
+                <a href="driver.html" class="btn-secondary text-white font-semibold px-6 py-3 rounded-lg shadow-lg">View Driver Page</a
           >
           <a
             href="#"
@@ -725,10 +792,8 @@
                     <div class="flex flex-col sm:flex-row justify-center md:justify-end space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
                         <a href="#" class="app-store-btn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"
-                    />
-                  </svg>
+                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                            </svg>
                             <div class="text-left">
                                 <div class="text-xs">GET IT ON</div>
                                 <div class="text-sm font-semibold">Google Play</div>
@@ -736,10 +801,8 @@
                         </a>
                         <a href="#" class="app-store-btn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"
-                    />
-                  </svg>
+                                <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
+                            </svg>
                             <div class="text-left">
                                 <div class="text-xs">Download on the</div>
                                 <div class="text-sm font-semibold">App Store</div>
@@ -760,10 +823,8 @@
                     <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
                         <a href="#" class="app-store-btn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"
-                    />
-                  </svg>
+                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                            </svg>
                             <div class="text-left">
                                 <div class="text-xs">GET IT ON</div>
                                 <div class="text-sm font-semibold">Google Play</div>
@@ -771,10 +832,8 @@
                         </a>
                         <a href="#" class="app-store-btn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"
-                    />
-                  </svg>
+                                <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
+                            </svg>
                             <div class="text-left">
                                 <div class="text-xs">Download on the</div>
                                 <div class="text-sm font-semibold">App Store</div>
@@ -852,10 +911,8 @@
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-8 sm:mt-12">
                 <a href="#" class="app-store-btn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"
-              />
-            </svg>
+                        <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                    </svg>
                     <div class="text-left">
                         <div class="text-xs">GET IT ON</div>
                         <div class="text-sm font-semibold">Google Play</div>
@@ -863,10 +920,8 @@
                 </a>
                 <a href="#" class="app-store-btn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"
-              />
-            </svg>
+                        <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
+                    </svg>
                     <div class="text-left">
                         <div class="text-xs">Download on the</div>
                         <div class="text-sm font-semibold">App Store</div>
@@ -884,9 +939,9 @@
                 <!-- Accordion Item 1 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
                     <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
-              <span>What is Phluowise Ecommerce?</span>
-              <span class="accordion-icon">+</span>
-            </button>
+                        <span>What is Phluowise Ecommerce?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
                     <div class="accordion-content">
                         <p class="text-gray-300">
                             Phluowise Ecommerce is a platform designed to connect water delivery companies with users, streamlining the process of ordering and receiving water. It serves as a bridge between companies providing water services and individuals or businesses seeking
@@ -897,9 +952,9 @@
                 <!-- Accordion Item 2 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
                     <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
-              <span>Does Phluowise Ecommerce charge?</span>
-              <span class="accordion-icon">+</span>
-            </button>
+                        <span>Does Phluowise Ecommerce charge?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
                     <div class="accordion-content">
                         <p class="text-gray-300">
                             Yes, Phluowise charges companies for utilizing its platform and logistics management services. Users are not charged for accessing and using the platform.
@@ -909,12 +964,10 @@
                 <!-- Accordion Item 3 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
                     <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
-              <span
-                >What payment methods are available on Phluowise
-                Ecommerce?</span
-              >
-              <span class="accordion-icon">+</span>
-            </button>
+                        <span>What payment methods are available on Phluowise
+                            Ecommerce?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
                     <div class="accordion-content">
                         <p class="text-gray-300">
                             Phluowise Ecommerce accepts payments through mobile money and credit cards, providing users with flexibility and convenience in completing transactions.
@@ -924,9 +977,9 @@
                 <!-- Accordion Item 4 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
                     <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
-              <span>Can I find most companies on Phluowise Ecommerce?</span>
-              <span class="accordion-icon">+</span>
-            </button>
+                        <span>Can I find most companies on Phluowise Ecommerce?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
                     <div class="accordion-content">
                         <p class="text-gray-300">
                             Phluowise Ecommerce offers an opportunity for large water delivery companies to feature on the platform, providing users with a diverse range of options to meet their water needs.
@@ -936,9 +989,9 @@
                 <!-- Accordion Item 5 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
                     <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
-              <span>Is Phluowise Ecommerce free?</span>
-              <span class="accordion-icon">+</span>
-            </button>
+                        <span>Is Phluowise Ecommerce free?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
                     <div class="accordion-content">
                         <p class="text-gray-300">
                             Yes, Phluowise Ecommerce is free for users. The platform charges water delivery companies for utilizing its services.
@@ -948,9 +1001,9 @@
                 <!-- Accordion Item 6 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
                     <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
-              <span>What problem does Phluowise Ecommerce solve?</span>
-              <span class="accordion-icon">+</span>
-            </button>
+                        <span>What problem does Phluowise Ecommerce solve?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
                     <div class="accordion-content">
                         <p class="text-gray-300">
                             Phluowise Ecommerce addresses the challenges associated with water delivery by providing a centralized platform for users to easily connect with reputable water delivery companies. It streamlines the ordering process, enhances delivery logistics, and
@@ -961,9 +1014,9 @@
                 <!-- Accordion Item 7 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
                     <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
-              <span>Is Phluowise Ecommerce easy to use?</span>
-              <span class="accordion-icon">+</span>
-            </button>
+                        <span>Is Phluowise Ecommerce easy to use?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
                     <div class="accordion-content">
                         <p class="text-gray-300">
                             Absolutely. Phluowise Ecommerce is designed with user-friendly interfaces, making it easy for both companies and users to navigate the platform seamlessly.
@@ -989,9 +1042,9 @@
                     <textarea placeholder="Message" rows="6" class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition"></textarea>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg">
-              Submit
-            </button>
+                    <button type="submit" class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg">
+                        Submit
+                    </button>
                 </div>
                 <div id="form-messages" class="success-message hidden">
                     Your message has been sent successfully!
@@ -1022,13 +1075,8 @@
     <!-- Back to top button -->
     <div id="back-to-top" class="back-to-top">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M5 10l7-7m0 0l7 7m-7-7v18"
-        />
-      </svg>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
     </div>
 
     <script>
@@ -1140,6 +1188,14 @@
             );
             const mobileNavLinks = document.querySelectorAll(".mobile-nav-link"); // Get all mobile nav links
 
+            // Products Dropdown elements
+            const mobileProductsButton = document.getElementById('mobile-products-button');
+            const mobileProductsDropdownMenu = mobileProductsButton ? mobileProductsButton.nextElementSibling : null;
+
+            // Resources Dropdown elements
+            const mobileResourcesButton = document.getElementById('mobile-resources-button');
+            const mobileResourcesDropdownMenu = mobileResourcesButton ? mobileResourcesButton.nextElementSibling : null;
+
             mobileMenuButton.addEventListener("click", () => {
                 mobileMenuOverlay.classList.add("open");
             });
@@ -1148,12 +1204,95 @@
                 mobileMenuOverlay.classList.remove("open");
             });
 
-            // Close mobile menu when a link is clicked
+            // Function to close all mobile dropdowns
+            function closeAllMobileDropdowns() {
+                if (mobileProductsDropdownMenu && mobileProductsDropdownMenu.classList.contains('open')) {
+                    mobileProductsDropdownMenu.classList.remove('open');
+                    mobileProductsDropdownMenu.style.maxHeight = '0';
+                    mobileProductsDropdownMenu.style.opacity = '0';
+                }
+                if (mobileResourcesDropdownMenu && mobileResourcesDropdownMenu.classList.contains('open')) {
+                    mobileResourcesDropdownMenu.classList.remove('open');
+                    mobileResourcesDropdownMenu.style.maxHeight = '0';
+                    mobileResourcesDropdownMenu.style.opacity = '0';
+                }
+            }
+
+            // Close mobile menu and all dropdowns when a main nav link is clicked
             mobileNavLinks.forEach((link) => {
                 link.addEventListener("click", () => {
                     mobileMenuOverlay.classList.remove("open");
+                    closeAllMobileDropdowns();
                 });
             });
+
+            // Toggle logic for Products Dropdown (Mobile)
+            if (mobileProductsButton && mobileProductsDropdownMenu) {
+                mobileProductsButton.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Prevent closing the main mobile menu
+                    // Close other dropdowns before opening this one
+                    if (mobileResourcesDropdownMenu && mobileResourcesDropdownMenu.classList.contains('open')) {
+                        mobileResourcesDropdownMenu.classList.remove('open');
+                        mobileResourcesDropdownMenu.style.maxHeight = '0';
+                        mobileResourcesDropdownMenu.style.opacity = '0';
+                    }
+
+                    if (mobileProductsDropdownMenu.classList.contains('open')) {
+                        mobileProductsDropdownMenu.classList.remove('open');
+                        mobileProductsDropdownMenu.style.maxHeight = '0';
+                        mobileProductsDropdownMenu.style.opacity = '0';
+                    } else {
+                        mobileProductsDropdownMenu.classList.add('open');
+                        mobileProductsDropdownMenu.style.maxHeight = mobileProductsDropdownMenu.scrollHeight + 'px';
+                        mobileProductsDropdownMenu.style.opacity = '1';
+                    }
+                });
+
+                // Close mobile products dropdown if clicking outside
+                document.addEventListener('click', (event) => {
+                    if (!mobileProductsButton.contains(event.target) && mobileProductsDropdownMenu && !mobileProductsDropdownMenu.contains(event.target)) {
+                        if (mobileProductsDropdownMenu.classList.contains('open')) {
+                            mobileProductsDropdownMenu.classList.remove('open');
+                            mobileProductsDropdownMenu.style.maxHeight = '0';
+                            mobileProductsDropdownMenu.style.opacity = '0';
+                        }
+                    }
+                });
+            }
+
+            // Toggle logic for Resources Dropdown (Mobile)
+            if (mobileResourcesButton && mobileResourcesDropdownMenu) {
+                mobileResourcesButton.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Prevent closing the main mobile menu
+                    // Close other dropdowns before opening this one
+                    if (mobileProductsDropdownMenu && mobileProductsDropdownMenu.classList.contains('open')) {
+                        mobileProductsDropdownMenu.classList.remove('open');
+                        mobileProductsDropdownMenu.style.maxHeight = '0';
+                        mobileProductsDropdownMenu.style.opacity = '0';
+                    }
+
+                    if (mobileResourcesDropdownMenu.classList.contains('open')) {
+                        mobileResourcesDropdownMenu.classList.remove('open');
+                        mobileResourcesDropdownMenu.style.maxHeight = '0';
+                        mobileResourcesDropdownMenu.style.opacity = '0';
+                    } else {
+                        mobileResourcesDropdownMenu.classList.add('open');
+                        mobileResourcesDropdownMenu.style.maxHeight = mobileResourcesDropdownMenu.scrollHeight + 'px';
+                        mobileResourcesDropdownMenu.style.opacity = '1';
+                    }
+                });
+
+                // Close mobile resources dropdown if clicking outside
+                document.addEventListener('click', (event) => {
+                    if (!mobileResourcesButton.contains(event.target) && mobileResourcesDropdownMenu && !mobileResourcesDropdownMenu.contains(event.target)) {
+                        if (mobileResourcesDropdownMenu.classList.contains('open')) {
+                            mobileResourcesDropdownMenu.classList.remove('open');
+                            mobileResourcesDropdownMenu.style.maxHeight = '0';
+                            mobileResourcesDropdownMenu.style.opacity = '0';
+                        }
+                    }
+                });
+            }
 
             // Back to top button functionality
             const backToTopButton = document.getElementById("back-to-top");
@@ -1201,6 +1340,6 @@
             });
         });
     </script>
-    </body>
+</body>
 
 </html>
