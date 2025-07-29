@@ -174,6 +174,25 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
+        /* New button style for marketplace */
+        .btn-marketplace {
+            background-color: #1a202c; /* Dark background */
+            color: #E6EDF3; /* Light text color */
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(59, 116, 255, 0.3); /* Subtle border */
+        }
+
+        .btn-marketplace:hover {
+            background-color: #2d3748; /* Slightly lighter on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .text-phluowise-blue {
+            color: #3b74ff; /* Brand blue color */
+        }
+
+
         /* Text and form colors */
         .text-brand {
             color: #3b74ff;
@@ -309,96 +328,226 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
 
-        /* Card switcher specific styles */
+        /* Card switcher specific styles (from user's provided code) */
         .card-switcher-container {
             position: relative;
             max-width: 900px;
             margin: 0 auto;
             padding: 2rem;
-            border-radius: 1.5rem;
-            background: linear-gradient(135deg, rgba(59, 116, 255, 0.15), rgba(96, 165, 250, 0.15)); /* Brand blue gradient */
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(59, 116, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            min-height: 400px; /* Ensure enough height for content */
+            min-height: 550px; /* Increased min-height for more content space */
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .cards-stack {
+            position: relative;
+            width: 100%;
+            min-height: 450px; /* Increased min-height for the stack */
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Centered items vertically within the stack */
         }
 
         .story-card {
             position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            padding: 2rem;
-            opacity: 0;
-            transform: translateX(100%);
-            transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+            min-height: 380px; /* Increased min-height for cards */
+            padding: 2.5rem; /* Consistent padding */
+            border-radius: 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            text-align: center;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            overflow: hidden;
+            box-sizing: border-box; /* Include padding in width/height calculation */
         }
 
-        .story-card.active {
+        /* Stacking effect - cards behind get smaller and darker */
+        .story-card:nth-child(1) {
+            z-index: 3;
+            transform: translateZ(0) scale(1);
+            background: linear-gradient(135deg, #3b74ff, #60a5fa);
+            box-shadow: 0 20px 40px rgba(59, 116, 255, 0.3);
             opacity: 1;
-            transform: translateX(0);
-            position: relative;
         }
 
-        .story-card.exit-left {
-            transform: translateX(-100%);
+        .story-card:nth-child(2) {
+            z-index: 2;
+            transform: translateZ(-50px) scale(0.95) translateY(10px);
+            background: linear-gradient(135deg, rgba(59, 116, 255, 0.8), rgba(96, 165, 250, 0.8));
+            box-shadow: 0 15px 30px rgba(59, 116, 255, 0.2);
+            opacity: 0.7;
         }
 
-        .story-card.exit-right {
-            transform: translateX(100%);
+        .story-card:nth-child(3) {
+            z-index: 1;
+            transform: translateZ(-100px) scale(0.9) translateY(20px);
+            background: linear-gradient(135deg, rgba(59, 116, 255, 0.6), rgba(96, 165, 250, 0.6));
+            box-shadow: 0 10px 20px rgba(59, 116, 255, 0.15);
+            opacity: 0.5;
         }
 
+        /* Hide cards beyond the third one */
+        .story-card:nth-child(n+4) {
+            opacity: 0;
+            transform: translateZ(-150px) scale(0.85) translateY(30px);
+            pointer-events: none;
+        }
+
+        /* Active card styles */
+        .story-card.active {
+            z-index: 10 !important;
+            transform: translateZ(20px) scale(1.02) !important;
+            opacity: 1 !important;
+            background: linear-gradient(135deg, #3b74ff, #60a5fa) !important;
+            box-shadow: 0 25px 50px rgba(59, 116, 255, 0.4) !important;
+        }
+
+        /* Hover effects */
+        .story-card:hover:not(.transitioning) {
+            transform: translateZ(10px) scale(1.01);
+            box-shadow: 0 20px 40px rgba(59, 116, 255, 0.4);
+        }
+
+        /* Card content styling */
+        .story-card h3 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .story-card p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        /* Navigation styles */
         .card-navigation {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 1.5rem;
-            gap: 1rem;
+            margin-top: 2rem;
+            gap: 1.5rem;
+            z-index: 20;
         }
 
         .nav-button {
-            background-color: #3B74FF;
+            background: linear-gradient(135deg, #3b74ff, #60a5fa);
             color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px; /* full rounded */
+            padding: 0.75rem;
+            border-radius: 50%;
             font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
             border: none;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(59, 116, 255, 0.3);
         }
 
-        .nav-button:hover {
-            background-color: #508bff;
+        .nav-button:hover:not(:disabled) {
+            background: linear-gradient(135deg, #508bff, #7bb3ff);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(59, 116, 255, 0.4);
         }
 
         .nav-button:disabled {
-            background-color: #4B5563;
+            background: linear-gradient(135deg, #4b5563, #6b7280);
             cursor: not-allowed;
-            opacity: 0.6;
+            opacity: 0.5;
             transform: none;
+            box-shadow: none;
+        }
+
+        .dot-indicators {
+            display: flex;
+            gap: 0.75rem;
         }
 
         .dot-indicator {
-            width: 10px;
-            height: 10px;
-            background-color: rgba(255, 255, 255, 0.3);
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
         .dot-indicator.active {
-            background-color: #3B74FF;
+            background: #3b74ff;
             transform: scale(1.2);
+            border-color: rgba(59, 116, 255, 0.3);
+            box-shadow: 0 0 10px rgba(59, 116, 255, 0.5);
+        }
+
+        /* Card transition states */
+        .story-card.transitioning {
+            pointer-events: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .card-switcher-container {
+                padding: 1rem;
+                min-height: 600px; /* Increased min-height for mobile container */
+            }
+
+            .story-card {
+                min-height: 400px; /* Increased min-height for mobile cards */
+                padding: 1.25rem; /* Adjusted padding for smaller screens */
+            }
+
+            .story-card h3 {
+                font-size: 1.4rem; /* Slightly reduced font size for mobile headings */
+                margin-bottom: 0.8rem; /* Adjusted margin */
+            }
+
+            .story-card p {
+                font-size: 0.875rem; /* Adjusted font size for mobile paragraphs */
+            }
+
+            .cards-stack {
+                min-height: 500px; /* Increased min-height for mobile stack */
+            }
+        }
+
+        /* Loading animation */
+        @keyframes cardLoad {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Initial animation for cards */
+        .story-card {
+            animation: cardLoad 0.6s ease-out forwards;
+        }
+
+        .story-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .story-card:nth-child(3) {
+            animation-delay: 0.2s;
         }
     </style>
 </head>
@@ -471,7 +620,12 @@
                 <a href="about_us.html" class="text-white font-semibold transition">About Us</a>
                 <a href="pricing.html" class="text-gray-300 hover:text-white transition">Pricing</a>
             </nav>
-            <a href="https://phluowise-labs.github.io/company/pages/user-signup.html" class="btn-get-started text-white font-semibold px-5 py-2.5 rounded-lg hidden md:block">Get Started</a>
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#" class="btn-marketplace text-white font-semibold px-5 py-2.5 rounded-lg">
+                    <span class="text-phluowise-blue">Phluowise</span> marketplace
+                </a>
+                <a href="https://phluowise-labs.github.io/company/pages/user-signup.html" class="btn-get-started text-white font-semibold px-5 py-2.5 rounded-lg">Get Started</a>
+            </div>
 
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
@@ -547,6 +701,9 @@
             <a href="#our-story" class="text-gray-300 hover:text-white transition mobile-nav-link">Our Story</a>
             <a href="#our-values" class="text-gray-300 hover:text-white transition mobile-nav-link">Our Values</a>
             <a href="pricing.html" class="text-gray-300 hover:text-white transition mobile-nav-link">Pricing</a>
+            <a href="#" class="btn-marketplace text-white font-semibold px-6 py-3 rounded-lg shadow-lg mt-4 mobile-nav-link">
+                <span class="text-phluowise-blue">Phluowise</span> marketplace
+            </a>
             <a href="https://phluowise-labs.github.io/company/pages/user-signup.html" class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg mt-4 mobile-nav-link">Get Started</a>
         </nav>
     </div>
@@ -596,55 +753,63 @@
                 </div>
             </section>
 
-            <!-- Card Switcher Section -->
-            <section class="py-12 section-animated fade-in text-center">
+            <!-- Card Switcher Section (Updated with new code) -->
+            <section class="py-12 text-center w-full max-w-6xl mx-auto">
                 <h2 class="text-4xl md:text-5xl font-bold text-white mb-12">Our Journey & Philosophy</h2>
-                <div class="card-switcher-container relative">
-                    <!-- Card 1: Our Story -->
-                    <div class="story-card active" id="card-1">
-                        <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">Our Story: Nurturing the Vision from Campus to a Logistics Revolution</h3>
-                        <p class="text-gray-300 leading-relaxed mb-4">
-                            Phluowise is more than a platform; it's a testament to the power of visionary thinking and the determination to revolutionize an entire industry. Our journey began in the minds of two university students at the University of Cape Coast (UCC), Oppong Asare-Quayson
-                            (BSc. Computer Science), and Eben Sakyi Mensah (BCom. Accounting).
-                        </p>
-                        <p class="text-gray-300 leading-relaxed">
-                            The seed of our idea sprouted during our freshman year (Level 100), a moment when the excitement of new challenges and boundless possibilities fueled our imaginations. What if we could reshape the way water is delivered, making it not just a service but
-                            an experience? This simple yet powerful question marked the genesis of Phluowise.
-                        </p>
-                    </div>
-
-                    <!-- Card 2: Encouraging the Idea Process -->
-                    <div class="story-card" id="card-2">
-                        <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">Encouraging the Idea Process</h3>
-                        <p class="text-gray-300 leading-relaxed mb-4">
-                            In the tapestry of innovation, every idea is a thread, and it takes careful weaving to create a masterpiece. The journey from the inception of an idea to the realization of a platform demands patience, perseverance, and a collaborative spirit.
-                        </p>
-                        <p class="text-gray-300 leading-relaxed">
-                            Phluowise stands as a testament to the notion that great ideas can emerge from the most unexpected places – a university campus where two students dared to dream big. The encouraging approach we embraced during the idea's infancy was vital. Every challenge
-                            was seen as an opportunity, and every setback was a lesson.
-                        </p>
-                    </div>
-
-                    <!-- Card 3: Join Us in Rewriting the Narrative -->
-                    <div class="story-card" id="card-3">
-                        <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">Join Us in Rewriting the Narrative</h3>
-                        <p class="text-gray-300 leading-relaxed">
-                            Phluowise invites you to be part of our story, a narrative that started with a spark of imagination on a university campus and evolved into a logistical revolution. Together, let's rewrite the future of water delivery, one drop at a time.
-                        </p>
-                    </div>
-
-                    <!-- Navigation Buttons and Indicators -->
-                    <div class="card-navigation absolute bottom-4 left-1/2 transform -translate-x-1/2">
-                        <button id="prev-card" class="nav-button px-4 py-2 rounded-full">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                        </button>
-                        <div id="dot-indicators" class="flex space-x-2">
-                            <span class="dot-indicator active" data-card="0"></span>
-                            <span class="dot-indicator" data-card="1"></span>
-                            <span class="dot-indicator" data-card="2"></span>
+                <div class="card-switcher-container">
+                    <div class="cards-stack">
+                        <!-- Card 1: Our Story -->
+                        <div class="story-card" data-index="0">
+                            <h3>Our Story: Nurturing the Vision from Campus to a Logistics Revolution</h3>
+                            <p class="mb-4">
+                                Phluowise is more than a platform; it's a testament to the power of visionary thinking and the determination to revolutionize an entire industry. Our journey began in the minds of two university students at the University of Cape Coast (UCC), Oppong Asare-Quayson (BSc. Computer Science), and Eben Sakyi Mensah (BCom. Accounting).
+                            </p>
+                            <p>
+                                The seed of our idea sprouted during our freshman year (Level 100), a moment when the excitement of new challenges and boundless possibilities fueled our imaginations. What if we could reshape the way water is delivered, making it not just a service but an experience? This simple yet powerful question marked the genesis of Phluowise.
+                            </p>
                         </div>
-                        <button id="next-card" class="nav-button px-4 py-2 rounded-full">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+
+                        <!-- Card 2: Encouraging the Idea Process -->
+                        <div class="story-card" data-index="1">
+                            <h3>Encouraging the Idea Process</h3>
+                            <p class="mb-4">
+                                In the tapestry of innovation, every idea is a thread, and it takes careful weaving to create a masterpiece. The journey from the inception of an idea to the realization of a platform demands patience, perseverance, and a collaborative spirit.
+                            </p>
+                            <p>
+                                Phluowise stands as a testament to the notion that great ideas can emerge from the most unexpected places – a university campus where two students dared to dream big. The encouraging approach we embraced during the idea's infancy was vital. Every challenge was seen as an opportunity, and every setback was a lesson.
+                            </p>
+                        </div>
+
+                        <!-- Card 3: Join Us in Rewriting the Narrative -->
+                        <div class="story-card" data-index="2">
+                            <h3>Join Us in Rewriting the Narrative</h3>
+                            <p class="mb-6">
+                                Phluowise invites you to be part of our story, a narrative that started with a spark of imagination on a university campus and evolved into a logistical revolution. Together, let's rewrite the future of water delivery, one drop at a time.
+                            </p>
+                            <p>
+                                Our commitment extends beyond creating a platform – we're building a community of innovators, dreamers, and changemakers who believe in the power of technology to transform industries and improve lives.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="card-navigation">
+                        <button id="prev-card" class="nav-button" title="Previous">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+
+                        <div class="dot-indicators">
+                            <span class="dot-indicator active" data-index="0"></span>
+                            <span class="dot-indicator" data-index="1"></span>
+                            <span class="dot-indicator" data-index="2"></span>
+                        </div>
+
+                        <button id="next-card" class="nav-button" title="Next">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -848,73 +1013,153 @@
             observerCallback(sectionObserver.takeRecords(), sectionObserver);
 
 
-            // Card Switcher Logic
-            const storyCards = document.querySelectorAll('.story-card');
+            // Card Switcher Logic (from user's provided code)
+            const cards = document.querySelectorAll('.story-card');
             const prevButton = document.getElementById('prev-card');
             const nextButton = document.getElementById('next-card');
-            const dotIndicatorsContainer = document.getElementById('dot-indicators');
-            let currentCardIndex = 0;
+            const dotIndicators = document.querySelectorAll('.dot-indicator');
+            
+            let currentIndex = 0;
+            let isTransitioning = false;
 
-            function showCard(index, direction = 'next') {
-                if (index < 0 || index >= storyCards.length) return;
-
-                // Remove active and exit classes from all cards
-                storyCards.forEach(card => {
-                    card.classList.remove('active', 'exit-left', 'exit-right');
-                });
-
-                // Apply exit animation to the current card before changing
-                if (storyCards[currentCardIndex]) {
-                    if (direction === 'next') {
-                        storyCards[currentCardIndex].classList.add('exit-left');
+            function updateCardPositions() {
+                cards.forEach((card, index) => {
+                    card.classList.remove('active', 'transitioning');
+                    
+                    const relativeIndex = index - currentIndex;
+                    
+                    if (relativeIndex === 0) {
+                        // Active card (front)
+                        card.classList.add('active');
+                        card.style.zIndex = '10';
+                        card.style.transform = 'translateZ(20px) scale(1.02)';
+                        card.style.opacity = '1';
+                        card.style.background = 'linear-gradient(135deg, #3b74ff, #60a5fa)';
+                        card.style.boxShadow = '0 25px 50px rgba(59, 116, 255, 0.4)';
+                    } else if (relativeIndex === 1 || (relativeIndex === -2 && cards.length === 3)) {
+                        // Second card (behind active)
+                        card.style.zIndex = '3';
+                        card.style.transform = 'translateZ(-50px) scale(0.95) translateY(10px)';
+                        card.style.opacity = '0.7';
+                        card.style.background = 'linear-gradient(135deg, rgba(59, 116, 255, 0.8), rgba(96, 165, 250, 0.8))';
+                        card.style.boxShadow = '0 15px 30px rgba(59, 116, 255, 0.2)';
+                    } else if (relativeIndex === 2 || (relativeIndex === -1 && cards.length === 3)) {
+                        // Third card (furthest back)
+                        card.style.zIndex = '2';
+                        card.style.transform = 'translateZ(-100px) scale(0.9) translateY(20px)';
+                        card.style.opacity = '0.5';
+                        card.style.background = 'linear-gradient(135deg, rgba(59, 116, 255, 0.6), rgba(96, 165, 250, 0.6))';
+                        card.style.boxShadow = '0 10px 20px rgba(59, 116, 255, 0.15)';
                     } else {
-                        storyCards[currentCardIndex].classList.add('exit-right');
+                        // Hidden cards
+                        card.style.zIndex = '1';
+                        card.style.transform = 'translateZ(-150px) scale(0.85) translateY(30px)';
+                        card.style.opacity = '0';
+                        card.style.background = 'linear-gradient(135deg, rgba(59, 116, 255, 0.4), rgba(96, 165, 250, 0.4))';
+                        card.style.boxShadow = 'none';
                     }
-                }
-
-                // A small delay to allow the exit animation to start before the new card appears
-                setTimeout(() => {
-                    currentCardIndex = index;
-                    storyCards[currentCardIndex].classList.add('active');
-                    updateNavigation();
-                }, 500); // Match this delay to your CSS transition duration
+                });
             }
 
             function updateNavigation() {
                 // Update buttons
-                prevButton.disabled = currentCardIndex === 0;
-                nextButton.disabled = currentCardIndex === storyCards.length - 1;
+                prevButton.disabled = currentIndex === 0;
+                nextButton.disabled = currentIndex === cards.length - 1;
 
                 // Update dot indicators
-                Array.from(dotIndicatorsContainer.children).forEach((dot, index) => {
-                    if (index === currentCardIndex) {
-                        dot.classList.add('active');
-                    } else {
-                        dot.classList.remove('active');
-                    }
+                dotIndicators.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
                 });
             }
 
+            function goToCard(newIndex, direction = 'next') {
+                if (newIndex < 0 || newIndex >= cards.length || newIndex === currentIndex || isTransitioning) {
+                    return;
+                }
+
+                isTransitioning = true;
+                
+                // Add transitioning class to prevent hover effects
+                cards.forEach(card => card.classList.add('transitioning'));
+
+                currentIndex = newIndex;
+                updateCardPositions();
+                updateNavigation();
+
+                // Remove transitioning class after animation
+                setTimeout(() => {
+                    isTransitioning = false;
+                    cards.forEach(card => card.classList.remove('transitioning'));
+                }, 600);
+            }
+
+            // Event listeners
             prevButton.addEventListener('click', () => {
-                showCard(currentCardIndex - 1, 'prev');
-            });
-
-            nextButton.addEventListener('click', () => {
-                showCard(currentCardIndex + 1, 'next');
-            });
-
-            dotIndicatorsContainer.addEventListener('click', (event) => {
-                if (event.target.classList.contains('dot-indicator')) {
-                    const newIndex = parseInt(event.target.dataset.card);
-                    if (newIndex !== currentCardIndex) {
-                        const direction = newIndex > currentCardIndex ? 'next' : 'prev';
-                        showCard(newIndex, direction);
-                    }
+                if (currentIndex > 0) {
+                    goToCard(currentIndex - 1, 'prev');
                 }
             });
 
-            // Initialize the first card and navigation
-            showCard(0);
+            nextButton.addEventListener('click', () => {
+                if (currentIndex < cards.length - 1) {
+                    goToCard(currentIndex + 1, 'next');
+                }
+            });
+
+            // Dot indicator clicks
+            dotIndicators.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    const direction = index > currentIndex ? 'next' : 'prev';
+                    goToCard(index, direction);
+                });
+            });
+
+            // Card click to advance
+            cards.forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    if (index === currentIndex && currentIndex < cards.length - 1) {
+                        goToCard(currentIndex + 1, 'next');
+                    } else if (index !== currentIndex) {
+                        goToCard(index);
+                    }
+                });
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                    goToCard(currentIndex - 1, 'prev');
+                } else if (e.key === 'ArrowRight' && currentIndex < cards.length - 1) {
+                    goToCard(currentIndex + 1, 'next');
+                }
+            });
+
+            // Auto-advance (optional)
+            let autoAdvanceInterval;
+            
+            function startAutoAdvance() {
+                autoAdvanceInterval = setInterval(() => {
+                    if (!isTransitioning) {
+                        const nextIndex = currentIndex === cards.length - 1 ? 0 : currentIndex + 1;
+                        goToCard(nextIndex, 'next');
+                    }
+                }, 5000);
+            }
+
+            function stopAutoAdvance() {
+                clearInterval(autoAdvanceInterval);
+            }
+
+            // Start auto-advance and pause on interaction
+            startAutoAdvance();
+            
+            const container = document.querySelector('.card-switcher-container');
+            container.addEventListener('mouseenter', stopAutoAdvance);
+            container.addEventListener('mouseleave', startAutoAdvance);
+
+            // Initialize
+            updateCardPositions();
+            updateNavigation();
         });
     </script>
 </body>
