@@ -396,6 +396,24 @@
             transform: translateY(0);
         }
 
+        /* Error message */
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .error-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         /* Scroll progress bar */
         .scroll-progress {
             position: fixed;
@@ -491,6 +509,96 @@
 
         .dropdown-item svg {
             margin-right: 0.75rem;
+        }
+
+        /* Custom Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: rgba(59, 116, 255, 0.1); /* Apply glassmorphism background */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(59, 116, 255, 0.2);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            /* Initial state for pop-in animation */
+            transform: scale(0.8) translateY(-50px);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.4s ease-out; /* Bounce effect */
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        /* Pop-out animation */
+        @keyframes modalPopOut {
+            from {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: scale(0.8) translateY(50px);
+                opacity: 0;
+            }
+        }
+
+        .modal-content.pop-out {
+            animation: modalPopOut 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+
+
+        .modal-content h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #3b74ff; /* Brand color for heading */
+        }
+
+        .modal-content p {
+            font-size: 1rem;
+            color: #e6edf3;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-close-button {
+            background: linear-gradient(135deg, #3B74FF, #60A5FA);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close-button:hover {
+            background: linear-gradient(135deg, #508bff, #7BB3FF);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 116, 255, 0.4);
         }
     </style>
 </head>
@@ -701,151 +809,129 @@
                 <img src="https://placehold.co/150x60/FFFFFF/000000?text=Verna" alt="Verna" class="h-10 sm:h-12 opacity-70 hover:opacity-100 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/150x60/FFFFFF/000000?text=Verna';" />
                 <img src="https://placehold.co/150x60/FFFFFF/000000?text=Voltic" alt="Voltic" class="h-10 sm:h-12 opacity-70 hover:opacity-100 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/150x60/FFFFFF/000000?text=Voltic';" />
                 <img src="https://placehold.co/150x60/FFFFFF/000000?text=Bel-Aqua" alt="Bel-Aqua" class="h-10 sm:h-12 opacity-70 hover:opacity-100 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/150x60/FFFFFF/000000?text=Bel-Aqua';" />
-                <img src="https://placehold.co/150x60/FFFFFF/000000?text=Awake" alt="Awake" class="h-10 sm:h-12 opacity-70 hover:opacity-100 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/150x60/FFFFFF/000000?text=Awake';" />
+                <img src="https://placehold.co/150x60/FFFFFF/000000?text=Awake" alt="Awake" class="h-10 sm:h-12 opacity-70 hover:opacity-100 transition-opacity" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D1117/3B74FF?text=App+Screenshot+1';" />
             </div>
             <p class="text-gray-400 mb-8 text-base sm:text-lg">
                 200+ water companies
             </p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="driver.html" class="btn-secondary text-white font-semibold px-6 py-3 rounded-lg shadow-lg">View Driver Page</a
-          >
-          <a
-            href="#"
-            class="btn-secondary text-white font-semibold px-6 py-3 rounded-lg shadow-lg"
-            >View Company Page</a
-          >
-        </div>
-      </section>
-
-      <!-- Mission Section -->
-      <section
-        class="glassmorphism animated-border rounded-3xl p-8 sm:p-12 text-center slide-in-from-bottom"
-      >
-        <p class="text-xl md:text-3xl leading-relaxed max-w-4xl mx-auto">
-          Phluowise aims to help make water delivery easy and accessible to all
-          and contribute to environmental sustainability: waste reduction and
-          pollution prevention.
-        </p>
-      </section>
-
-      <!-- Feature Sections -->
-      <div id="features" class="space-y-20 sm:space-y-28">
-        <!-- Feature 1 -->
-        <section
-          class="glassmorphism animated-border rounded-3xl p-6 md:p-12 slide-in-from-bottom"
-        >
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center"
-          >
-            <div class="slide-in-from-left text-center md:text-left">
-              <h3 class="text-2xl md:text-4xl font-bold mb-4">
-                Search for water management companies in various vicinities.
-              </h3>
-              <div
-                class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mt-8"
-              >
-                <a href="#" class="app-store-btn">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path
-                      d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"
-                    />
-                  </svg>
-                  <div class="text-left">
-                    <div class="text-xs">GET IT ON</div>
-                    <div class="text-sm font-semibold">Google Play</div>
-                  </div>
-                </a>
-                <a href="#" class="app-store-btn">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"
-                    />
-                  </svg>
-                    <div class="text-left">
-                        <div class="text-xs">Download on the</div>
-                        <div class="text-sm font-semibold">App Store</div>
-                    </div>
-                </a>
-            </div>
-            </div>
-            <div class="slide-in-from-right">
-                <img src="https://placehold.co/600x400/0D1117/3B74FF?text=App+Screenshot+1" alt="App Screenshot 1" class="rounded-2xl shadow-2xl w-full" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D1117/3B74FF?text=App+Screenshot+1';" />
-            </div>
+                <a href="driver.html" class="btn-secondary text-white font-semibold px-6 py-3 rounded-lg shadow-lg">View Driver Page</a>
+                <a href="#" class="btn-secondary text-white font-semibold px-6 py-3 rounded-lg shadow-lg">View Company Page</a>
             </div>
         </section>
 
-        <!-- Feature 2 -->
-        <section class="glassmorphism animated-border rounded-3xl p-6 md:p-12 slide-in-from-bottom">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div class="slide-in-from-left order-last md:order-first">
-                    <img src="https://placehold.co/600x400/0D1117/3B74FF?text=App+Screenshot+2" alt="App Screenshot 2" class="rounded-2xl shadow-2xl w-full" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D1117/3B74FF?text=App+Screenshot+2';" />
-                </div>
-                <div class="slide-in-from-right text-center md:text-right">
-                    <h3 class="text-2xl md:text-4xl font-bold mb-4">
-                        Find the nearest and most suitable water service providers around your current location.
-                    </h3>
-                    <div class="flex flex-col sm:flex-row justify-center md:justify-end space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
-                        <a href="#" class="app-store-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                            </svg>
-                            <div class="text-left">
-                                <div class="text-xs">GET IT ON</div>
-                                <div class="text-sm font-semibold">Google Play</div>
-                            </div>
-                        </a>
-                        <a href="#" class="app-store-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
-                            </svg>
-                            <div class="text-left">
-                                <div class="text-xs">Download on the</div>
-                                <div class="text-sm font-semibold">App Store</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <!-- Mission Section -->
+        <section class="glassmorphism animated-border rounded-3xl p-8 sm:p-12 text-center slide-in-from-bottom">
+            <p class="text-xl md:text-3xl leading-relaxed max-w-4xl mx-auto">
+                Phluowise aims to help make water delivery easy and accessible to all
+                and contribute to environmental sustainability: waste reduction and
+                pollution prevention.
+            </p>
         </section>
 
-        <!-- Feature 3 -->
-        <section class="glassmorphism animated-border rounded-3xl p-6 md:p-12 slide-in-from-bottom">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div class="slide-in-from-left text-center md:text-left">
-                    <h3 class="text-2xl md:text-4xl font-bold mb-4">
-                        Schedule pickups through Phluowise app, eliminate the need for manual coordination and ensuring timeless service.
-                    </h3>
-                    <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
-                        <a href="#" class="app-store-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                            </svg>
-                            <div class="text-left">
-                                <div class="text-xs">GET IT ON</div>
-                                <div class="text-sm font-semibold">Google Play</div>
-                            </div>
-                        </a>
-                        <a href="#" class="app-store-btn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
-                            </svg>
-                            <div class="text-left">
-                                <div class="text-xs">Download on the</div>
-                                <div class="text-sm font-semibold">App Store</div>
-                            </div>
-                        </a>
+        <!-- Feature Sections -->
+        <div id="features" class="space-y-20 sm:space-y-28">
+            <!-- Feature 1 -->
+            <section class="glassmorphism animated-border rounded-3xl p-6 md:p-12 slide-in-from-bottom">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="slide-in-from-left text-center md:text-left">
+                        <h3 class="text-2xl md:text-4xl font-bold mb-4">
+                            Search for water management companies in various vicinities.
+                        </h3>
+                        <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+                            <a href="#" class="app-store-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                                </svg>
+                                <div class="text-left">
+                                    <div class="text-xs">GET IT ON</div>
+                                    <div class="text-sm font-semibold">Google Play</div>
+                                </div>
+                            </a>
+                            <a href="#" class="app-store-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
+                                </svg>
+                                <div class="text-left">
+                                    <div class="text-xs">Download on the</div>
+                                    <div class="text-sm font-semibold">App Store</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="slide-in-from-right">
+                        <img src="https://placehold.co/600x400/0D1117/3B74FF?text=App+Screenshot+1" alt="App Screenshot 1" class="rounded-2xl shadow-2xl w-full" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D1117/3B74FF?text=App+Screenshot+1';" />
                     </div>
                 </div>
-                <div class="slide-in-from-right">
-                    <img src="https://images.pexels.com/photos/6802049/pexels-photo-6802049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Schedule Pickup" class="rounded-2xl shadow-2xl w-full" />
+            </section>
+
+            <!-- Feature 2 -->
+            <section class="glassmorphism animated-border rounded-3xl p-6 md:p-12 slide-in-from-bottom">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="slide-in-from-left order-last md:order-first">
+                        <img src="https://placehold.co/600x400/0D1117/3B74FF?text=App+Screenshot+2" alt="App Screenshot 2" class="rounded-2xl shadow-2xl w-full" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0D1117/3B74FF?text=App+Screenshot+2';" />
+                    </div>
+                    <div class="slide-in-from-right text-center md:text-right">
+                        <h3 class="text-2xl md:text-4xl font-bold mb-4">
+                            Find the nearest and most suitable water service providers around your current location.
+                        </h3>
+                        <div class="flex flex-col sm:flex-row justify-center md:justify-end space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+                            <a href="#" class="app-store-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                                </svg>
+                                <div class="text-left">
+                                    <div class="text-xs">GET IT ON</div>
+                                    <div class="text-sm font-semibold">Google Play</div>
+                                </div>
+                            </a>
+                            <a href="#" class="app-store-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
+                                </svg>
+                                <div class="text-left">
+                                    <div class="text-xs">Download on the</div>
+                                    <div class="text-sm font-semibold">App Store</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- Feature 3 -->
+            <section class="glassmorphism animated-border rounded-3xl p-6 md:p-12 slide-in-from-bottom">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div class="slide-in-from-left text-center md:text-left">
+                        <h3 class="text-2xl md:text-4xl font-bold mb-4">
+                            Schedule pickups through Phluowise app, eliminate the need for manual coordination and ensuring timeless service.
+                        </h3>
+                        <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mt-8">
+                            <a href="#" class="app-store-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                                </svg>
+                                <div class="text-left">
+                                    <div class="text-xs">GET IT ON</div>
+                                    <div class="text-sm font-semibold">Google Play</div>
+                                </div>
+                            </a>
+                            <a href="#" class="app-store-btn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
+                                </svg>
+                                <div class="text-left">
+                                    <div class="text-xs">Download on the</div>
+                                    <div class="text-sm font-semibold">App Store</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="slide-in-from-right">
+                        <img src="https://images.pexels.com/photos/6802049/pexels-photo-6802049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Schedule Pickup" class="rounded-2xl shadow-2xl w-full" />
+                    </div>
+                </div>
+            </section>
         </div>
 
         <!-- Key Features Section -->
@@ -859,7 +945,8 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-8">
                 <div class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
                     <div class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl font-bold">
-                        ✓
+                        <!-- Unicode for checkmark or similar -->
+                        &#x2713;
                     </div>
                     <h4 class="text-lg sm:text-xl font-semibold text-center">
                         User Registration
@@ -867,7 +954,8 @@
                 </div>
                 <div class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
                     <div class="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
-                        🔍
+                        <!-- Unicode for magnifying glass or search icon -->
+                        &#x1F50D;
                     </div>
                     <h4 class="text-lg sm:text-xl font-semibold text-center">
                         Search, filter water management companies
@@ -875,7 +963,8 @@
                 </div>
                 <div class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
                     <div class="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
-                        📄
+                        <!-- Unicode for document or profile icon -->
+                        &#x1F4C4;
                     </div>
                     <h4 class="text-lg sm:text-xl font-semibold text-center">
                         Detailed company profiles with service offerings, and ratings
@@ -883,7 +972,8 @@
                 </div>
                 <div class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
                     <div class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
-                        🔒
+                        <!-- Unicode for money or payment icon -->
+                        &#x1F4B3;
                     </div>
                     <h4 class="text-lg sm:text-xl font-semibold text-center">
                         Secure and easy payment
@@ -893,7 +983,8 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto">
                 <div class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
                     <div class="w-20 h-20 bg-pink-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
-                        📅
+                        <!-- Unicode for calendar or clock icon -->
+                        &#x1F4C5;
                     </div>
                     <h4 class="text-lg sm:text-xl font-semibold text-center">
                         Instant Booking & scheduling water pickup
@@ -901,7 +992,8 @@
                 </div>
                 <div class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
                     <div class="w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
-                        💬
+                        <!-- Unicode for headset or support icon -->
+                        &#x1F4DE;
                     </div>
                     <h4 class="text-lg sm:text-xl font-semibold text-center">
                         Support from companies
@@ -1033,22 +1125,23 @@
                     Contact Us
                 </h3>
             </div>
-            <form class="max-w-2xl mx-auto space-y-6" id="contact-form">
+            <!-- Updated Formspark form -->
+            <form class="max-w-2xl mx-auto space-y-6" id="contact-form" action="https://submit-form.com/BROFHIgzq" method="POST">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input type="text" placeholder="Name" class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition" />
-                    <input type="email" placeholder="Email" class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition" />
+                    <input type="text" id="name" name="name" placeholder="Name" required="" class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition" />
+                    <input type="email" id="email" name="email" placeholder="Email" required="" class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition" />
                 </div>
                 <div>
-                    <textarea placeholder="Message" rows="6" class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition"></textarea>
+                    <textarea id="message" name="message" placeholder="Message" rows="6" required="" class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition"></textarea>
                 </div>
+                <!-- IMPORTANT: Formspark spam protection field -->
+                <input type="text" name="_gotcha" style="display:none" />
                 <div class="text-center">
                     <button type="submit" class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg">
-                        Submit
+                        Send
                     </button>
                 </div>
-                <div id="form-messages" class="success-message hidden">
-                    Your message has been sent successfully!
-                </div>
+                <div id="form-messages" class="hidden"></div>
             </form>
         </section>
     </main>
@@ -1077,6 +1170,15 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
         </svg>
+    </div>
+
+    <!-- Custom Confirmation Modal -->
+    <div id="confirmation-modal" class="modal-overlay">
+        <div class="modal-content glassmorphism">
+            <h4 id="modal-title"></h4>
+            <p id="modal-message"></p>
+            <button id="modal-close-button" class="modal-close-button">Close</button>
+        </div>
     </div>
 
     <script>
@@ -1312,31 +1414,92 @@
                 });
             });
 
-            // Contact form submission (example - client-side only)
+            // Custom Confirmation Modal elements
+            const confirmationModal = document.getElementById("confirmation-modal");
+            const modalContent = document.querySelector("#confirmation-modal .modal-content");
+            const modalTitle = document.getElementById("modal-title");
+            const modalMessage = document.getElementById("modal-message");
+            const modalCloseButton = document.getElementById("modal-close-button");
+
+            function showModal(title, message) {
+                modalTitle.textContent = title;
+                modalMessage.textContent = message;
+                confirmationModal.classList.add("show");
+                // Ensure pop-out class is removed for pop-in animation
+                modalContent.classList.remove("pop-out");
+            }
+
+            function hideModal() {
+                // Trigger pop-out animation before hiding the overlay
+                modalContent.classList.add("pop-out");
+                // Wait for the animation to complete before hiding the overlay
+                modalContent.addEventListener('animationend', function handler() {
+                    confirmationModal.classList.remove("show");
+                    modalContent.classList.remove("pop-out"); // Clean up the class
+                    modalContent.removeEventListener('animationend', handler); // Remove listener
+                });
+            }
+
+            // Close modal when close button is clicked
+            modalCloseButton.addEventListener("click", hideModal);
+
+            // Close modal when clicking outside the modal content
+            confirmationModal.addEventListener("click", (event) => {
+                if (event.target === confirmationModal) {
+                    hideModal();
+                }
+            });
+
+            // Contact form submission with Formspark
             const contactForm = document.getElementById("contact-form");
             const formMessages = document.getElementById("form-messages");
+            const submitButton = contactForm.querySelector('button[type="submit"]');
 
-            contactForm.addEventListener("submit", function(event) {
-                event.preventDefault();
-                formMessages.classList.remove("show"); // Hide previous messages
-                formMessages.classList.remove("text-red-500"); // Remove error styling
+            contactForm.addEventListener("submit", async function(event) {
+                event.preventDefault(); // Prevent default form submission
 
-                // Simulate form submission
-                contactForm.classList.add("loading"); // Show loading state
+                formMessages.classList.remove("show", "success-message", "error-message"); // Hide previous messages
+                formMessages.textContent = ""; // Clear message content
 
-                setTimeout(() => {
-                    contactForm.classList.remove("loading");
-                    // In a real application, you'd send data to a server here.
-                    // If successful:
-                    formMessages.textContent =
-                        "Your message has been sent successfully!";
-                    formMessages.classList.add("show");
-                    contactForm.reset(); // Clear the form
+                submitButton.textContent = "Sending..."; // Change button text
+                submitButton.classList.add("loading"); // Show loading state
 
-                    // If there was an error:
-                    // formMessages.textContent = 'Failed to send message. Please try again.';
-                    // formMessages.classList.add('show', 'text-red-500');
-                }, 1500); // Simulate network delay
+                try {
+                    const formData = new FormData(contactForm);
+
+                    // Log the FormData content for debugging
+                    console.log("Attempting to send form data:");
+                    for (let [key, value] of formData.entries()) {
+                        console.log(`${key}: ${value}`);
+                    }
+
+                    const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json' // Important for Formspark to return JSON
+                        }
+                    });
+
+                    // Log the raw response status and text
+                    console.log("Formspark response status:", response.status, response.statusText);
+
+                    if (response.ok) {
+                        console.log("Form submitted successfully to Formspark!");
+                        showModal("Success!", "Your message has been sent successfully!");
+                        contactForm.reset(); // Clear the form
+                    } else {
+                        const errorData = await response.json();
+                        console.error("Formspark submission error data:", errorData);
+                        showModal("Error!", `Failed to send message: ${errorData.error || 'Please try again.'}`);
+                    }
+                } catch (error) {
+                    console.error("Network or fetch error:", error);
+                    showModal("Error!", "An error occurred. Please check your network connection and try again.");
+                } finally {
+                    submitButton.textContent = "Send"; // Reset button text
+                    submitButton.classList.remove("loading"); // Hide loading state
+                }
             });
         });
     </script>
