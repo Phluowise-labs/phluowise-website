@@ -575,6 +575,52 @@
             transform: translateY(0);
             opacity: 1;
         }
+
+        /* Cookie Consent Banner Styles */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+        }
+
+        .cookie-banner.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .cookie-banner-content {
+            max-width: 90%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .cookie-banner {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 1.5rem 2rem;
+            }
+
+            .cookie-banner-content {
+                flex-direction: row;
+                justify-content: space-between;
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -1240,6 +1286,24 @@
         </svg>
     </div>
 
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="cookie-banner glassmorphism rounded-t-xl md:rounded-xl md:mb-4 md:mx-4">
+        <div class="cookie-banner-content">
+            <p class="text-base text-gray-200 text-center md:text-left">
+                We use cookies to ensure you get the best experience on our website. By continuing to use this site, you agree to our
+                <a href="#" class="text-brand hover:underline">Cookie Policy</a>.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                <button id="accept-cookies" class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg w-full">
+                    Accept All
+                </button>
+                <button id="decline-cookies" class="btn-secondary text-white font-semibold px-6 py-3 rounded-lg shadow-lg w-full">
+                    Decline
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Scroll progress bar
@@ -1545,6 +1609,61 @@
                         document.querySelector('#confirmation-modal h4').textContent = 'Message Sent!';
                         document.querySelector('#confirmation-modal p').textContent = 'Thank you for contacting us. We will get back to you shortly.';
                     }
+                });
+            }
+
+            // Cookie Consent Logic
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptCookiesBtn = document.getElementById('accept-cookies');
+            const declineCookiesBtn = document.getElementById('decline-cookies');
+
+            // Function to set a cookie
+            function setCookie(name, value, days) {
+                let expires = "";
+                if (days) {
+                    const date = new Date();
+                    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                    expires = "; expires=" + date.toUTCString();
+                }
+                document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax";
+            }
+
+            // Function to get a cookie
+            function getCookie(name) {
+                const nameEQ = name + "=";
+                const ca = document.cookie.split(';');
+                for (let i = 0; i < ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+                }
+                return null;
+            }
+
+            // Check if cookie consent has been given
+            const consentGiven = getCookie('cookieConsent');
+
+            if (!consentGiven) {
+                // Show the banner if no consent cookie is found
+                setTimeout(() => {
+                    cookieBanner.classList.add('show');
+                }, 1000); // Delay to ensure page content loads first
+            }
+
+            // Event listener for "Accept All" button
+            if (acceptCookiesBtn) {
+                acceptCookiesBtn.addEventListener('click', () => {
+                    setCookie('cookieConsent', 'accepted', 365); // Set cookie for 365 days
+                    cookieBanner.classList.remove('show');
+                });
+            }
+
+            // Event listener for "Decline" button
+            if (declineCookiesBtn) {
+                declineCookiesBtn.addEventListener('click', () => {
+                    // For simplicity, declining just hides the banner for the current session.
+                    // You might choose to set a session cookie or redirect based on privacy policy.
+                    cookieBanner.classList.remove('show');
                 });
             }
         });
