@@ -115,8 +115,8 @@
 
         /* Feature boxes from screenshots */
         .feature-box {
-            background-color: #1e293b;
-            /* Dark slate/blue */
+            background-color: rgba(30, 41, 59, 0.8);
+            /* Dark slate/blue with reduced opacity */
             border-radius: 1rem;
             /* rounded-xl */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -129,8 +129,10 @@
 
         /* Form styles from screenshots and existing files */
         .form-input {
-            background-color: #374151;
-            border: 1px solid #4B5563;
+            background-color: rgba(59, 116, 255, 0.05); /* Reduced opacity */
+            backdrop-filter: blur(8px); /* Glassmorphism blur */
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(59, 116, 255, 0.2); /* Subtle border */
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -289,6 +291,91 @@
 
         .animated-border:hover::before {
             opacity: 1;
+        }
+
+        /* Glassmorphism effect */
+        .glassmorphism {
+            background: rgba(59, 116, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(59, 116, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glassmorphism:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 116, 255, 0.2);
+        }
+
+        /* Confirmation Message Styles */
+        .confirmation-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .confirmation-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .confirmation-content {
+            background: rgba(59, 116, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 116, 255, 0.3);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            color: #E6EDF3;
+            box-shadow: 0 10px 30px rgba(59, 116, 255, 0.4);
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        }
+
+        .confirmation-modal.show .confirmation-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Button Loading Animation */
+        .btn-loading {
+            position: relative;
+            pointer-events: none;
+            /* Disable clicks during loading */
+        }
+
+        .btn-loading .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #fff;
+            border-radius: 50%;
+            width: 1.5rem;
+            height: 1.5rem;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
@@ -450,7 +537,7 @@
                 <h3 class="text-3xl md:text-5xl font-bold mb-4"><span class="text-gradient">For your drivers,</span> we made it easy and convenient</h3>
                 <p class="text-gray-400 mb-12">Driver water management application</p>
 
-                <div class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center">
+                <div class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center glassmorphism">
                     <div class="text-center md:text-left">
                         <img src="https://placehold.co/400x800/111827/E6EDF3?text=App+UI" alt="Phluowise Driver App UI" class="mx-auto md:mx-0 rounded-2xl shadow-2xl">
                     </div>
@@ -483,7 +570,7 @@
 
         <section class="pb-16 md:pb-24">
             <div class="container mx-auto px-4">
-                <div class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center">
+                <div class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center glassmorphism">
                     <div class="text-center md:text-left space-y-6">
                         <h4 class="text-3xl font-bold">View user location and gain access to automatic direction to destination</h4>
                         <div class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
@@ -520,11 +607,11 @@
                 <p class="text-gray-400 mb-12">Driver water management application</p>
 
                 <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center">
+                    <div class="feature-box animated-border glassmorphism p-8 flex flex-col items-center justify-center">
                         <img src="https://placehold.co/100x100/3B74FF/FFFFFF?text=📄" alt="Booked Request Icon" class="rounded-lg mb-6">
                         <h4 class="text-2xl font-semibold">View booked request</h4>
                     </div>
-                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center">
+                    <div class="feature-box animated-border glassmorphism p-8 flex flex-col items-center justify-center">
                         <img src="https://placehold.co/100x100/3B74FF/FFFFFF?text=💳" alt="Transactions Icon" class="rounded-lg mb-6">
                         <h4 class="text-2xl font-semibold">View transactions</h4>
                     </div>
@@ -537,18 +624,29 @@
                 <div class="text-center">
                     <h3 class="text-3xl sm:text-4xl font-bold text-brand mb-8 sm:mb-12">Contact Us</h3>
                 </div>
-                <form class="max-w-2xl mx-auto space-y-6">
+                <form id="contact-form" action="https://submit-form.com/DlxjAQlI9" method="POST" class="max-w-2xl mx-auto space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <input type="text" placeholder="Name" class="form-input w-full p-4 rounded-lg focus:outline-none transition" />
-                        <input type="email" placeholder="Email" class="form-input w-full p-4 rounded-lg focus:outline-none transition" />
+                        <input type="text" id="name" name="name" placeholder="Name" required="" class="form-input w-full p-4 rounded-lg focus:outline-none transition" />
+                        <input type="email" id="email" name="email" placeholder="Email" required="" class="form-input w-full p-4 rounded-lg focus:outline-none transition" />
                     </div>
                     <div>
-                        <textarea placeholder="Message" rows="6" class="form-input w-full p-4 rounded-lg focus:outline-none transition"></textarea>
+                        <textarea id="message" name="message" placeholder="Message" rows="6" required="" class="form-input w-full p-4 rounded-lg focus:outline-none transition"></textarea>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn-get-started text-white font-semibold px-8 py-3 rounded-lg shadow-lg">Submit</button>
+                        <button type="submit" id="submit-button" class="btn-get-started text-white font-semibold px-8 py-3 rounded-lg shadow-lg">Submit</button>
                     </div>
                 </form>
+
+                <!-- Confirmation Message Modal -->
+                <div id="confirmation-modal" class="confirmation-modal">
+                    <div class="confirmation-content glassmorphism animated-border">
+                        <h4 class="text-2xl font-bold mb-4">Message Sent!</h4>
+                        <p class="text-lg mb-6">Thank you for contacting us. We will get back to you shortly.</p>
+                        <button id="close-confirmation-modal" class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg">
+                            Close
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -683,6 +781,81 @@
                         }
                     });
                 }
+            }
+
+            // Formspark Integration Logic
+            const contactForm = document.getElementById('contact-form');
+            const submitButton = document.getElementById('submit-button');
+            const confirmationModal = document.getElementById('confirmation-modal');
+            const closeConfirmationModalButton = document.getElementById('close-confirmation-modal');
+
+            if (contactForm && submitButton && confirmationModal && closeConfirmationModalButton) {
+                contactForm.addEventListener('submit', async function (event) {
+                    event.preventDefault(); // Prevent default form submission
+
+                    // Show loading state on button
+                    submitButton.innerHTML = '<span class="spinner"></span> Sending...';
+                    submitButton.classList.add('btn-loading');
+                    submitButton.disabled = true; // Disable button during submission
+
+                    const formData = new FormData(contactForm);
+                    const formProps = Object.fromEntries(formData);
+
+                    try {
+                        const response = await fetch(contactForm.action, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify(formProps)
+                        });
+
+                        if (response.ok) {
+                            // On successful submission
+                            contactForm.reset(); // Clear form fields
+                            contactForm.style.display = 'none'; // Hide the form
+                            confirmationModal.classList.add('show'); // Show confirmation modal
+                        } else {
+                            // Handle non-OK responses (e.g., server errors, Formspark issues)
+                            const errorData = await response.json();
+                            console.error('Form submission error:', errorData);
+                            // You might want to display a different message for errors
+                            document.querySelector('#confirmation-modal h4').textContent = 'Submission Failed!';
+                            document.querySelector('#confirmation-modal p').textContent = 'There was an error sending your message. Please try again later.';
+                            confirmationModal.classList.add('show');
+                        }
+                    } catch (error) {
+                        console.error('Network or fetch error:', error);
+                        // Handle network errors
+                        document.querySelector('#confirmation-modal h4').textContent = 'Submission Failed!';
+                        document.querySelector('#confirmation-modal p').textContent = 'Could not connect to the server. Please check your internet connection and try again.';
+                        confirmationModal.classList.add('show');
+                    } finally {
+                        // Reset button state regardless of success or failure
+                        submitButton.innerHTML = 'Submit';
+                        submitButton.classList.remove('btn-loading');
+                        submitButton.disabled = false;
+                    }
+                });
+
+                closeConfirmationModalButton.addEventListener('click', () => {
+                    confirmationModal.classList.remove('show'); // Hide confirmation modal
+                    contactForm.style.display = 'block'; // Show the form again
+                    // Reset confirmation message content to default for next time
+                    document.querySelector('#confirmation-modal h4').textContent = 'Message Sent!';
+                    document.querySelector('#confirmation-modal p').textContent = 'Thank you for contacting us. We will get back to you shortly.';
+                });
+
+                // Close modal if clicking outside the content
+                confirmationModal.addEventListener('click', (event) => {
+                    if (event.target === confirmationModal) {
+                        confirmationModal.classList.remove('show');
+                        contactForm.style.display = 'block';
+                        document.querySelector('#confirmation-modal h4').textContent = 'Message Sent!';
+                        document.querySelector('#confirmation-modal p').textContent = 'Thank you for contacting us. We will get back to you shortly.';
+                    }
+                });
             }
         });
     </script>
