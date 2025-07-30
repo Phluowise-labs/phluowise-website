@@ -102,13 +102,16 @@
             justify-content: center;
             background: #000;
             color: white;
-            padding: 8px 16px;
+            padding: 6px 12px;
+            /* Reduced padding */
             border-radius: 8px;
             text-decoration: none;
             transition: all 0.3s ease;
             border: 1px solid #333;
-            min-width: 140px;
-            height: 48px;
+            min-width: 120px;
+            /* Reduced min-width */
+            height: 40px;
+            /* Reduced height */
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
@@ -336,11 +339,24 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(59, 116, 255, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Added for ripple effect */
+            background-size: 200% 200%;
+            animation: glassmorphism-ripple 15s ease-in-out infinite alternate;
         }
 
         .glassmorphism:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(59, 116, 255, 0.2);
+        }
+
+        /* Keyframes for the ripple effect on glassmorphism background */
+        @keyframes glassmorphism-ripple {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
         }
 
         /* Animation classes */
@@ -496,6 +512,105 @@
             100% {
                 transform: rotate(360deg);
             }
+        }
+
+        /* Cookie Banner Styles */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            /* Changed background to match other glassmorphism elements */
+            background: rgba(59, 116, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            color: #E6EDF3;
+            text-align: center;
+            z-index: 1000;
+            /* Temporarily set to flex for demonstration. For production, revert to 'display: none;' */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            /* Added for ripple effect */
+            background-size: 200% 200%;
+            animation: glassmorphism-ripple 15s ease-in-out infinite alternate;
+            overflow: hidden; /* Ensure ripple stays within bounds */
+        }
+
+        .cookie-banner.show {
+            display: flex;
+        }
+
+        .cookie-banner-content {
+            max-width: 90%;
+            /* Responsive width */
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .cookie-banner-buttons {
+            display: flex;
+            flex-direction: column;
+            /* Stack buttons on small screens */
+            gap: 0.75rem;
+            width: 100%;
+            max-width: 300px;
+            /* Limit width on larger screens */
+        }
+
+        @media (min-width: 640px) {
+            .cookie-banner {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 1rem 2rem;
+            }
+
+            .cookie-banner-content {
+                margin-bottom: 0;
+                text-align: left;
+                flex-grow: 1;
+                margin-right: 1.5rem;
+            }
+
+            .cookie-banner-buttons {
+                flex-direction: row;
+                width: auto;
+            }
+        }
+
+        .cookie-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            border: none;
+            min-height: 36px;
+            /* Reduced height for cookie buttons */
+        }
+
+        .cookie-btn-accept {
+            background: linear-gradient(135deg, #3B74FF, #60A5FA);
+            color: white;
+        }
+
+        .cookie-btn-accept:hover {
+            background: linear-gradient(135deg, #508bff, #7BB3FF);
+            box-shadow: 0 4px 10px rgba(59, 116, 255, 0.3);
+        }
+
+        .cookie-btn-decline {
+            background-color: #374151;
+            color: #E6EDF3;
+            border: 1px solid #4B5563;
+        }
+
+        .cookie-btn-decline:hover {
+            background-color: #4B5563;
+            border-color: #5A6470;
         }
     </style>
 </head>
@@ -693,7 +808,7 @@
                 <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-16 slide-in-from-bottom"
                     style="animation-delay: 0.4s;">
                     <a href="https://phluowise-labs.github.io/company/pages/user-signup.html"
-                        class="btn-get-started font-semibold px-6 py-3 rounded-lg shadow-lg w-full sm:w-auto">Get
+                        class="btn-get-started font-semibold px-6 py-2.5 rounded-lg shadow-lg w-full sm:w-auto">Get
                         Started</a>
                 </div>
 
@@ -996,11 +1111,6 @@
                             For the first month in business with Phluowise, companies will receive 83.33%, 82.5%, and
                             84% discount.
                         </p>
-                        <p class="text-gray-300 mt-2">
-                            This pricing structure is designed to be fair and reflective of the varying complexities and
-                            demands associated with different water delivery products. It ensures that companies pay
-                            based on the specific type of product they are delivering.
-                        </p>
                     </div>
                 </div>
             </div>
@@ -1028,7 +1138,7 @@
                 </div>
                 <div class="text-center">
                     <button type="submit" id="submit-button"
-                        class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg">
+                        class="btn-get-started text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg">
                         Send
                     </button>
                 </div>
@@ -1038,9 +1148,9 @@
             <div id="confirmation-modal" class="confirmation-modal">
                 <div class="confirmation-content glassmorphism animated-border">
                     <h4 class="text-2xl font-bold mb-4">Message Sent!</h4>
-                    <p class="text-lg mb-6">Thank you for contacting us. We will get back to you shortly.</p>
+                    <p class="text-lg mb-6">Thank0you for contacting us. We will get back to you shortly.</p>
                     <button id="close-confirmation-modal"
-                        class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg">
+                        class="btn-get-started text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg">
                         Close
                     </button>
                 </div>
@@ -1048,16 +1158,12 @@
         </section>
     </main>
 
-    <!-- Footer (Copied from index.html/pricing.html) -->
+    <!-- Footer -->
     <footer class="text-white py-8 sm:py-10 mt-16 sm:mt-20 border-t border-gray-800 px-4">
         <div class="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-sm">
-            <div class="text-gray-500 text-center md:text-left">
-                <p>&copy; Phluowise Company, 2025</p>
-                <p class="mt-1">
-                    From: <span class="text-brand">Phluowise</span>, All rights reserved.
-                </p>
-            </div>
-            <div class="flex space-x-6">
+            <p class="text-gray-500 text-center md:text-left">&copy; Phluowise Company, <span id="current-year"></span></p>
+            <p class="text-gray-500 text-center md:text-center">From: <span class="text-brand">Phluowise</span>, All rights reserved.</p>
+            <div class="flex space-x-6 justify-center md:justify-end">
                 <a href="#" class="hover:text-brand transition-colors">Instagram</a>
                 <a href="#" class="hover:text-brand transition-colors">Facebook</a>
                 <a href="#" class="hover:text-brand transition-colors">X</a>
@@ -1067,8 +1173,25 @@
         </div>
     </footer>
 
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="cookie-banner animated-border">
+        <div class="cookie-banner-content">
+            This website uses cookies to ensure you get the best experience on our website. By continuing to use this site, you consent to our use of cookies.
+        </div>
+        <div class="cookie-banner-buttons">
+            <button id="accept-cookies" class="cookie-btn cookie-btn-accept">Accept All</button>
+            <button id="decline-cookies" class="cookie-btn cookie-btn-decline">Decline</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Get the current year and update the footer
+            const currentYearSpan = document.getElementById('current-year');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
             // Mobile Menu Toggle logic (Copied from existing files)
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const closeMobileMenuButton = document.getElementById('close-mobile-menu');
@@ -1286,7 +1409,7 @@
                     // Show loading state on button
                     submitButton.innerHTML = '<span class="spinner"></span> Sending...';
                     submitButton.classList.add('btn-loading');
-                    submitButton.disabled = true; // Disable button during submission
+                    submitButton.disabled = false; // Disable button during submission
 
                     const formData = new FormData(contactForm);
                     const formProps = Object.fromEntries(formData);
@@ -1347,6 +1470,30 @@
                     }
                 });
             }
+
+            // Cookie Consent Logic
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptCookiesBtn = document.getElementById('accept-cookies');
+            const declineCookiesBtn = document.getElementById('decline-cookies');
+
+            function setCookieConsent(consent) {
+                localStorage.setItem('cookieConsent', consent);
+                cookieBanner.classList.remove('show');
+            }
+
+            // Check if consent has been given
+            // For demonstration, we'll always show it. In production, uncomment the if condition.
+            // if (localStorage.getItem('cookieConsent') === null) {
+                cookieBanner.classList.add('show');
+            // }
+
+            acceptCookiesBtn.addEventListener('click', () => {
+                setCookieConsent('accepted');
+            });
+
+            declineCookiesBtn.addEventListener('click', () => {
+                setCookieConsent('declined');
+            });
         });
     </script>
 </body>
