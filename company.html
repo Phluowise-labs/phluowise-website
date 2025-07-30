@@ -160,29 +160,38 @@
         /* Hero background styling */
         .hero-section {
             position: relative;
-            background-color: #0D1117; /* Dark background */
-            overflow: hidden; /* Ensure animation stays within bounds */
+            background-color: #0D1117;
+            /* Dark background */
+            overflow: hidden;
+            /* Ensure animation stays within bounds */
         }
 
         /* Animated blue background figure */
         .hero-section::before {
             content: '';
             position: absolute;
-            top: -50%; /* Start higher to allow movement */
-            left: -50%; /* Start left to allow movement */
-            width: 200%; /* Cover larger area for animation */
-            height: 200%; /* Cover larger area for animation */
+            top: -50%;
+            /* Start higher to allow movement */
+            left: -50%;
+            /* Start left to allow movement */
+            width: 200%;
+            /* Cover larger area for animation */
+            height: 200%;
+            /* Cover larger area for animation */
             background: radial-gradient(circle at 50% 50%, rgba(59, 116, 255, 0.3) 0%, rgba(59, 116, 255, 0) 70%),
-                        radial-gradient(circle at 20% 80%, rgba(74, 222, 128, 0.2) 0%, rgba(74, 222, 128, 0) 60%);
+                radial-gradient(circle at 20% 80%, rgba(74, 222, 128, 0.2) 0%, rgba(74, 222, 128, 0) 60%);
             background-size: 100% 100%;
-            animation: background-pan 30s linear infinite alternate; /* Slow, constant, alternating animation */
-            z-index: 0; /* Behind content */
+            animation: background-pan 30s linear infinite alternate;
+            /* Slow, constant, alternating animation */
+            z-index: 0;
+            /* Behind content */
         }
 
         @keyframes background-pan {
             0% {
                 transform: translate(0%, 0%);
             }
+
             100% {
                 transform: translate(-50%, -50%);
             }
@@ -279,9 +288,11 @@
                 background-position: -100% 50%;
                 box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
             }
+
             50% {
                 box-shadow: 0 0 30px rgba(59, 116, 255, 0.3);
             }
+
             100% {
                 background-position: 100% 50%;
                 box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
@@ -388,6 +399,8 @@
                 padding 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+
+
         .accordion-item.active .accordion-content {
             padding-top: 1.5rem;
             padding-bottom: 1.5rem;
@@ -413,6 +426,77 @@
         .accordion-item.active .accordion-header {
             background: rgba(59, 116, 255, 0.05);
         }
+
+        /* Confirmation Message Styles */
+        .confirmation-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .confirmation-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .confirmation-content {
+            background: rgba(59, 116, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(59, 116, 255, 0.3);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            color: #E6EDF3;
+            box-shadow: 0 10px 30px rgba(59, 116, 255, 0.4);
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        }
+
+        .confirmation-modal.show .confirmation-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Button Loading Animation */
+        .btn-loading {
+            position: relative;
+            pointer-events: none;
+            /* Disable clicks during loading */
+        }
+
+        .btn-loading .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #fff;
+            border-radius: 50%;
+            width: 1.5rem;
+            height: 1.5rem;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 
@@ -427,30 +511,36 @@
                 <div class="relative dropdown">
                     <button class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center">
                         Products
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
                     <div class="dropdown-menu">
                         <a href="index.html" class="dropdown-item">
                             <!-- Shopping Bag Icon -->
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5ZM7 7H17V17H7V7ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 11 12 11Z" />
-                                <path d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z" />
+                                <path
+                                    d="M17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5ZM7 7H17V17H7V7ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 11 12 11Z" />
+                                <path
+                                    d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z" />
                         </svg>
                             Phluowise Ecommerce
                         </a>
                         <a href="company.html" class="dropdown-item">
                             <!-- Users/Company Icon -->
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" />
+                                <path
+                                    d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" />
                         </svg>
                             Phluowise Company
                         </a>
                         <a href="driver.html" class="dropdown-item">
                             <!-- Truck/Delivery Icon -->
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M18 8H16V6H18V8ZM18 10H16V12H18V10ZM18 14H16V16H18V14ZM18 18H16V20H18V18ZM20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM4 6H14V18H4V6ZM16 6V18H20V6H16Z" />
+                                <path
+                                    d="M18 8H16V6H18V8ZM18 10H16V12H18V10ZM18 14H16V16H18V14ZM18 18H16V20H18V18ZM20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM4 6H14V18H4V6ZM16 6V18H20V6H16Z" />
                         </svg>
                             Phluowise Drive
                         </a>
@@ -460,22 +550,26 @@
                 <div class="relative dropdown">
                     <button class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center">
                         Resources
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
                     <div class="dropdown-menu">
                         <a href="#" class="dropdown-item">
                             <!-- Document Icon -->
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z" />
+                                <path
+                                    d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z" />
                         </svg>
                             Documentation
                         </a>
                         <a href="#" class="dropdown-item">
                             <!-- Regulations/Newspaper Icon -->
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM5 5H19V19H5V5ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z" />
+                                <path
+                                    d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM5 5H19V19H5V5ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z" />
                         </svg>
                             Regulations
                         </a>
@@ -485,12 +579,15 @@
                 <a href="about_us.html" class="text-gray-300 hover:text-white transition">About Us</a>
                 <a href="pricing.html" class="text-gray-300 hover:text-white transition">Pricing</a>
             </nav>
-            <a href="https://phluowise-labs.github.io/company/pages/user-signup.html" class="btn-get-started text-white font-semibold px-5 py-2.5 rounded-lg hidden md:block">Get Started</a>
+            <a href="https://phluowise-labs.github.io/company/pages/user-signup.html"
+                class="btn-get-started text-white font-semibold px-5 py-2.5 rounded-lg hidden md:block">Get Started</a>
 
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
                 </svg>
             </button>
         </div>
@@ -499,36 +596,44 @@
     <!-- Mobile Menu Overlay (Copied from index.html/pricing.html) -->
     <div id="mobile-menu-overlay" class="mobile-menu-overlay">
         <button id="close-mobile-menu" class="absolute top-6 right-6 text-white focus:outline-none">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
         </button>
         <nav class="flex flex-col items-center space-y-8 text-xl">
             <!-- Products Dropdown (Mobile) -->
             <div class="relative w-full text-center mobile-dropdown">
-                <button class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center text-xl" id="mobile-products-button">
+                <button
+                    class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center text-xl"
+                    id="mobile-products-button">
                     Products
-                    <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </button>
                 <div class="mobile-dropdown-menu mt-4 space-y-4">
                     <a href="index.html" class="dropdown-item mobile-nav-link">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5ZM7 7H17V17H7V7ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 11 12 11Z" />
-                            <path d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z" />
+                            <path
+                                d="M17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5ZM7 7H17V17H7V7ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 11 12 11Z" />
+                            <path
+                                d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z" />
                         </svg>
                         Phluowise Ecommerce
                     </a>
                     <a href="company.html" class="dropdown-item mobile-nav-link">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" />
+                            <path
+                                d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" />
                         </svg>
                         Phluowise Company
                     </a>
                     <a href="driver.html" class="dropdown-item mobile-nav-link">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M18 8H16V6H18V8ZM18 10H16V12H18V10ZM18 14H16V16H18V14ZM18 18H16V20H18V18ZM20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM4 6H14V18H4V6ZM16 6V18H20V6H16Z" />
+                            <path
+                                d="M18 8H16V6H18V8ZM18 10H16V12H18V10ZM18 14H16V16H18V14ZM18 18H16V20H18V18ZM20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM4 6H14V18H4V6ZM16 6V18H20V6H16Z" />
                         </svg>
                         Phluowise Drive
                     </a>
@@ -536,22 +641,27 @@
             </div>
             <!-- Resources Dropdown (Mobile) -->
             <div class="relative w-full text-center mobile-dropdown">
-                <button class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center text-xl" id="mobile-resources-button">
+                <button
+                    class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center text-xl"
+                    id="mobile-resources-button">
                     Resources
-                    <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </button>
                 <div class="mobile-dropdown-menu mt-4 space-y-4">
                     <a href="#" class="dropdown-item mobile-nav-link">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z" />
+                            <path
+                                d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z" />
                         </svg>
                         Documentation
                     </a>
                     <a href="#" class="dropdown-item mobile-nav-link">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM5 5H19V19H5V5ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z" />
+                            <path
+                                d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM5 5H19V19H5V5ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z" />
                         </svg>
                         Regulations
                     </a>
@@ -563,7 +673,9 @@
             <a href="#faq" class="text-gray-300 hover:text-white transition mobile-nav-link">FAQ</a>
             <a href="#contact" class="text-gray-300 hover:text-white transition mobile-nav-link">Contact</a>
             <a href="pricing.html" class="text-gray-300 hover:text-white transition mobile-nav-link">Pricing</a>
-            <a href="https://phluowise-labs.github.io/company/pages/user-signup.html" class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg mt-4 mobile-nav-link">Get Started</a>
+            <a href="https://phluowise-labs.github.io/company/pages/user-signup.html"
+                class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg mt-4 mobile-nav-link">Get
+                Started</a>
         </nav>
     </div>
 
@@ -574,15 +686,20 @@
                 <h2 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4 slide-in-from-bottom">
                     Get your Administrative web app for free
                 </h2>
-                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 slide-in-from-bottom" style="animation-delay: 0.2s;">
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 slide-in-from-bottom"
+                    style="animation-delay: 0.2s;">
                     Water management company application. Track your drivers and get access to their work history.
                 </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-16 slide-in-from-bottom" style="animation-delay: 0.4s;">
-                    <a href="https://phluowise-labs.github.io/company/pages/user-signup.html" class="btn-get-started font-semibold px-6 py-3 rounded-lg shadow-lg w-full sm:w-auto">Get Started</a>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-16 slide-in-from-bottom"
+                    style="animation-delay: 0.4s;">
+                    <a href="https://phluowise-labs.github.io/company/pages/user-signup.html"
+                        class="btn-get-started font-semibold px-6 py-3 rounded-lg shadow-lg w-full sm:w-auto">Get
+                        Started</a>
                 </div>
 
                 <!-- Hero Image with Glassmorphism and Animated Border -->
-                <div class="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden glassmorphism animated-border p-4 md:p-6 slide-in-from-bottom" style="animation-delay: 0.8s;">
+                <div class="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden glassmorphism animated-border p-4 md:p-6 slide-in-from-bottom"
+                    style="animation-delay: 0.8s;">
                     <img src="images/company-1.png" alt="Phluowise Dashboard Mockup" class="w-full h-auto rounded-lg shadow-2xl">
                 </div>
             </div>
@@ -598,19 +715,23 @@
                     We made it simple and easy to navigate through.
                 </p>
 
-                <div class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center glassmorphism slide-in-from-bottom" style="animation-delay: 0.4s;">
+                <div class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center glassmorphism slide-in-from-bottom"
+                    style="animation-delay: 0.4s;">
                     <div class="text-center md:text-left slide-in-from-left">
                         <img src="images/Driver Analyitcs.png" alt="Phluowise Company App UI Analytics" class="mx-auto md:mx-0 rounded-2xl shadow-2xl">
                     </div>
                     <div class="space-y-6 slide-in-from-right">
                         <h4 class="text-3xl font-bold">Track Driver analytics with ease</h4>
                         <p class="text-gray-300">
-                            Gain insights into driver performance, delivery routes, and overall efficiency. Our intuitive dashboard provides real-time analytics to help you optimize your operations.
+                            Gain insights into driver performance, delivery routes, and overall efficiency. Our intuitive
+                            dashboard provides real-time analytics to help you optimize your operations.
                         </p>
-                        <div class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <div
+                            class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
                             <a href="#" class="app-store-btn">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                                    <path
+                                        d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                                 </svg>
                                 <div class="text-left">
                                     <div class="text-xs">GET IT ON</div>
@@ -619,7 +740,8 @@
                             </a>
                             <a href="#" class="app-store-btn">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
+                                    <path
+                                        d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                                 </svg>
                                 <div class="text-left">
                                     <div class="text-xs">Download on the</div>
@@ -638,12 +760,15 @@
                     <div class="text-center md:text-left space-y-6 slide-in-from-left">
                         <h4 class="text-3xl font-bold">Track transactions from each driver with ease</h4>
                         <p class="text-gray-300">
-                            Monitor all financial transactions made by your drivers. Keep a comprehensive record of sales, payments, and revenue, ensuring transparency and accountability.
+                            Monitor all financial transactions made by your drivers. Keep a comprehensive record of
+                            sales, payments, and revenue, ensuring transparency and accountability.
                         </p>
-                        <div class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <div
+                            class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
                             <a href="#" class="app-store-btn">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                                    <path
+                                        d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                                 </svg>
                                 <div class="text-left">
                                     <div class="text-xs">GET IT ON</div>
@@ -652,7 +777,8 @@
                             </a>
                             <a href="#" class="app-store-btn">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
+                                    <path
+                                        d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                                 </svg>
                                 <div class="text-left">
                                     <div class="text-xs">Download on the</div>
@@ -677,12 +803,15 @@
                     <div class="space-y-6 slide-in-from-right order-first md:order-last">
                         <h4 class="text-3xl font-bold">Manage Schedule Orders Request with ease</h4>
                         <p class="text-gray-300">
-                            Efficiently handle all scheduled orders and pickup requests. Our platform provides tools to manage your delivery calendar, assign tasks, and ensure timely service to your customers.
+                            Efficiently handle all scheduled orders and pickup requests. Our platform provides tools to
+                            manage your delivery calendar, assign tasks, and ensure timely service to your customers.
                         </p>
-                        <div class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <div
+                            class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
                             <a href="#" class="app-store-btn">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
+                                    <path
+                                        d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                                 </svg>
                                 <div class="text-left">
                                     <div class="text-xs">GET IT ON</div>
@@ -691,7 +820,8 @@
                             </a>
                             <a href="#" class="app-store-btn">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
+                                    <path
+                                        d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                                 </svg>
                                 <div class="text-left">
                                     <div class="text-xs">Download on the</div>
@@ -707,41 +837,54 @@
         <!-- Key Features Section -->
         <section class="py-16 md:py-24 text-center">
             <div class="container mx-auto px-4">
-                <h3 class="text-3xl md:text-5xl font-bold text-gradient mb-4 slide-in-from-bottom">Phluowise Company app: other Key features</h3>
+                <h3 class="text-3xl md:text-5xl font-bold text-gradient mb-4 slide-in-from-bottom">Phluowise Company
+                    app: other Key features</h3>
                 <p class="text-gray-400 mb-12 slide-in-from-bottom" style="animation-delay: 0.2s;">
                     Company water management application
                 </p>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom">
+                    <div
+                        class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom">
                         <img src="images/icons/analytic icon.png" alt="Analytics Icon" class="rounded-lg mb-6">
                         <h4 class="text-2xl font-semibold">Comprehensive Analytics Dashboard</h4>
-                        <p class="text-gray-300 text-center mt-2">Get detailed insights into sales, driver performance, and customer behavior.</p>
+                        <p class="text-gray-300 text-center mt-2">Get detailed insights into sales, driver performance,
+                            and customer behavior.</p>
                     </div>
-                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom" style="animation-delay: 0.1s;">
+                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
+                        style="animation-delay: 0.1s;">
                         <img src="images/icons/driver route iccon.png" alt="Driver Management Icon" class="rounded-lg mb-6">
                         <h4 class="text-2xl font-semibold">Driver Management & Tracking</h4>
-                        <p class="text-gray-300 text-center mt-2">Efficiently manage your fleet, track driver locations, and monitor delivery progress.</p>
+                        <p class="text-gray-300 text-center mt-2">Efficiently manage your fleet, track driver
+                            locations, and monitor delivery progress.</p>
                     </div>
-                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom" style="animation-delay: 0.2s;">
+                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
+                        style="animation-delay: 0.2s;">
                         <img src="images/icons/Request card broadcast.png" alt="Order Management Icon" class="rounded-lg mb-6">
                         <h4 class="text-2xl font-semibold">Streamlined Order Management</h4>
-                        <p class="text-gray-300 text-center mt-2">Handle incoming orders, schedule deliveries, and manage inventory with ease.</p>
+                        <p class="text-gray-300 text-center mt-2">Handle incoming orders, schedule deliveries, and
+                            manage inventory with ease.</p>
                     </div>
-                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom" style="animation-delay: 0.3s;">
+                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
+                        style="animation-delay: 0.3s;">
                         <img src="images/icons/rate and service (2).png" alt="Customer Support Icon" class="rounded-lg mb-6">
                         <h4 class="text-2xl font-semibold">Integrated Customer Support</h4>
-                        <p class="text-gray-300 text-center mt-2">Communicate directly with customers and resolve issues promptly.</p>
+                        <p class="text-gray-300 text-center mt-2">Communicate directly with customers and resolve
+                            issues promptly.</p>
                     </div>
-                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom" style="animation-delay: 0.4s;">
+                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
+                        style="animation-delay: 0.4s;">
                         <img src="images/icons/Property 1=Open notification transaction.png" alt="Payment Processing Icon" class="rounded-lg mb-6">
                         <h4 class="text-2xl font-semibold">Secure Payment Processing</h4>
-                        <p class="text-gray-300 text-center mt-2">Process payments securely and manage financial transactions.</p>
+                        <p class="text-gray-300 text-center mt-2">Process payments securely and manage financial
+                            transactions.</p>
                     </div>
-                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom" style="animation-delay: 0.5s;">
+                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
+                        style="animation-delay: 0.5s;">
                         <img src="images/icons/customer.png" alt="Customization Icon" class="rounded-lg mb-6">
                         <h4 class="text-2xl font-semibold">Customizable Service Offerings</h4>
-                        <p class="text-gray-300 text-center mt-2">Tailor your services and pricing to meet specific market demands.</p>
+                        <p class="text-gray-300 text-center mt-2">Tailor your services and pricing to meet specific
+                            market demands.</p>
                     </div>
                 </div>
             </div>
@@ -755,84 +898,108 @@
             <div class="space-y-4">
                 <!-- Accordion Item 1 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold" data-accordion="1">
+                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold"
+                        data-accordion="1">
                         <span>What is Phluowise for Company?</span>
                         <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content" id="accordion-content-1">
                         <p class="text-gray-300">
-                            Phluowise for Company is a comprehensive platform designed specifically for water delivery companies. It facilitates logistics management, order fulfillment, and customer interactions, providing an efficient and streamlined solution for companies operating in the water delivery industry.
+                            Phluowise for Company is a comprehensive platform designed specifically for water delivery
+                            companies. It facilitates logistics management, order fulfillment, and customer interactions,
+                            providing an efficient and streamlined solution for companies operating in the water
+                            delivery industry.
                         </p>
                     </div>
                 </div>
                 <!-- Accordion Item 2 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold" data-accordion="2">
+                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold"
+                        data-accordion="2">
                         <span>Is Phluowise for Company free?</span>
                         <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content" id="accordion-content-2">
                         <p class="text-gray-300">
-                            No, Phluowise for Company is not free. We offer various plans with different pricing structures. Basic plans incur discounted transaction fees, while advanced plans (premium) involve a discounted subscription fee, covering all future updates and features.
+                            No, Phluowise for Company is not free. We offer various plans with different pricing
+                            structures. Basic plans incur discounted transaction fees, while advanced plans (premium)
+                            involve a discounted subscription fee, covering all future updates and features.
                         </p>
                     </div>
                 </div>
                 <!-- Accordion Item 3 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold" data-accordion="3">
+                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold"
+                        data-accordion="3">
                         <span>What makes Phluowise unique?</span>
                         <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content" id="accordion-content-3">
                         <p class="text-gray-300">
-                            Phluowise stands out for its holistic approach to water delivery company management. It combines logistics management, customer engagement, and order fulfillment in one platform. The incorporation of advanced features and future updates in premium plans adds to its uniqueness, ensuring that companies have access to cutting-edge tools.
+                            Phluowise stands out for its holistic approach to water delivery company management. It
+                            combines logistics management, customer engagement, and order fulfillment in one platform.
+                            The incorporation of advanced features and future updates in premium plans adds to its
+                            uniqueness, ensuring that companies have access to cutting-edge tools.
                         </p>
                     </div>
                 </div>
                 <!-- Accordion Item 4 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold" data-accordion="4">
+                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold"
+                        data-accordion="4">
                         <span>What problem does Phluowise for Company solve?</span>
                         <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content" id="accordion-content-4">
                         <p class="text-gray-300">
-                            Phluowise for Company addresses the challenges faced by water delivery companies in managing logistics and connecting with customers efficiently. It streamlines operations, enhances order fulfillment, and provides a centralized hub for companies to manage their entire delivery process seamlessly.
+                            Phluowise for Company addresses the challenges faced by water delivery companies in managing
+                            logistics and connecting with customers efficiently. It streamlines operations, enhances
+                            order fulfillment, and provides a centralized hub for companies to manage their entire
+                            delivery process seamlessly.
                         </p>
                     </div>
                 </div>
                 <!-- Accordion Item 5 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold" data-accordion="5">
+                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold"
+                        data-accordion="5">
                         <span>Is Phluowise Drive App free, and what is its purpose?</span>
                         <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content" id="accordion-content-5">
                         <p class="text-gray-300">
-                            No, the Phluowise Drive App is not free. The costs are included in the payment plans, covering all future updates. The purpose of the Phluowise Drive App is to empower drivers with a dedicated tool for navigation, order management, and efficient delivery execution, enhancing the overall delivery experience for both companies and users.
+                            No, the Phluowise Drive App is not free. The costs are included in the payment plans,
+                            covering all future updates. The purpose of the Phluowise Drive App is to empower drivers
+                            with a dedicated tool for navigation, order management, and efficient delivery execution,
+                            enhancing the overall delivery experience for both companies and users.
                         </p>
                     </div>
                 </div>
                 <!-- Accordion Item 6 -->
                 <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold" data-accordion="6">
+                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold"
+                        data-accordion="6">
                         <span>Explain the pricing?</span>
                         <span class="accordion-icon">+</span>
                     </button>
                     <div class="accordion-content" id="accordion-content-6">
-                        <p class="text-gray-300">
-                            Phluowise for Company offers a transparent and tiered pricing structure based on the type of water product being delivered:
+                        <p class="text-300">
+                            Phluowise for Company offers a transparent and tiered pricing structure based on the type of
+                            water product being delivered:
                         </p>
                         <ul class="list-disc list-inside text-gray-300 mt-2 ml-4 space-y-1">
                             <li>Pure Water Sachets Transactions: ¢0.3</li>
                             <li>Bottles and Others: ¢0.4</li>
                             <li>Dispensers: ¢0.5</li>
                         </ul>
-                        <p class="text-300 mt-2">
-                            For the first month in business with Phluowise, companies will receive 83.33%, 82.5%, and 84% discount.
+                        <p class="text-gray-300 mt-2">
+                            For the first month in business with Phluowise, companies will receive 83.33%, 82.5%, and
+                            84% discount.
                         </p>
                         <p class="text-gray-300 mt-2">
-                            This pricing structure is designed to be fair and reflective of the varying complexities and demands associated with different water delivery products. It ensures that companies pay based on the specific type of product they are delivering.
+                            This pricing structure is designed to be fair and reflective of the varying complexities and
+                            demands associated with different water delivery products. It ensures that companies pay
+                            based on the specific type of product they are delivering.
                         </p>
                     </div>
                 </div>
@@ -846,20 +1013,38 @@
                     Contact Us
                 </h3>
             </div>
-            <form class="max-w-2xl mx-auto space-y-6">
+            <!-- Formspark form integration -->
+            <form id="contact-form" action="https://submit-form.com/BROFHIgzq" method="POST"
+                class="max-w-2xl mx-auto space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input type="text" id="name" name="name" placeholder="Name" required="" class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition" />
-                    <input type="email" id="email" name="email" placeholder="Email" required="" class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition" />
+                    <input type="text" id="name" name="name" placeholder="Name" required=""
+                        class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition" />
+                    <input type="email" id="email" name="email" placeholder="Email" required=""
+                        class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition" />
                 </div>
                 <div>
-                    <textarea id="message" name="message" placeholder="Message" rows="6" required="" class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition"></textarea>
+                    <textarea id="message" name="message" placeholder="Message" rows="6" required=""
+                        class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition"></textarea>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg">
+                    <button type="submit" id="submit-button"
+                        class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg">
                         Send
                     </button>
                 </div>
             </form>
+
+            <!-- Confirmation Message Modal -->
+            <div id="confirmation-modal" class="confirmation-modal">
+                <div class="confirmation-content glassmorphism animated-border">
+                    <h4 class="text-2xl font-bold mb-4">Message Sent!</h4>
+                    <p class="text-lg mb-6">Thank you for contacting us. We will get back to you shortly.</p>
+                    <button id="close-confirmation-modal"
+                        class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg">
+                        Close
+                    </button>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -883,7 +1068,7 @@
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             // Mobile Menu Toggle logic (Copied from existing files)
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const closeMobileMenuButton = document.getElementById('close-mobile-menu');
@@ -1087,6 +1272,81 @@
                     }
                 });
             });
+
+            // Formspark Integration Logic
+            const contactForm = document.getElementById('contact-form');
+            const submitButton = document.getElementById('submit-button');
+            const confirmationModal = document.getElementById('confirmation-modal');
+            const closeConfirmationModalButton = document.getElementById('close-confirmation-modal');
+
+            if (contactForm && submitButton && confirmationModal && closeConfirmationModalButton) {
+                contactForm.addEventListener('submit', async function (event) {
+                    event.preventDefault(); // Prevent default form submission
+
+                    // Show loading state on button
+                    submitButton.innerHTML = '<span class="spinner"></span> Sending...';
+                    submitButton.classList.add('btn-loading');
+                    submitButton.disabled = true; // Disable button during submission
+
+                    const formData = new FormData(contactForm);
+                    const formProps = Object.fromEntries(formData);
+
+                    try {
+                        const response = await fetch(contactForm.action, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            },
+                            body: JSON.stringify(formProps)
+                        });
+
+                        if (response.ok) {
+                            // On successful submission
+                            contactForm.reset(); // Clear form fields
+                            contactForm.style.display = 'none'; // Hide the form
+                            confirmationModal.classList.add('show'); // Show confirmation modal
+                        } else {
+                            // Handle non-OK responses (e.g., server errors, Formspark issues)
+                            const errorData = await response.json();
+                            console.error('Form submission error:', errorData);
+                            // You might want to display a different message for errors
+                            document.querySelector('#confirmation-modal h4').textContent = 'Submission Failed!';
+                            document.querySelector('#confirmation-modal p').textContent = 'There was an error sending your message. Please try again later.';
+                            confirmationModal.classList.add('show');
+                        }
+                    } catch (error) {
+                        console.error('Network or fetch error:', error);
+                        // Handle network errors
+                        document.querySelector('#confirmation-modal h4').textContent = 'Submission Failed!';
+                        document.querySelector('#confirmation-modal p').textContent = 'Could not connect to the server. Please check your internet connection and try again.';
+                        confirmationModal.classList.add('show');
+                    } finally {
+                        // Reset button state regardless of success or failure
+                        submitButton.innerHTML = 'Send';
+                        submitButton.classList.remove('btn-loading');
+                        submitButton.disabled = false;
+                    }
+                });
+
+                closeConfirmationModalButton.addEventListener('click', () => {
+                    confirmationModal.classList.remove('show'); // Hide confirmation modal
+                    contactForm.style.display = 'block'; // Show the form again
+                    // Reset confirmation message content to default for next time
+                    document.querySelector('#confirmation-modal h4').textContent = 'Message Sent!';
+                    document.querySelector('#confirmation-modal p').textContent = 'Thank you for contacting us. We will get back to you shortly.';
+                });
+
+                // Close modal if clicking outside the content
+                confirmationModal.addEventListener('click', (event) => {
+                    if (event.target === confirmationModal) {
+                        confirmationModal.classList.remove('show');
+                        contactForm.style.display = 'block';
+                        document.querySelector('#confirmation-modal h4').textContent = 'Message Sent!';
+                        document.querySelector('#confirmation-modal p').textContent = 'Thank you for contacting us. We will get back to you shortly.';
+                    }
+                });
+            }
         });
     </script>
 </body>
