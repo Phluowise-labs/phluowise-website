@@ -1956,18 +1956,20 @@
                 return null;
             }
 
-            // Check if cookie consent has been given
-            const consentGiven = getCookie('cookieConsent');
+            // Modified for demonstration: Always show the banner immediately
+            cookieBanner.classList.add('show');
+            cookieBanner.setAttribute('aria-hidden', 'false');
 
-            if (!consentGiven) {
-                // Show the banner if no consent cookie is found
-                setTimeout(() => {
-                    cookieBanner.classList.add('show');
-                    cookieBanner.setAttribute('aria-hidden', 'false');
-                }, 1000); // Delay to ensure page content loads first
-            } else {
-                cookieBanner.setAttribute('aria-hidden', 'true');
-            }
+            // Original logic (commented out for demonstration):
+            // const consentGiven = getCookie('cookieConsent');
+            // if (!consentGiven) {
+            //     setTimeout(() => {
+            //         cookieBanner.classList.add('show');
+            //         cookieBanner.setAttribute('aria-hidden', 'false');
+            //     }, 1000); // Delay to ensure page content loads first
+            // } else {
+            //     cookieBanner.setAttribute('aria-hidden', 'true');
+            // }
 
             // Event listener for "Accept All" button
             if (acceptCookiesBtn) {
