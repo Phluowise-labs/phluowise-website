@@ -180,46 +180,64 @@
             opacity: 1;
         }
 
-        /* Enhanced Accordion styles */
-        .accordion-content {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            padding: 0 1.5rem;
-            /* Initial padding when collapsed */
-            transform: translateY(-10px);
-            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                padding 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+        /* New Accordion styles */
+        /* Updated Accordion styles */
+.accordion-item-new {
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    border: 1px solid rgba(59, 116, 255, 0.2);
+}
 
-        .accordion-item.active .accordion-content {
-            /* max-height is now controlled by JS using scrollHeight. No fixed max-height here. */
-            padding-top: 1.5rem;
-            padding-bottom: 1.5rem;
-            opacity: 1;
-            transform: translateY(0);
-        }
+.accordion-header-new {
+    background: rgba(59, 116, 255, 0.08);
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: #e6edf3;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-bottom: 1px solid transparent;
+}
 
-        .accordion-item.active .accordion-icon {
-            transform: rotate(45deg);
-            color: #3b74ff;
-        }
+.accordion-item-new.active .accordion-header-new {
+    background: rgba(59, 116, 255, 0.15);
+    color: #3b74ff;
+    border-bottom: 1px solid rgba(59, 116, 255, 0.3);
+}
 
-        .accordion-icon {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
-            font-size: 1.5rem;
-            font-weight: 300;
-        }
+.accordion-header-new:hover {
+    background: rgba(59, 116, 255, 0.12);
+}
 
-        .accordion-header {
-            transition: background-color 0.3s ease;
-        }
+.accordion-icon-new {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+}
 
-        .accordion-item.active .accordion-header {
-            background: rgba(59, 116, 255, 0.05);
-        }
+.accordion-item-new.active .accordion-icon-new {
+    transform: rotate(180deg);
+}
+
+/* FIXED: Corrected padding and transitions */
+.accordion-content-new {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+    padding: 0 2rem;
+    background: rgba(59, 116, 255, 0.05);
+    color: #c0c7d1;
+}
+
+.accordion-item-new.active .accordion-content-new {
+    max-height: 1000px; /* Sufficiently large value */
+    padding: 1.5rem 2rem;
+}
+
 
         /* Enhanced button styles (from driver-page) */
         .btn-get-started {
@@ -1140,8 +1158,8 @@
                                         d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                                 </svg>
                                 <div class="text-left">
-                                    <div class="text-xs">Download on the</div>
-                                    <div class="text-sm font-semibold">App Store</div>
+                                    <div class="text-xs">GET IT ON</div>
+                                    <div class="text-sm font-semibold">Google Play</div>
                                 </div>
                             </a>
                         </div>
@@ -1219,8 +1237,8 @@
                                         d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                                 </svg>
                                 <div class="text-left">
-                                    <div class="text-xs">Download on the</div>
-                                    <div class="text-sm font-semibold">App Store</div>
+                                    <div class="text-xs">GET IT ON</div>
+                                    <div class="text-sm font-semibold">Google Play</div>
                                 </div>
                             </a>
                         </div>
@@ -1245,7 +1263,7 @@
                 <div
                     class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
                     <div
-                        class="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl font-bold">
+                        class="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center mb-4 text-white text-2xl font-bold">
                         <!-- Unicode for checkmark or similar -->
                         &#x2713;
                     </div>
@@ -1256,7 +1274,7 @@
                 <div
                     class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
                     <div
-                        class="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
+                        class="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
                         <!-- Unicode for magnifying glass or search icon -->
                         &#x1F50D;
                     </div>
@@ -1267,7 +1285,7 @@
                 <div
                     class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
                     <div
-                        class="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
+                        class="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
                         <!-- Unicode for document or profile icon -->
                         &#x1F4C4;
                     </div>
@@ -1278,7 +1296,7 @@
                 <div
                     class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
                     <div
-                        class="w-20 h-20 bg-red-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
+                        class="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
                         <!-- Unicode for money or payment icon -->
                         &#x1F4B3;
                     </div>
@@ -1291,7 +1309,7 @@
                 <div
                     class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
                     <div
-                        class="w-20 h-20 bg-pink-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
+                        class="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
                         <!-- Unicode for calendar or clock icon -->
                         &#x1F4C5;
                     </div>
@@ -1302,7 +1320,7 @@
                 <div
                     class="glassmorphism animated-border rounded-2xl p-6 sm:p-8 flex flex-col items-center justify-center feature-card slide-in-from-bottom">
                     <div
-                        class="w-20 h-20 bg-purple-500 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
+                        class="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center mb-4 text-white text-2xl">
                         <!-- Unicode for headset or support icon -->
                         &#x1F4DE;
                     </div>
@@ -1342,13 +1360,13 @@
             </h3>
             <div class="space-y-4">
                 <!-- Accordion Item 1 -->
-                <div class="accordion-item glassmorphism animated-border rounded-2xl">
+                <div class="accordion-item-new">
                     <button
-                        class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
+                        class="accordion-header-new w-full text-left text-lg sm:text-xl font-semibold">
                         <span>What is Phluowise Ecommerce?</span>
-                        <span class="accordion-icon">+</span>
+                        <span class="accordion-icon-new">&#x25BC;</span> <!-- Down arrow unicode -->
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content-new">
                         <p class="text-gray-300">
                             Phluowise Ecommerce is a platform designed to connect water delivery companies with users,
                             streamlining the process of ordering and receiving water. It serves as a bridge between
@@ -1358,13 +1376,13 @@
                     </div>
                 </div>
                 <!-- Accordion Item 2 -->
-                <div class="accordion-item glassmorphism animated-border rounded-2xl">
+                <div class="accordion-item-new">
                     <button
-                        class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
+                        class="accordion-header-new w-full text-left text-lg sm:text-xl font-semibold">
                         <span>Does Phluowise Ecommerce charge?</span>
-                        <span class="accordion-icon">+</span>
+                        <span class="accordion-icon-new">&#x25BC;</span>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content-new">
                         <p class="text-gray-300">
                             Yes, Phluowise charges companies for utilizing its platform and logistics management
                             services. Users are not charged for accessing and using the platform.
@@ -1372,14 +1390,14 @@
                     </div>
                 </div>
                 <!-- Accordion Item 3 -->
-                <div class="accordion-item glassmorphism animated-border rounded-2xl">
+                <div class="accordion-item-new">
                     <button
-                        class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
+                        class="accordion-header-new w-full text-left text-lg sm:text-xl font-semibold">
                         <span>What payment methods are available on Phluowise
                             Ecommerce?</span>
-                        <span class="accordion-icon">+</span>
+                        <span class="accordion-icon-new">&#x25BC;</span>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content-new">
                         <p class="text-gray-300">
                             Phluowise Ecommerce accepts payments through mobile money and credit cards, providing users
                             with flexibility and convenience in completing transactions.
@@ -1387,13 +1405,13 @@
                     </div>
                 </div>
                 <!-- Accordion Item 4 -->
-                <div class="accordion-item glassmorphism animated-border rounded-2xl">
+                <div class="accordion-item-new">
                     <button
-                        class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
+                        class="accordion-header-new w-full text-left text-lg sm:text-xl font-semibold">
                         <span>Can I find most companies on Phluowise Ecommerce?</span>
-                        <span class="accordion-icon">+</span>
+                        <span class="accordion-icon-new">&#x25BC;</span>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content-new">
                         <p class="text-gray-300">
                             Phluowise Ecommerce offers an opportunity for large water delivery companies to feature on
                             the platform, providing users with a diverse range of options to meet their water needs.
@@ -1401,13 +1419,13 @@
                     </div>
                 </div>
                 <!-- Accordion Item 5 -->
-                <div class="accordion-item glassmorphism animated-border rounded-2xl">
+                <div class="accordion-item-new">
                     <button
-                        class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
+                        class="accordion-header-new w-full text-left text-lg sm:text-xl font-semibold">
                         <span>Is Phluowise Ecommerce free?</span>
-                        <span class="accordion-icon">+</span>
+                        <span class="accordion-icon-new">&#x25BC;</span>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content-new">
                         <p class="text-gray-300">
                             Yes, Phluowise Ecommerce is free for users. The platform charges water delivery companies
                             for utilizing its services.
@@ -1415,13 +1433,13 @@
                     </div>
                 </div>
                 <!-- Accordion Item 6 -->
-                <div class="accordion-item glassmorphism animated-border rounded-2xl">
+                <div class="accordion-item-new">
                     <button
-                        class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
+                        class="accordion-header-new w-full text-left text-lg sm:text-xl font-semibold">
                         <span>What problem does Phluowise Ecommerce solve?</span>
-                        <span class="accordion-icon">+</span>
+                        <span class="accordion-icon-new">&#x25BC;</span>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content-new">
                         <p class="text-gray-300">
                             Phluowise Ecommerce addresses the challenges associated with water delivery by providing a
                             centralized platform for users to easily connect with reputable water delivery companies. It
@@ -1431,13 +1449,13 @@
                     </div>
                 </div>
                 <!-- Accordion Item 7 -->
-                <div class="accordion-item glassmorphism animated-border rounded-2xl">
+                <div class="accordion-item-new">
                     <button
-                        class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold">
+                        class="accordion-header-new w-full text-left text-lg sm:text-xl font-semibold">
                         <span>Is Phluowise Ecommerce easy to use?</span>
-                        <span class="accordion-icon">+</span>
+                        <span class="accordion-icon-new">&#x25BC;</span>
                     </button>
-                    <div class="accordion-content">
+                    <div class="accordion-content-new">
                         <p class="text-gray-300">
                             Absolutely. Phluowise Ecommerce is designed with user-friendly interfaces, making it easy
                             for both companies and users to navigate the platform seamlessly.
@@ -1571,67 +1589,35 @@
                 observer.observe(element);
             });
 
-            // Accordion functionality
-            const accordionItems = document.querySelectorAll(".accordion-item");
+            // Accordion functionality (NEW IMPLEMENTATION)
+            const accordionItemsNew = document.querySelectorAll(".accordion-item-new");
 
-            accordionItems.forEach((item) => {
-                const header = item.querySelector(".accordion-header");
-                const content = item.querySelector(".accordion-content");
-                const icon = item.querySelector(".accordion-icon");
+            accordionItemsNew.forEach((item) => {
+                const header = item.querySelector(".accordion-header-new");
+                const content = item.querySelector(".accordion-content-new");
+                const icon = item.querySelector(".accordion-icon-new");
 
-                // Ensure initial state is collapsed and hidden
-                content.style.maxHeight = "0px";
-                content.style.opacity = "0";
-                content.style.transform = "translateY(-10px)"; // Ensure initial transform matches collapsed state
+                // Set initial state to ensure content is hidden
+                content.style.maxHeight = "0";
 
                 header.addEventListener("click", () => {
                     const isOpen = item.classList.contains("active");
 
                     // Close all other accordion items
-                    document
-                        .querySelectorAll(".accordion-item.active")
-                        .forEach((openItem) => {
-                            if (openItem !== item) {
-                                const openContent =
-                                    openItem.querySelector(".accordion-content");
-                                const openIcon = openItem.querySelector(".accordion-icon");
-                                openItem.classList.remove("active");
-                                openContent.style.maxHeight = "0px";
-                                openContent.style.opacity = "0";
-                                openContent.style.transform = "translateY(-10px)"; // Ensure consistency for closing
-                                openIcon.style.transform = "rotate(0deg)";
-                            }
-                        });
+                    accordionItemsNew.forEach((otherItem) => {
+                        if (otherItem !== item && otherItem.classList.contains("active")) {
+                            otherItem.classList.remove("active");
+                            otherItem.querySelector(".accordion-content-new").style.maxHeight = "0";
+                        }
+                    });
 
                     // Toggle the clicked item
                     if (isOpen) {
-                        // If open, close it
                         item.classList.remove("active");
-                        content.style.maxHeight = "0px";
-                        content.style.opacity = "0";
-                        content.style.transform = "translateY(-10px)"; // Apply collapsed transform
-                        icon.style.transform = "rotate(0deg)";
+                        content.style.maxHeight = "0";
                     } else {
-                        // If closed, open it
                         item.classList.add("active");
-                        // Set max-height to scrollHeight for expansion transition
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        content.style.opacity = "1";
-                        content.style.transform = "translateY(0)"; // Apply expanded transform
-                        icon.style.transform = "rotate(45deg)";
-
-                        // After transition, set maxHeight to '' to allow content to naturally resize
-                        const transitionEndHandler = () => {
-                            if (item.classList.contains("active")) {
-                                // Check if it's still active
-                                content.style.maxHeight = ""; // Set to auto or 'none' for dynamic height
-                            }
-                            content.removeEventListener(
-                                "transitionend",
-                                transitionEndHandler
-                            );
-                        };
-                        content.addEventListener("transitionend", transitionEndHandler);
+                        content.style.maxHeight = content.scrollHeight + "px"; // Set max-height to content's natural height
                     }
                 });
             });
@@ -1922,7 +1908,11 @@
             });
 
             // Add keyframe for ripple animation dynamically
-            const styleSheet = document.styleSheets[0];
+            // Create a new style element to inject the ripple animation CSS
+            const rippleStyleElement = document.createElement('style');
+            document.head.appendChild(rippleStyleElement);
+            const styleSheet = rippleStyleElement.sheet;
+
             const rippleKeyframes = `
                 @keyframes ripple-animation {
                     from {
