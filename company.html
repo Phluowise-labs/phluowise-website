@@ -530,7 +530,7 @@
             text-align: center;
             z-index: 1000;
             /* Temporarily set to flex for demonstration. For production, revert to 'display: none;' */
-            display: flex;
+            display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -1483,9 +1483,9 @@
 
             // Check if consent has been given
             // For demonstration, we'll always show it. In production, uncomment the if condition.
-            // if (localStorage.getItem('cookieConsent') === null) {
+             if (localStorage.getItem('cookieConsent') === null) {
                 cookieBanner.classList.add('show');
-            // }
+            }
 
             acceptCookiesBtn.addEventListener('click', () => {
                 setCookieConsent('accepted');
