@@ -323,7 +323,7 @@
             -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: destination-out;
             mask-composite: exclude;
-            animation: animated-border-flow 4s linear infinite;
+            animation: animated-border-flow 4s linear infinite; /* Re-added animation */
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
         }
@@ -402,46 +402,63 @@
             transform: translateX(0);
         }
 
-        /* Accordion styles */
-        .accordion-content {
-            max-height: 0;
-            opacity: 0;
+        /* New Accordion styles from index.html */
+        .accordion-item-new {
+            border-radius: 1rem;
             overflow: hidden;
-            padding: 0 1.5rem;
-            transform: translateY(-10px);
-            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                padding 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            /* Removed animated-border class from HTML, so adding border here */
+            border: 1px solid rgba(59, 116, 255, 0.2);
         }
 
-
-
-        .accordion-item.active .accordion-content {
-            padding-top: 1.5rem;
-            padding-bottom: 1.5rem;
-            opacity: 1;
-            transform: translateY(0);
+        .accordion-header-new {
+            background: rgba(59, 116, 255, 0.08);
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: #e6edf3;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-bottom: 1px solid transparent;
         }
 
-        .accordion-item.active .accordion-icon {
-            transform: rotate(45deg);
+        .accordion-item-new.active .accordion-header-new {
+            background: rgba(59, 116, 255, 0.15);
             color: #3b74ff;
+            border-bottom: 1px solid rgba(59, 116, 255, 0.3);
         }
 
-        .accordion-icon {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+        .accordion-header-new:hover {
+            background: rgba(59, 116, 255, 0.12);
+        }
+
+        .accordion-icon-new {
             font-size: 1.5rem;
-            font-weight: 300;
+            transition: transform 0.3s ease-in-out;
         }
 
-        .accordion-header {
-            transition: background-color 0.3s ease;
+        .accordion-item-new.active .accordion-icon-new {
+            transform: rotate(180deg);
         }
 
-        .accordion-item.active .accordion-header {
+        /* Removed transition for instant open/close */
+        .accordion-content-new {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 2rem;
             background: rgba(59, 116, 255, 0.05);
+            color: #c0c7d1;
         }
+
+        .accordion-item-new.active .accordion-content-new {
+            max-height: 1000px;
+            /* Sufficiently large value */
+            padding: 1.5rem 2rem;
+        }
+
 
         /* Confirmation Message Styles */
         .confirmation-modal {
@@ -512,105 +529,6 @@
             100% {
                 transform: rotate(360deg);
             }
-        }
-
-        /* Cookie Banner Styles */
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            /* Changed background to match other glassmorphism elements */
-            background: rgba(59, 116, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            color: #E6EDF3;
-            text-align: center;
-            z-index: 1000;
-            /* Temporarily set to flex for demonstration. For production, revert to 'display: none;' */
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            /* Added for ripple effect */
-            background-size: 200% 200%;
-            animation: glassmorphism-ripple 15s ease-in-out infinite alternate;
-            overflow: hidden; /* Ensure ripple stays within bounds */
-        }
-
-        .cookie-banner.show {
-            display: flex;
-        }
-
-        .cookie-banner-content {
-            max-width: 90%;
-            /* Responsive width */
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .cookie-banner-buttons {
-            display: flex;
-            flex-direction: column;
-            /* Stack buttons on small screens */
-            gap: 0.75rem;
-            width: 100%;
-            max-width: 300px;
-            /* Limit width on larger screens */
-        }
-
-        @media (min-width: 640px) {
-            .cookie-banner {
-                flex-direction: row;
-                justify-content: space-between;
-                padding: 1rem 2rem;
-            }
-
-            .cookie-banner-content {
-                margin-bottom: 0;
-                text-align: left;
-                flex-grow: 1;
-                margin-right: 1.5rem;
-            }
-
-            .cookie-banner-buttons {
-                flex-direction: row;
-                width: auto;
-            }
-        }
-
-        .cookie-btn {
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            border: none;
-            min-height: 36px;
-            /* Reduced height for cookie buttons */
-        }
-
-        .cookie-btn-accept {
-            background: linear-gradient(135deg, #3B74FF, #60A5FA);
-            color: white;
-        }
-
-        .cookie-btn-accept:hover {
-            background: linear-gradient(135deg, #508bff, #7BB3FF);
-            box-shadow: 0 4px 10px rgba(59, 116, 255, 0.3);
-        }
-
-        .cookie-btn-decline {
-            background-color: #374151;
-            color: #E6EDF3;
-            border: 1px solid #4B5563;
-        }
-
-        .cookie-btn-decline:hover {
-            background-color: #4B5563;
-            border-color: #5A6470;
         }
     </style>
 </head>
@@ -1012,13 +930,14 @@
             </h3>
             <div class="space-y-4">
                 <!-- Accordion Item 1 -->
-                <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold"
-                        data-accordion="1">
+                <div class="accordion-item-new glassmorphism">
+                    <button class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
+                        aria-expanded="false" aria-controls="faq-content-1">
                         <span>What is Phluowise for Company?</span>
-                        <span class="accordion-icon">+</span>
+                        <span class="accordion-icon-new">&#x25BC;</span> <!-- Down arrow unicode -->
                     </button>
-                    <div class="accordion-content" id="accordion-content-1">
+                    <div id="faq-content-1" class="accordion-content-new" role="region"
+                        aria-labelledby="faq-header-1">
                         <p class="text-gray-300">
                             Phluowise for Company is a comprehensive platform designed specifically for water delivery
                             companies. It facilitates logistics management, order fulfillment, and customer interactions,
@@ -1028,13 +947,14 @@
                     </div>
                 </div>
                 <!-- Accordion Item 2 -->
-                <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold"
-                        data-accordion="2">
+                <div class="accordion-item-new glassmorphism">
+                    <button class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
+                        aria-expanded="false" aria-controls="faq-content-2">
                         <span>Is Phluowise for Company free?</span>
-                        <span class="accordion-icon">+</span>
+                        <span class="accordion-icon-new">&#x25BC;</span>
                     </button>
-                    <div class="accordion-content" id="accordion-content-2">
+                    <div id="faq-content-2" class="accordion-content-new" role="region"
+                        aria-labelledby="faq-header-2">
                         <p class="text-gray-300">
                             No, Phluowise for Company is not free. We offer various plans with different pricing
                             structures. Basic plans incur discounted transaction fees, while advanced plans (premium)
@@ -1043,13 +963,14 @@
                     </div>
                 </div>
                 <!-- Accordion Item 3 -->
-                <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold"
-                        data-accordion="3">
+                <div class="accordion-item-new glassmorphism">
+                    <button class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
+                        aria-expanded="false" aria-controls="faq-content-3">
                         <span>What makes Phluowise unique?</span>
-                        <span class="accordion-icon">+</span>
+                        <span class="accordion-icon-new">&#x25BC;</span>
                     </button>
-                    <div class="accordion-content" id="accordion-content-3">
+                    <div id="faq-content-3" class="accordion-content-new" role="region"
+                        aria-labelledby="faq-header-3">
                         <p class="text-gray-300">
                             Phluowise stands out for its holistic approach to water delivery company management. It
                             combines logistics management, customer engagement, and order fulfillment in one platform.
@@ -1059,13 +980,14 @@
                     </div>
                 </div>
                 <!-- Accordion Item 4 -->
-                <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold"
-                        data-accordion="4">
+                <div class="accordion-item-new glassmorphism">
+                    <button class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
+                        aria-expanded="false" aria-controls="faq-content-4">
                         <span>What problem does Phluowise for Company solve?</span>
-                        <span class="accordion-icon">+</span>
+                        <span class="accordion-icon-new">&#x25BC;</span>
                     </button>
-                    <div class="accordion-content" id="accordion-content-4">
+                    <div id="faq-content-4" class="accordion-content-new" role="region"
+                        aria-labelledby="faq-header-4">
                         <p class="text-gray-300">
                             Phluowise for Company addresses the challenges faced by water delivery companies in managing
                             logistics and connecting with customers efficiently. It streamlines operations, enhances
@@ -1075,13 +997,14 @@
                     </div>
                 </div>
                 <!-- Accordion Item 5 -->
-                <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold"
-                        data-accordion="5">
+                <div class="accordion-item-new glassmorphism">
+                    <button class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
+                        aria-expanded="false" aria-controls="faq-content-5">
                         <span>Is Phluowise Drive App free, and what is its purpose?</span>
-                        <span class="accordion-icon">+</span>
+                        <span class="accordion-icon-new">&#x25BC;</span>
                     </button>
-                    <div class="accordion-content" id="accordion-content-5">
+                    <div id="faq-content-5" class="accordion-content-new" role="region"
+                        aria-labelledby="faq-header-5">
                         <p class="text-gray-300">
                             No, the Phluowise Drive App is not free. The costs are included in the payment plans,
                             covering all future updates. The purpose of the Phluowise Drive App is to empower drivers
@@ -1091,13 +1014,14 @@
                     </div>
                 </div>
                 <!-- Accordion Item 6 -->
-                <div class="accordion-item glassmorphism animated-border rounded-2xl">
-                    <button class="accordion-header w-full flex justify-between items-center p-4 sm:p-6 text-left text-lg sm:text-xl font-semibold"
-                        data-accordion="6">
+                <div class="accordion-item-new glassmorphism">
+                    <button class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
+                        aria-expanded="false" aria-controls="faq-content-6">
                         <span>Explain the pricing?</span>
-                        <span class="accordion-icon">+</span>
+                        <span class="accordion-icon-new">&#x25BC;</span>
                     </button>
-                    <div class="accordion-content" id="accordion-content-6">
+                    <div id="faq-content-6" class="accordion-content-new" role="region"
+                        aria-labelledby="faq-header-6">
                         <p class="text-300">
                             Phluowise for Company offers a transparent and tiered pricing structure based on the type of
                             water product being delivered:
@@ -1173,17 +1097,6 @@
         </div>
     </footer>
 
-    <!-- Cookie Consent Banner -->
-    <div id="cookie-banner" class="cookie-banner animated-border">
-        <div class="cookie-banner-content">
-            This website uses cookies to ensure you get the best experience on our website. By continuing to use this site, you consent to our use of cookies.
-        </div>
-        <div class="cookie-banner-buttons">
-            <button id="accept-cookies" class="cookie-btn cookie-btn-accept">Accept All</button>
-            <button id="decline-cookies" class="cookie-btn cookie-btn-decline">Decline</button>
-        </div>
-    </div>
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Get the current year and update the footer
@@ -1213,6 +1126,7 @@
 
                 closeMobileMenuButton.addEventListener('click', () => {
                     mobileMenuOverlay.classList.remove('open');
+                    closeAllMobileDropdowns(); // Close dropdowns when closing the main menu
                 });
 
                 // Function to close all mobile dropdowns
@@ -1331,67 +1245,47 @@
             // Manually trigger the observer callback for elements already in view on load
             observerCallback(sectionObserver.takeRecords(), sectionObserver);
 
-            // Accordion functionality (Corrected logic)
-            const accordionItems = document.querySelectorAll(".accordion-item");
+            // Accordion functionality (New logic from index.html, animation removed)
+            const accordionItemsNew = document.querySelectorAll(".accordion-item-new");
 
-            accordionItems.forEach((item) => {
-                const header = item.querySelector(".accordion-header");
-                const content = item.querySelector(".accordion-content");
-                const icon = header.querySelector(".accordion-icon");
-
-                // Ensure initial state is collapsed and hidden
-                content.style.maxHeight = "0px";
-                content.style.opacity = "0";
-                content.style.transform = "translateY(-10px)"; // Ensure initial transform matches collapsed state
+            accordionItemsNew.forEach((item) => {
+                const header = item.querySelector(".accordion-header-new");
+                const content = item.querySelector(".accordion-content-new");
+                // Ensure the content is initially hidden for JS-controlled accordions
+                content.style.maxHeight = "0";
+                content.setAttribute('aria-hidden', 'true');
 
                 header.addEventListener("click", () => {
                     const isOpen = item.classList.contains("active");
 
                     // Close all other accordion items
-                    document
-                        .querySelectorAll(".accordion-item.active")
-                        .forEach((openItem) => {
-                            if (openItem !== item) {
-                                const openContent =
-                                    openItem.querySelector(".accordion-content");
-                                const openIcon = openItem.querySelector(".accordion-icon");
-                                openItem.classList.remove("active");
-                                openContent.style.maxHeight = "0px";
-                                openContent.style.opacity = "0";
-                                openContent.style.transform = "translateY(-10px)"; // Ensure consistency for closing
-                                openIcon.style.transform = "rotate(0deg)";
-                            }
-                        });
+                    accordionItemsNew.forEach((otherItem) => {
+                        if (otherItem !== item && otherItem.classList.contains("active")) {
+                            otherItem.classList.remove("active");
+                            otherItem.querySelector(".accordion-content-new").style.maxHeight = "0";
+                            otherItem.querySelector(".accordion-content-new").setAttribute('aria-hidden', 'true');
+                            otherItem.querySelector(".accordion-header-new").setAttribute('aria-expanded', 'false');
+                        }
+                    });
 
                     // Toggle the clicked item
                     if (isOpen) {
-                        // If open, close it
                         item.classList.remove("active");
-                        content.style.maxHeight = "0px";
-                        content.style.opacity = "0";
-                        content.style.transform = "translateY(-10px)"; // Apply collapsed transform
-                        icon.style.transform = "rotate(0deg)";
+                        content.style.maxHeight = "0";
+                        content.setAttribute('aria-hidden', 'true');
+                        header.setAttribute('aria-expanded', 'false');
                     } else {
-                        // If closed, open it
                         item.classList.add("active");
-                        // Set max-height to scrollHeight for expansion transition
+                        // Set max-height to scrollHeight immediately for instant display
                         content.style.maxHeight = content.scrollHeight + "px";
-                        content.style.opacity = "1";
-                        content.style.transform = "translateY(0)"; // Apply expanded transform
-                        icon.style.transform = "rotate(45deg)";
-
-                        // After transition, set maxHeight to '' to allow content to naturally resize
-                        const transitionEndHandler = () => {
-                            if (item.classList.contains("active")) {
-                                // Check if it's still active
-                                content.style.maxHeight = ""; // Set to auto or 'none' for dynamic height
-                            }
-                            content.removeEventListener(
-                                "transitionend",
-                                transitionEndHandler
-                            );
-                        };
-                        content.addEventListener("transitionend", transitionEndHandler);
+                        content.setAttribute('aria-hidden', 'false');
+                        header.setAttribute('aria-expanded', 'true');
+                        // Set maxHeight to 'auto' after a very short delay or next frame
+                        // to allow content to naturally resize if it changes dynamically.
+                        // This effectively removes the transition.
+                        requestAnimationFrame(() => {
+                            content.style.maxHeight = "auto";
+                        });
                     }
                 });
             });
@@ -1409,7 +1303,8 @@
                     // Show loading state on button
                     submitButton.innerHTML = '<span class="spinner"></span> Sending...';
                     submitButton.classList.add('btn-loading');
-                    submitButton.disabled = false; // Disable button during submission
+                    submitButton.disabled = true; // Disable button during submission
+                    submitButton.setAttribute('aria-busy', 'true'); // ARIA for loading state
 
                     const formData = new FormData(contactForm);
                     const formProps = Object.fromEntries(formData);
@@ -1429,6 +1324,7 @@
                             contactForm.reset(); // Clear form fields
                             contactForm.style.display = 'none'; // Hide the form
                             confirmationModal.classList.add('show'); // Show confirmation modal
+                            confirmationModal.setAttribute('aria-hidden', 'false');
                         } else {
                             // Handle non-OK responses (e.g., server errors, Formspark issues)
                             const errorData = await response.json();
@@ -1437,6 +1333,7 @@
                             document.querySelector('#confirmation-modal h4').textContent = 'Submission Failed!';
                             document.querySelector('#confirmation-modal p').textContent = 'There was an error sending your message. Please try again later.';
                             confirmationModal.classList.add('show');
+                            confirmationModal.setAttribute('aria-hidden', 'false');
                         }
                     } catch (error) {
                         console.error('Network or fetch error:', error);
@@ -1444,16 +1341,19 @@
                         document.querySelector('#confirmation-modal h4').textContent = 'Submission Failed!';
                         document.querySelector('#confirmation-modal p').textContent = 'Could not connect to the server. Please check your internet connection and try again.';
                         confirmationModal.classList.add('show');
+                            confirmationModal.setAttribute('aria-hidden', 'false');
                     } finally {
                         // Reset button state regardless of success or failure
                         submitButton.innerHTML = 'Send';
                         submitButton.classList.remove('btn-loading');
                         submitButton.disabled = false;
+                        submitButton.setAttribute('aria-busy', 'false');
                     }
                 });
 
                 closeConfirmationModalButton.addEventListener('click', () => {
                     confirmationModal.classList.remove('show'); // Hide confirmation modal
+                    confirmationModal.setAttribute('aria-hidden', 'true');
                     contactForm.style.display = 'block'; // Show the form again
                     // Reset confirmation message content to default for next time
                     document.querySelector('#confirmation-modal h4').textContent = 'Message Sent!';
@@ -1464,36 +1364,13 @@
                 confirmationModal.addEventListener('click', (event) => {
                     if (event.target === confirmationModal) {
                         confirmationModal.classList.remove('show');
+                        confirmationModal.setAttribute('aria-hidden', 'true');
                         contactForm.style.display = 'block';
                         document.querySelector('#confirmation-modal h4').textContent = 'Message Sent!';
                         document.querySelector('#confirmation-modal p').textContent = 'Thank you for contacting us. We will get back to you shortly.';
                     }
                 });
             }
-
-            // Cookie Consent Logic
-            const cookieBanner = document.getElementById('cookie-banner');
-            const acceptCookiesBtn = document.getElementById('accept-cookies');
-            const declineCookiesBtn = document.getElementById('decline-cookies');
-
-            function setCookieConsent(consent) {
-                localStorage.setItem('cookieConsent', consent);
-                cookieBanner.classList.remove('show');
-            }
-
-            // Check if consent has been given
-            // For demonstration, we'll always show it. In production, uncomment the if condition.
-             if (localStorage.getItem('cookieConsent') === null) {
-                cookieBanner.classList.add('show');
-            }
-
-            acceptCookiesBtn.addEventListener('click', () => {
-                setCookieConsent('accepted');
-            });
-
-            declineCookiesBtn.addEventListener('click', () => {
-                setCookieConsent('declined');
-            });
         });
     </script>
 </body>
