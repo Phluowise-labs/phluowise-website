@@ -637,7 +637,11 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border: none;
-            margin-top: 1rem;
+            /* Position it absolutely on the image */
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            z-index: 20; /* Ensure it's above the image */
             box-shadow: 0 4px 15px rgba(59, 116, 255, 0.3);
             width: 3rem; /* Fixed width for circular button */
             height: 3rem; /* Fixed height for circular button */
@@ -828,7 +832,7 @@
                 <div class="glassmorphism animated-border rounded-3xl p-4 sm:p-8 flex flex-col items-center justify-center overflow-hidden slide-in-from-bottom relative">
                     <div class="tilted-image-container">
                         <!-- Corrected image source -->
-                        <img src="images/phluowise_team.jpeg" alt="Phluowise Team" class="tilted-image" id="team-image">
+                        <img src="http://googleusercontent.com/file_content/1" alt="Phluowise Team" class="tilted-image" id="team-image">
                     </div>
                     <!-- Replaced button with a div containing an SVG icon -->
                     <div id="expand-image-button" class="expand-icon-button" title="Expand Image">
@@ -844,7 +848,7 @@
                 <button id="modal-close-button" class="modal-close-button">&times;</button>
                 <div class="modal-image-container">
                     <!-- Corrected image source for modal -->
-                    <img src="images/phluowise_team.jpeg" alt="Expanded Phluowise Team" class="modal-image" id="expanded-modal-image">
+                    <img src="http://googleusercontent.com/file_content/1" alt="Expanded Phluowise Team" class="modal-image" id="expanded-modal-image">
                 </div>
             </div>
 
@@ -1286,6 +1290,13 @@
             const modalCloseButton = document.getElementById('modal-close-button');
 
             if (teamImage && expandImageButton && imageModalOverlay && expandedModalImage && modalCloseButton) {
+                // Add click listener to the image itself for expansion
+                teamImage.addEventListener('click', () => {
+                    expandedModalImage.src = teamImage.src;
+                    imageModalOverlay.classList.add('open');
+                });
+
+                // Existing click listener for the expand icon
                 expandImageButton.addEventListener('click', () => {
                     expandedModalImage.src = teamImage.src; // Set the source of the modal image
                     imageModalOverlay.classList.add('open');
