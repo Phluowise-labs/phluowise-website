@@ -344,7 +344,7 @@
         max-width: 900px;
         margin: 0 auto;
         padding: 2rem;
-        min-height: 550px; /* Increased min-height for more content space */
+        min-height: 650px; /* Increased min-height for more content space */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -357,7 +357,7 @@
       .cards-stack {
         position: relative;
         width: 100%;
-        min-height: 450px; /* Increased min-height for the stack */
+        min-height: 550px; /* Increased min-height for the stack */
         display: flex;
         justify-content: center;
         align-items: center; /* Centered items vertically within the stack */
@@ -366,7 +366,7 @@
       .story-card {
         position: absolute;
         width: 100%;
-        min-height: 380px; /* Increased min-height for cards */
+        min-height: 480px; /* Increased min-height for cards */
         padding: 2.5rem; /* Consistent padding */
         border-radius: 1.5rem;
         display: flex;
@@ -521,11 +521,11 @@
       @media (max-width: 768px) {
         .card-switcher-container {
           padding: 1rem;
-          min-height: 600px; /* Increased min-height for mobile container */
+          min-height: 700px; /* Increased min-height for mobile container */
         }
 
         .story-card {
-          min-height: 400px; /* Increased min-height for mobile cards */
+          min-height: 550px; /* Increased min-height for mobile cards */
           padding: 1.25rem; /* Adjusted padding for smaller screens */
         }
 
@@ -539,7 +539,7 @@
         }
 
         .cards-stack {
-          min-height: 500px; /* Increased min-height for mobile stack */
+          min-height: 600px; /* Increased min-height for mobile stack */
         }
       }
 
@@ -675,7 +675,11 @@
       <div
         class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center"
       >
-        <h1 class="text-2xl font-bold text-brand">Phluowise</h1>
+        <!-- Replaced h1 with img for the logo -->
+        <a href="index.html" class="flex items-center">
+            <img src="image_ae8c60.png" alt="Phluowise Logo - Water Delivery Solution" class="h-8 md:h-10"
+                onerror="this.onerror=null;this.src='https://placehold.co/150x40/0D1117/3B74FF?text=Phluowise';" />
+        </a>
         <nav class="hidden md:flex items-center space-x-4">
           <!-- Products Dropdown -->
           <div class="relative dropdown">
@@ -1097,14 +1101,14 @@
           </div>
         </section>
 
-        <!-- Card Switcher Section (Updated with new code) -->
+        <!-- Card Switcher Section (Updated with new content) -->
         <section class="py-12 text-center w-full max-w-6xl mx-auto">
           <h2 class="text-4xl md:text-5xl font-bold text-white mb-12">
             Our Journey & Philosophy
           </h2>
           <div class="card-switcher-container">
             <div class="cards-stack">
-              <!-- Card 1: Our Story -->
+              <!-- Card 1: The Genesis -->
               <div class="story-card" data-index="0">
                 <h3>
                   Our Story: Nurturing the Vision from Campus to a Logistics
@@ -1128,40 +1132,44 @@
                 </p>
               </div>
 
-              <!-- Card 2: Encouraging the Idea Process -->
+              <!-- Card 2: From Idea to Vision: A Year of Dedication -->
               <div class="story-card" data-index="1">
-                <h3>Encouraging the Idea Process</h3>
+                <h3>From Idea to Vision: A Year of Dedication</h3>
                 <p class="mb-4">
-                  In the tapestry of innovation, every idea is a thread, and it
-                  takes careful weaving to create a masterpiece. The journey
-                  from the inception of an idea to the realization of a platform
-                  demands patience, perseverance, and a collaborative spirit.
+                  For an entire year, we nurtured the idea, carefully sculpting
+                  it into a vision that held the promise of transforming water
+                  delivery logistics. The initial stages were marked by
+                  brainstorming sessions, late-night discussions, and a constant
+                  pursuit of perfection.
                 </p>
                 <p>
-                  Phluowise stands as a testament to the notion that great ideas
-                  can emerge from the most unexpected places – a university
-                  campus where two students dared to dream big. The encouraging
-                  approach we embraced during the idea's infancy was vital.
-                  Every challenge was seen as an opportunity, and every setback
-                  was a lesson.
+                  The conviction that we could bring about positive change in
+                  the water delivery landscape fueled our determination. This
+                  period was crucial in refining our concept and ensuring it
+                  aligned with our long-term goals for efficiency and
+                  sustainability.
                 </p>
               </div>
 
-              <!-- Card 3: Join Us in Rewriting the Narrative -->
+              <!-- Card 3: Building the Future: Our Collaborative Development -->
               <div class="story-card" data-index="2">
-                <h3>Join Us in Rewriting the Narrative</h3>
-                <p class="mb-6">
-                  Phluowise invites you to be part of our story, a narrative
-                  that started with a spark of imagination on a university
-                  campus and evolved into a logistical revolution. Together,
-                  let's rewrite the future of water delivery, one drop at a
-                  time.
+                <h3>Building the Future: Our Collaborative Development</h3>
+                <p class="mb-4">
+                  The next chapter of our story unfolded with the invaluable
+                  support of four friends: Bright Adjei Awuah (BSc. Computer
+                  Science: Database Engineer), Michael Mireku (BSc. Information
+                  Technology: Full Stack Developer), Samuel K. Mensah (BSc.
+                  Information Technology: Full Stack Developer), Theophilus
+                  (BSc. Information Technology: Full Stack Developer) and Enoch
+                  Kumi Asamoah (BSc. Computer Science: Data Science Engineer &
+                  Cloud Engineer).
                 </p>
                 <p>
-                  Our commitment extends beyond creating a platform – we're
-                  building a community of innovators, dreamers, and changemakers
-                  who believe in the power of technology to transform industries
-                  and improve lives.
+                  Together, we embarked on the development phase, translating our
+                  vision into a tangible platform. Their expertise added a new
+                  dimension to our team, and we worked tirelessly to build a
+                  platform that would not only simplify logistics but redefine
+                  industry standards.
                 </p>
               </div>
             </div>
@@ -1507,9 +1515,10 @@
           cards.forEach((card, index) => {
             card.classList.remove("active", "transitioning");
 
-            const relativeIndex = index - currentIndex;
+            // Calculate the effective index for the circular logic
+            let effectiveIndex = (index - currentIndex + cards.length) % cards.length;
 
-            if (relativeIndex === 0) {
+            if (effectiveIndex === 0) {
               // Active card (front)
               card.classList.add("active");
               card.style.zIndex = "10";
@@ -1518,11 +1527,9 @@
               card.style.background =
                 "linear-gradient(135deg, #3b74ff, #60a5fa)";
               card.style.boxShadow = "0 25px 50px rgba(59, 116, 255, 0.4)";
-            } else if (
-              relativeIndex === 1 ||
-              (relativeIndex === -2 && cards.length === 3)
-            ) {
-              // Second card (behind active)
+              card.style.pointerEvents = "auto"; // Make active card clickable
+            } else if (effectiveIndex === 1) {
+              // Second card (immediately behind active)
               card.style.zIndex = "3";
               card.style.transform =
                 "translateZ(-50px) scale(0.95) translateY(10px)";
@@ -1530,11 +1537,9 @@
               card.style.background =
                 "linear-gradient(135deg, rgba(59, 116, 255, 0.8), rgba(96, 165, 250, 0.8))";
               card.style.boxShadow = "0 15px 30px rgba(59, 116, 255, 0.2)";
-            } else if (
-              relativeIndex === 2 ||
-              (relativeIndex === -1 && cards.length === 3)
-            ) {
-              // Third card (furthest back)
+              card.style.pointerEvents = "auto"; // Make this card clickable to bring to front
+            } else if (effectiveIndex === 2) {
+              // Third card (furthest back visible)
               card.style.zIndex = "2";
               card.style.transform =
                 "translateZ(-100px) scale(0.9) translateY(20px)";
@@ -1542,8 +1547,9 @@
               card.style.background =
                 "linear-gradient(135deg, rgba(59, 116, 255, 0.6), rgba(96, 165, 250, 0.6))";
               card.style.boxShadow = "0 10px 20px rgba(59, 116, 255, 0.15)";
+              card.style.pointerEvents = "auto"; // Make this card clickable to bring to front
             } else {
-              // Hidden cards
+              // Hidden cards (further back)
               card.style.zIndex = "1";
               card.style.transform =
                 "translateZ(-150px) scale(0.85) translateY(30px)";
@@ -1551,14 +1557,15 @@
               card.style.background =
                 "linear-gradient(135deg, rgba(59, 116, 255, 0.4), rgba(96, 165, 250, 0.4))";
               card.style.boxShadow = "none";
+              card.style.pointerEvents = "none"; // Not interactive
             }
           });
         }
 
         function updateNavigation() {
-          // Update buttons
-          prevButton.disabled = currentIndex === 0;
-          nextButton.disabled = currentIndex === cards.length - 1;
+          // Buttons are always enabled for circular carousel
+          prevButton.disabled = false;
+          nextButton.disabled = false;
 
           // Update dot indicators
           dotIndicators.forEach((dot, index) => {
@@ -1567,12 +1574,7 @@
         }
 
         function goToCard(newIndex, direction = "next") {
-          if (
-            newIndex < 0 ||
-            newIndex >= cards.length ||
-            newIndex === currentIndex ||
-            isTransitioning
-          ) {
+          if (isTransitioning) {
             return;
           }
 
@@ -1589,80 +1591,80 @@
           setTimeout(() => {
             isTransitioning = false;
             cards.forEach((card) => card.classList.remove("transitioning"));
-          }, 600);
+          }, 600); // Match this with your CSS transition duration
         }
 
         // Event listeners
         prevButton.addEventListener("click", () => {
-          if (currentIndex > 0) {
-            goToCard(currentIndex - 1, "prev");
-          }
+          const newIndex = (currentIndex - 1 + cards.length) % cards.length;
+          goToCard(newIndex, "prev");
         });
 
         nextButton.addEventListener("click", () => {
-          if (currentIndex < cards.length - 1) {
-            goToCard(currentIndex + 1, "next");
-          }
+          const newIndex = (currentIndex + 1) % cards.length;
+          goToCard(newIndex, "next");
         });
 
         // Dot indicator clicks
         dotIndicators.forEach((dot, index) => {
           dot.addEventListener("click", () => {
-            const direction = index > currentIndex ? "next" : "prev";
-            goToCard(index, direction);
+            goToCard(index);
           });
         });
 
-        // Card click to advance
+        // Card click to advance (circular logic)
         cards.forEach((card, index) => {
           card.addEventListener("click", () => {
-            if (index === currentIndex && currentIndex < cards.length - 1) {
-              goToCard(currentIndex + 1, "next");
-            } else if (index !== currentIndex) {
-              goToCard(index);
+            if (index !== currentIndex) {
+              goToCard(index); // Go to the clicked card
+            } else {
+              // If the active card is clicked, advance to the next one
+              const nextIndex = (currentIndex + 1) % cards.length;
+              goToCard(nextIndex, "next");
             }
           });
         });
 
         // Keyboard navigation
         document.addEventListener("keydown", (e) => {
-          if (e.key === "ArrowLeft" && currentIndex > 0) {
-            goToCard(currentIndex - 1, "prev");
-          } else if (
-            e.key === "ArrowRight" &&
-            currentIndex < cards.length - 1
-          ) {
-            goToCard(currentIndex + 1, "next");
+          if (e.key === "ArrowLeft") {
+            const newIndex = (currentIndex - 1 + cards.length) % cards.length;
+            goToCard(newIndex, "prev");
+          } else if (e.key === "ArrowRight") {
+            const newIndex = (currentIndex + 1) % cards.length;
+            goToCard(newIndex, "next");
           }
         });
 
-        // Auto-advance (optional)
+        // Auto-advance
         let autoAdvanceInterval;
+        const autoAdvanceDelay = 5000; // 5 seconds
 
         function startAutoAdvance() {
+          stopAutoAdvance(); // Clear any existing interval
           autoAdvanceInterval = setInterval(() => {
             if (!isTransitioning) {
-              const nextIndex =
-                currentIndex === cards.length - 1 ? 0 : currentIndex + 1;
+              const nextIndex = (currentIndex + 1) % cards.length;
               goToCard(nextIndex, "next");
             }
-          }, 5000);
+          }, autoAdvanceDelay);
         }
 
         function stopAutoAdvance() {
           clearInterval(autoAdvanceInterval);
         }
 
-        // Start auto-advance and pause on interaction
-        startAutoAdvance();
-
+        // Pause auto-advance on interaction (mouseenter/mouseleave on container)
         const container = document.querySelector(".card-switcher-container");
-        container.addEventListener("mouseenter", stopAutoAdvance);
-        container.addEventListener("mouseleave", startAutoAdvance);
+        if (container) {
+          container.addEventListener("mouseenter", stopAutoAdvance);
+          container.addEventListener("mouseleave", startAutoAdvance);
+        }
 
-        // Initialize
+        // Initialize carousel
         updateCardPositions();
         updateNavigation();
+        startAutoAdvance(); // Start auto-advance on load
 
         // Image Expansion Logic
         const teamImage = document.getElementById("team-image");
