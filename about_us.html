@@ -638,22 +638,28 @@
         transform: rotate(90deg);
       }
 
-      .expand-image-button {
+      /* New style for the expand icon */
+      .expand-icon-button {
         background: linear-gradient(135deg, #3b74ff, #60a5fa);
         color: white;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.75rem;
-        font-weight: 600;
-        transition: all 0.3s ease;
+        padding: 0.5rem; /* Smaller padding for an icon */
+        border-radius: 50%; /* Make it circular */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem; /* Icon size */
         cursor: pointer;
+        transition: all 0.3s ease;
         border: none;
         margin-top: 1rem;
         box-shadow: 0 4px 15px rgba(59, 116, 255, 0.3);
+        width: 3rem; /* Fixed width for circular button */
+        height: 3rem; /* Fixed height for circular button */
       }
 
-      .expand-image-button:hover {
+      .expand-icon-button:hover {
         background: linear-gradient(135deg, #508bff, #7bb3ff);
-        transform: translateY(-2px);
+        transform: translateY(-2px) scale(1.1); /* Slightly larger on hover */
         box-shadow: 0 8px 25px rgba(59, 116, 255, 0.4);
       }
     </style>
@@ -1002,15 +1008,33 @@
           >
             <div class="tilted-image-container">
               <img
-                src="images/phluowise_team.jpeg"
+                src="WhatsApp Image 2025-08-04 at 1.50.13 PM.jpeg"
                 alt="Phluowise Team"
                 class="tilted-image"
                 id="team-image"
               />
             </div>
-            <button id="expand-image-button" class="expand-image-button">
-              Expand View
-            </button>
+            <!-- Replaced button with a div containing an SVG icon -->
+            <div
+              id="expand-image-button"
+              class="expand-icon-button"
+              title="Expand Image"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 0h-4m4 0l-5-5"
+                ></path>
+              </svg>
+            </div>
           </div>
         </section>
 
@@ -1021,7 +1045,7 @@
           </button>
           <div class="modal-image-container">
             <img
-              src="images/phluowise_team.jpeg"
+              src=""
               alt="Expanded Phluowise Team"
               class="modal-image"
               id="expanded-modal-image"
@@ -1148,6 +1172,7 @@
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     stroke-linecap="round"
@@ -1170,6 +1195,7 @@
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     stroke-linecap="round"
@@ -1640,7 +1666,7 @@
         const teamImage = document.getElementById("team-image");
         const expandImageButton = document.getElementById(
           "expand-image-button"
-        );
+        ); // This now targets the div with the SVG
         const imageModalOverlay = document.getElementById(
           "image-modal-overlay"
         );
