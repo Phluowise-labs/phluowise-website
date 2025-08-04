@@ -837,11 +837,10 @@
       }
 
       /* QR Code specific styles */
-      .qr-code-container {
+      .qr-code-section {
         background: rgba(59, 116, 255, 0.05); /* Lighter tint for QR code */
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border: 1px solid rgba(59, 116, 255, 0.15);
         border-radius: 1.5rem;
         padding: 2rem;
         text-align: center;
@@ -1533,7 +1532,9 @@
       </section>
 
       <!-- New Section: QR Code Download -->
-      <section class="qr-code-container section-animated fade-in">
+      <section
+        class="qr-code-section animated-border rounded-3xl p-8 sm:p-12 text-center slide-in-from-bottom"
+      >
         <h3
           class="text-3xl sm:text-4xl font-bold text-white leading-tight mb-4 animate-fade-in-down"
         >
@@ -1546,7 +1547,10 @@
         </p>
         <div id="qrcode" class="animate-fade-in-up">
           <div class="qr-code-logo">
-            <img src="images/phluowise_mobile _icon.jpeg" alt="Phluowise Logo" />
+            <img
+              src="WhatsApp Image 2025-08-04 at 1.50.13 PM.jpeg-c40a5b17-6dff-4cfb-936c-2bab0a76a59c"
+              alt="Phluowise Logo"
+            />
           </div>
         </div>
         <p class="text-gray-400 text-sm mt-4">
