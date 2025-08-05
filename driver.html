@@ -46,7 +46,8 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- Removed qrcode.min.js as it's not used on this page -->
+    <!-- Three.js library for WebGL shader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <style>
         /* Replicated and Adapted Styles from existing files and new screenshots */
@@ -198,7 +199,8 @@
             background-color: #000;
         }
 
-        .hero-section::before {
+        /* Removed ::before background image for the shader */
+        /* .hero-section::before {
             content: "";
             position: absolute;
             top: 0;
@@ -209,14 +211,32 @@
             background-size: cover;
             background-position: center;
             opacity: 0.2;
-            /* Adjust opacity to match the screenshot */
             z-index: 1;
-        }
+        } */
 
         .hero-content {
             position: relative;
             z-index: 2;
         }
+
+        /* Shader container and canvas styles */
+        #shader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1; /* Below hero-content */
+        }
+
+        #shader canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure it covers the area */
+        }
+
 
         /* Dropdown specific styles */
         .dropdown-menu {
@@ -702,6 +722,9 @@
 
     <main>
         <section class="hero-section h-[60vh] md:h-[80vh] flex items-center justify-center text-center">
+            <!-- Shader background container -->
+            <div id="shader"></div>
+
             <div class="hero-content container mx-auto px-4">
                 <h2 class="text-4xl md:text-6xl font-bold text-gradient mb-4">
                     Make order tracking and navigation easier
@@ -711,6 +734,113 @@
                     entire logistics management
                 </p>
             </div>
+
+            <!-- WebGL Shader Scripts and Initialization -->
+            <script id="vertex" type="x-shader/x-vertex">
+                varying vec2 vUv;
+                void main() {
+                    gl_Position = vec4(position, 1.0);
+                    vUv = uv;
+                }
+            </script>
+
+            <script id="fragment" type="x-shader/x-fragment">
+                precision highp float;
+
+                uniform vec2 u_resolution;
+                uniform float u_time;
+                varying vec2 vUv;
+
+                const float PI = 3.1415926535897932384626433832795;
+
+                void main() {
+                    vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+
+                    // Create a smooth, flowing gradient using time and UV coordinates
+                    float r = 0.0; // Keep red component at 0 for green/blue
+
+                    // Scale the green component to be less prominent (max 20% of full intensity)
+                    float g = (sin(uv.x * 5.0 + u_time * 0.5) * 0.5 + 0.5) * 0.4;
+
+                    // Scale the blue component to be more prominent (max 80-100% of full intensity)
+                    float b = (cos(uv.y * 5.0 + u_time * 0.5) * 0.5 + 0.5) * 1.0;
+
+                    // Further animate and blend for a more dynamic flow, maintaining the ratio
+                    // Mix with a smaller green influence and larger blue influence
+                    g = mix(g, (sin(uv.y * 3.0 - u_time * 0.7) * 0.5 + 0.5) * 0.2, 0.5); // Reduced green mix
+                    b = mix(b, (cos(uv.x * 3.0 - u_time * 0.7) * 0.5 + 0.5) * 0.8, 0.5); // Increased blue mix
+
+                    // Add some noise for organic movement, with less impact on green
+                    float noise = fract(sin(dot(uv.xy, vec2(12.9898, 78.233))) * 43758.5453);
+                    g += noise * 0.02; // Smaller noise contribution to green
+                    b += noise * 0.08; // Larger noise contribution to blue
+
+                    // Ensure colors stay within 0-1 range and are predominantly green/blue
+                    vec3 color = vec3(r, g, b);
+                    gl_FragColor = vec4(clamp(color, 0.0, 1.0), 1.0);
+                }
+            </script>
+
+            <script>
+                let camera, scene, renderer, clock;
+                let uniforms;
+
+                function init() {
+                    const container = document.getElementById("shader");
+
+                    clock = new THREE.Clock();
+                    camera = new THREE.Camera();
+                    camera.position.z = 1;
+
+                    scene = new THREE.Scene();
+
+                    const geometry = new THREE.PlaneBufferGeometry(2, 2);
+
+                    uniforms = {
+                        u_time: { type: "f", value: 1.0 },
+                        u_resolution: { type: "v2", value: new THREE.Vector2() },
+                    };
+
+                    const material = new THREE.ShaderMaterial({
+                        uniforms,
+                        vertexShader: document.getElementById("vertex").textContent,
+                        fragmentShader: document.getElementById("fragment").textContent
+                    });
+
+                    const mesh = new THREE.Mesh(geometry, material);
+                    scene.add(mesh);
+
+                    renderer = new THREE.WebGLRenderer({ antialias: true }); // Added antialiasing
+                    renderer.setPixelRatio(window.devicePixelRatio);
+
+                    container.appendChild(renderer.domElement);
+
+                    onWindowResize();
+                    window.addEventListener("resize", onWindowResize);
+                }
+
+                function onWindowResize() {
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                    uniforms.u_resolution.value.x = renderer.domElement.width;
+                    uniforms.u_resolution.value.y = renderer.domElement.height;
+                }
+
+                function render() {
+                    uniforms.u_time.value = clock.getElapsedTime();
+                    renderer.render(scene, camera);
+                }
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    render();
+                }
+
+                // Initialize and animate only after the window has loaded
+                window.onload = function () {
+                    init();
+                    animate();
+                };
+            </script>
         </section>
 
         <section class="py-16 md:py-24">
@@ -731,45 +861,6 @@
                     <div class="space-y-6">
                         <h4 class="text-3xl font-bold">
                             Detect orders from customers near your range
-                        </h4>
-                        <div
-                            class="flex flex-col sm:flex-row justify-center lg:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                            <a href="#" class="app-store-btn" aria-label="Get it on Google Play"
-                                rel="noopener noreferrer">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                                </svg>
-                                <div class="text-left">
-                                    <div class="text-xs">GET IT ON</div>
-                                    <div class="text-sm font-semibold">Google Play</div>
-                                </div>
-                            </a>
-                            <a href="#" class="app-store-btn" aria-label="Download on the App Store"
-                                rel="noopener noreferrer">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
-                                </svg>
-                                <div class="text-left">
-                                    <div class="text-xs">Download on the</div>
-                                    <div class="text-sm font-semibold">App Store</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="pb-16 md:pb-24">
-            <div class="container mx-auto px-4">
-                <div
-                    class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-1 lg:grid-cols-2 gap-8 items-center glassmorphism">
-                    <div class="text-center lg:text-left space-y-6 order-last lg:order-first">
-                        <h4 class="text-3xl font-bold">
-                            View user location and gain access to automatic direction to
-                            destination
                         </h4>
                         <div
                             class="flex flex-col sm:flex-row justify-center lg:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
@@ -1223,4 +1314,3 @@
 </body>
 
 </html>
-
