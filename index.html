@@ -73,7 +73,27 @@
       type="video/mp4"
     />
 
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Q0GRN94KH5"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-Q0GRN94KH5");
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Firebase App (core SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-app-compat.js"></script>
+    <!-- Firebase Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/9.24.0/firebase-analytics-compat.js"></script>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -2301,7 +2321,7 @@
           We use cookies to ensure you get the best experience on our website.
           By continuing to use this site, you agree to our
           <a
-            href="https://subsequent-fly-367.notion.site/Cookie-Policy-for-Phluowise-Ltd-6b759e2c878d4a38b6a261413985302c?source=copy_link"
+            href="#"
             class="text-brand hover:underline"
             rel="noopener noreferrer"
             >Cookie Policy</a
@@ -2310,7 +2330,7 @@
         <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
           <button
             id="accept-cookies"
-            class="btn-get-started text-white font-semibold px-4 py-1.5 rounded-lg shadow-lg w-full"
+            class="btn-get-started text-white font-semibold px-3 py-1.5 rounded-lg shadow-lg w-full"
           >
             Accept All
           </button>
@@ -2904,6 +2924,30 @@
           "Phluowise_Presentation.pptx"
         );
       });
+    </script>
+
+    <script>
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBswEwkhldK3df6Y4x3J92qcHxCudOWfkg",
+        authDomain: "phlouwise-website.firebaseapp.com",
+        projectId: "phlouwise-website",
+        storageBucket: "phlouwise-website.firebasestorage.app",
+        messagingSenderId: "683349276497",
+        appId: "1:683349276497:web:b19c13a294616d906fc570",
+        measurementId: "G-Q0GRN94KH5",
+      };
+
+      // Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+
+      // Optional: Initialize Analytics if needed
+      if ("measurementId" in firebaseConfig) {
+        firebase.analytics();
+      }
+
+      // Confirm connection
+      console.log("✅ Firebase connected:", app);
     </script>
   </body>
 </html>
