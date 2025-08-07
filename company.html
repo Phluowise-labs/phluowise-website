@@ -1,1379 +1,1843 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phluowise - For Companies</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Q0GRN94KH5"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-Q0GRN94KH5");
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        /* Replicated and Adapted Styles from existing files */
-        body {
-            font-family: "Inter", sans-serif;
-            background-color: #0D1117;
-            /* Matches existing site */
-            color: #E6EDF3;
-            scroll-behavior: smooth;
+      /* Replicated and Adapted Styles from existing files */
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0d1117;
+        /* Matches existing site */
+        color: #e6edf3;
+        scroll-behavior: smooth;
+      }
+
+      /* Navbar style from existing files */
+      .header-nav {
+        background: rgba(13, 17, 23, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Gradient text from screenshots */
+      .text-gradient {
+        background: linear-gradient(90deg, #3b74ff, #4ade80);
+        /* Blue to a greenish color */
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .text-brand {
+        color: #3b74ff;
+      }
+
+      /* Button styles adapted from existing files */
+      .btn-get-started {
+        background: linear-gradient(135deg, #3b74ff, #60a5fa);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-get-started::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn-get-started:hover::before {
+        left: 100%;
+      }
+
+      .btn-get-started:hover {
+        background: linear-gradient(135deg, #508bff, #7bb3ff);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
+      }
+
+      /* New button style for "Watch video" */
+      .btn-outline {
+        background: transparent;
+        border: 1px solid #3b74ff;
+        color: #3b74ff;
+        transition: all 0.3s ease;
+      }
+
+      .btn-outline:hover {
+        background: rgba(59, 116, 255, 0.1);
+        color: #60a5fa;
+        border-color: #60a5fa;
+      }
+
+      .nav-btn {
+        background-color: #374151;
+        /* gray-700 */
+        color: #e6edf3;
+        transition: background-color 0.3s ease;
+      }
+
+      .nav-btn:hover {
+        background-color: #4b5563;
+        /* gray-600 */
+      }
+
+      /* App store buttons from existing files */
+      .app-store-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        color: white;
+        padding: 6px 12px;
+        /* Reduced padding */
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid #333;
+        min-width: 120px;
+        /* Reduced min-width */
+        height: 40px;
+        /* Reduced height */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .app-store-btn:hover {
+        background: #333;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      }
+
+      .app-store-btn svg {
+        margin-right: 8px;
+      }
+
+      /* Solid container from screenshots */
+      .solid-container {
+        background-color: #1e293b;
+        /* A dark slate/blue color */
+        border-radius: 1.5rem;
+        /* rounded-3xl */
+      }
+
+      /* Feature boxes from screenshots */
+      .feature-box {
+        background-color: #1e293b;
+        /* Dark slate/blue */
+        border-radius: 1rem;
+        /* rounded-xl */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .feature-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(59, 116, 255, 0.1);
+      }
+
+      /* Form styles from screenshots and existing files */
+      .form-input {
+        background-color: #374151;
+        border: 1px solid #4b5563;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .form-input:focus {
+        border-color: #3b74ff;
+        box-shadow: 0 0 0 3px rgba(59, 116, 255, 0.2);
+        outline: none;
+      }
+
+      /* Hero background styling */
+      .hero-section {
+        position: relative;
+        background-color: #0d1117;
+        /* Dark background */
+        overflow: hidden;
+        /* Ensure animation stays within bounds */
+      }
+
+      /* Animated blue background figure */
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        /* Start higher to allow movement */
+        left: -50%;
+        /* Start left to allow movement */
+        width: 200%;
+        /* Cover larger area for animation */
+        height: 200%;
+        /* Cover larger area for animation */
+        background: radial-gradient(
+            circle at 50% 50%,
+            rgba(59, 116, 255, 0.3) 0%,
+            rgba(59, 116, 255, 0) 70%
+          ),
+          radial-gradient(
+            circle at 20% 80%,
+            rgba(74, 222, 128, 0.2) 0%,
+            rgba(74, 222, 128, 0) 60%
+          );
+        background-size: 100% 100%;
+        animation: background-pan 30s linear infinite alternate;
+        /* Slow, constant, alternating animation */
+        z-index: 0;
+        /* Behind content */
+      }
+
+      @keyframes background-pan {
+        0% {
+          transform: translate(0%, 0%);
         }
 
-        /* Navbar style from existing files */
-        .header-nav {
-            background: rgba(13, 17, 23, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        100% {
+          transform: translate(-50%, -50%);
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Dropdown specific styles */
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: rgba(13, 17, 23, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 0.5rem;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        z-index: 100;
+        min-width: 200px;
+        padding: 0.5rem 0;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .dropdown-item {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1.25rem;
+        color: #e6edf3;
+        text-decoration: none;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      .dropdown-item:hover {
+        background-color: rgba(59, 116, 255, 0.1);
+        color: #3b74ff;
+      }
+
+      .dropdown-item svg {
+        margin-right: 0.75rem;
+      }
+
+      /* Mobile Menu Overlay */
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(13, 17, 23, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 60;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s ease-in-out;
+        opacity: 0;
+      }
+
+      .mobile-menu-overlay.open {
+        display: flex;
+        opacity: 1;
+      }
+
+      /* Mobile Dropdown specific styles */
+      .mobile-dropdown-menu {
+        display: none;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+        max-height: 0;
+        opacity: 0;
+      }
+
+      .mobile-dropdown-menu.open {
+        display: block;
+        /* will be controlled by JS for max-height */
+      }
+
+      /* Animated Border for cards and sections */
+      @keyframes animated-border-flow {
+        0% {
+          background-position: -100% 50%;
+          box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
         }
 
-        /* Gradient text from screenshots */
-        .text-gradient {
-            background: linear-gradient(90deg, #3B74FF, #4ade80);
-            /* Blue to a greenish color */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
+        50% {
+          box-shadow: 0 0 30px rgba(59, 116, 255, 0.3);
         }
 
-        .text-brand {
-            color: #3B74FF;
+        100% {
+          background-position: 100% 50%;
+          box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
+        }
+      }
+
+      .animated-border {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(59, 116, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .animated-border::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: inherit;
+        padding: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #3b74ff,
+          #60a5fa,
+          #3b74ff,
+          transparent
+        );
+        background-size: 200% 100%;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+        mask-composite: exclude;
+        animation: animated-border-flow 4s linear infinite; /* Re-added animation */
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out;
+      }
+
+      .animated-border:hover::before {
+        opacity: 1;
+      }
+
+      /* Glassmorphism effect */
+      .glassmorphism {
+        background: rgba(59, 116, 255, 0.1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(59, 116, 255, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* Added for ripple effect */
+        background-size: 200% 200%;
+        animation: glassmorphism-ripple 15s ease-in-out infinite alternate;
+      }
+
+      .glassmorphism:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(59, 116, 255, 0.2);
+      }
+
+      /* Keyframes for the ripple effect on glassmorphism background */
+      @keyframes glassmorphism-ripple {
+        0% {
+          background-position: 0% 0%;
+        }
+        100% {
+          background-position: 100% 100%;
+        }
+      }
+
+      /* Animation classes */
+      .fade-in {
+        opacity: 0;
+        transition: opacity 1.2s ease-in-out;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+      }
+
+      .slide-in-from-bottom {
+        opacity: 0;
+        transform: translateY(60px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+      }
+
+      .slide-in-from-bottom.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .slide-in-from-left {
+        opacity: 0;
+        transform: translateX(-60px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+      }
+
+      .slide-in-from-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .slide-in-from-right {
+        opacity: 0;
+        transform: translateX(60px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+      }
+
+      .slide-in-from-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* New Accordion styles from index.html */
+      .accordion-item-new {
+        border-radius: 1rem;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        /* Removed animated-border class from HTML, so adding border here */
+        border: 1px solid rgba(59, 116, 255, 0.2);
+      }
+
+      .accordion-header-new {
+        background: rgba(59, 116, 255, 0.08);
+        padding: 1.5rem 2rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        color: #e6edf3;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        border-bottom: 1px solid transparent;
+      }
+
+      .accordion-item-new.active .accordion-header-new {
+        background: rgba(59, 116, 255, 0.15);
+        color: #3b74ff;
+        border-bottom: 1px solid rgba(59, 116, 255, 0.3);
+      }
+
+      .accordion-header-new:hover {
+        background: rgba(59, 116, 255, 0.12);
+      }
+
+      .accordion-icon-new {
+        font-size: 1.5rem;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .accordion-item-new.active .accordion-icon-new {
+        transform: rotate(180deg);
+      }
+
+      /* Removed transition for instant open/close */
+      .accordion-content-new {
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 2rem;
+        background: rgba(59, 116, 255, 0.05);
+        color: #c0c7d1;
+      }
+
+      .accordion-item-new.active .accordion-content-new {
+        max-height: 1000px;
+        /* Sufficiently large value */
+        padding: 1.5rem 2rem;
+      }
+
+      /* Confirmation Message Styles */
+      .confirmation-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .confirmation-modal.show {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .confirmation-content {
+        background: rgba(59, 116, 255, 0.1);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(59, 116, 255, 0.3);
+        border-radius: 1.5rem;
+        padding: 2rem;
+        text-align: center;
+        color: #e6edf3;
+        box-shadow: 0 10px 30px rgba(59, 116, 255, 0.4);
+        transform: translateY(-20px);
+        opacity: 0;
+        transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+      }
+
+      .confirmation-modal.show .confirmation-content {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Button Loading Animation */
+      .btn-loading {
+        position: relative;
+        pointer-events: none;
+        /* Disable clicks during loading */
+      }
+
+      .btn-loading .spinner {
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top: 3px solid #fff;
+        border-radius: 50%;
+        width: 1.5rem;
+        height: 1.5rem;
+        animation: spin 1s linear infinite;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 0.5rem;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
 
-        /* Button styles adapted from existing files */
-        .btn-get-started {
-            background: linear-gradient(135deg, #3B74FF, #60A5FA);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+        100% {
+          transform: rotate(360deg);
         }
-
-        .btn-get-started::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-get-started:hover::before {
-            left: 100%;
-        }
-
-        .btn-get-started:hover {
-            background: linear-gradient(135deg, #508bff, #7BB3FF);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
-        }
-
-        /* New button style for "Watch video" */
-        .btn-outline {
-            background: transparent;
-            border: 1px solid #3B74FF;
-            color: #3B74FF;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline:hover {
-            background: rgba(59, 116, 255, 0.1);
-            color: #60A5FA;
-            border-color: #60A5FA;
-        }
-
-
-        .nav-btn {
-            background-color: #374151;
-            /* gray-700 */
-            color: #E6EDF3;
-            transition: background-color 0.3s ease;
-        }
-
-        .nav-btn:hover {
-            background-color: #4B5563;
-            /* gray-600 */
-        }
-
-        /* App store buttons from existing files */
-        .app-store-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: #000;
-            color: white;
-            padding: 6px 12px;
-            /* Reduced padding */
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid #333;
-            min-width: 120px;
-            /* Reduced min-width */
-            height: 40px;
-            /* Reduced height */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .app-store-btn:hover {
-            background: #333;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .app-store-btn svg {
-            margin-right: 8px;
-        }
-
-        /* Solid container from screenshots */
-        .solid-container {
-            background-color: #1e293b;
-            /* A dark slate/blue color */
-            border-radius: 1.5rem;
-            /* rounded-3xl */
-        }
-
-        /* Feature boxes from screenshots */
-        .feature-box {
-            background-color: #1e293b;
-            /* Dark slate/blue */
-            border-radius: 1rem;
-            /* rounded-xl */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .feature-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(59, 116, 255, 0.1);
-        }
-
-        /* Form styles from screenshots and existing files */
-        .form-input {
-            background-color: #374151;
-            border: 1px solid #4B5563;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-input:focus {
-            border-color: #3B74FF;
-            box-shadow: 0 0 0 3px rgba(59, 116, 255, 0.2);
-            outline: none;
-        }
-
-        /* Hero background styling */
-        .hero-section {
-            position: relative;
-            background-color: #0D1117;
-            /* Dark background */
-            overflow: hidden;
-            /* Ensure animation stays within bounds */
-        }
-
-        /* Animated blue background figure */
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            /* Start higher to allow movement */
-            left: -50%;
-            /* Start left to allow movement */
-            width: 200%;
-            /* Cover larger area for animation */
-            height: 200%;
-            /* Cover larger area for animation */
-            background: radial-gradient(circle at 50% 50%, rgba(59, 116, 255, 0.3) 0%, rgba(59, 116, 255, 0) 70%),
-                radial-gradient(circle at 20% 80%, rgba(74, 222, 128, 0.2) 0%, rgba(74, 222, 128, 0) 60%);
-            background-size: 100% 100%;
-            animation: background-pan 30s linear infinite alternate;
-            /* Slow, constant, alternating animation */
-            z-index: 0;
-            /* Behind content */
-        }
-
-        @keyframes background-pan {
-            0% {
-                transform: translate(0%, 0%);
-            }
-
-            100% {
-                transform: translate(-50%, -50%);
-            }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Dropdown specific styles */
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            background-color: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 0.5rem;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-            z-index: 100;
-            min-width: 200px;
-            padding: 0.5rem 0;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .dropdown-item {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem 1.25rem;
-            color: #E6EDF3;
-            text-decoration: none;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        .dropdown-item:hover {
-            background-color: rgba(59, 116, 255, 0.1);
-            color: #3B74FF;
-        }
-
-        .dropdown-item svg {
-            margin-right: 0.75rem;
-        }
-
-        /* Mobile Menu Overlay */
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 60;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.3s ease-in-out;
-            opacity: 0;
-        }
-
-        .mobile-menu-overlay.open {
-            display: flex;
-            opacity: 1;
-        }
-
-        /* Mobile Dropdown specific styles */
-        .mobile-dropdown-menu {
-            display: none;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-            max-height: 0;
-            opacity: 0;
-        }
-
-        .mobile-dropdown-menu.open {
-            display: block;
-            /* will be controlled by JS for max-height */
-        }
-
-
-        /* Animated Border for cards and sections */
-        @keyframes animated-border-flow {
-            0% {
-                background-position: -100% 50%;
-                box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
-            }
-
-            50% {
-                box-shadow: 0 0 30px rgba(59, 116, 255, 0.3);
-            }
-
-            100% {
-                background-position: 100% 50%;
-                box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
-            }
-        }
-
-        .animated-border {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(59, 116, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .animated-border::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: inherit;
-            padding: 2px;
-            background: linear-gradient(90deg, transparent, #3B74FF, #60A5FA, #3B74FF, transparent);
-            background-size: 200% 100%;
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: destination-out;
-            mask-composite: exclude;
-            animation: animated-border-flow 4s linear infinite; /* Re-added animation */
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out;
-        }
-
-        .animated-border:hover::before {
-            opacity: 1;
-        }
-
-        /* Glassmorphism effect */
-        .glassmorphism {
-            background: rgba(59, 116, 255, 0.1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(59, 116, 255, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            /* Added for ripple effect */
-            background-size: 200% 200%;
-            animation: glassmorphism-ripple 15s ease-in-out infinite alternate;
-        }
-
-        .glassmorphism:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(59, 116, 255, 0.2);
-        }
-
-        /* Keyframes for the ripple effect on glassmorphism background */
-        @keyframes glassmorphism-ripple {
-            0% {
-                background-position: 0% 0%;
-            }
-            100% {
-                background-position: 100% 100%;
-            }
-        }
-
-        /* Animation classes */
-        .fade-in {
-            opacity: 0;
-            transition: opacity 1.2s ease-in-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-        }
-
-        .slide-in-from-bottom {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-
-        .slide-in-from-bottom.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .slide-in-from-left {
-            opacity: 0;
-            transform: translateX(-60px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-
-        .slide-in-from-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .slide-in-from-right {
-            opacity: 0;
-            transform: translateX(60px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-
-        .slide-in-from-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        /* New Accordion styles from index.html */
-        .accordion-item-new {
-            border-radius: 1rem;
-            overflow: hidden;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            /* Removed animated-border class from HTML, so adding border here */
-            border: 1px solid rgba(59, 116, 255, 0.2);
-        }
-
-        .accordion-header-new {
-            background: rgba(59, 116, 255, 0.08);
-            padding: 1.5rem 2rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: #e6edf3;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            border-bottom: 1px solid transparent;
-        }
-
-        .accordion-item-new.active .accordion-header-new {
-            background: rgba(59, 116, 255, 0.15);
-            color: #3b74ff;
-            border-bottom: 1px solid rgba(59, 116, 255, 0.3);
-        }
-
-        .accordion-header-new:hover {
-            background: rgba(59, 116, 255, 0.12);
-        }
-
-        .accordion-icon-new {
-            font-size: 1.5rem;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .accordion-item-new.active .accordion-icon-new {
-            transform: rotate(180deg);
-        }
-
-        /* Removed transition for instant open/close */
-        .accordion-content-new {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 2rem;
-            background: rgba(59, 116, 255, 0.05);
-            color: #c0c7d1;
-        }
-
-        .accordion-item-new.active .accordion-content-new {
-            max-height: 1000px;
-            /* Sufficiently large value */
-            padding: 1.5rem 2rem;
-        }
-
-
-        /* Confirmation Message Styles */
-        .confirmation-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .confirmation-modal.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .confirmation-content {
-            background: rgba(59, 116, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(59, 116, 255, 0.3);
-            border-radius: 1.5rem;
-            padding: 2rem;
-            text-align: center;
-            color: #E6EDF3;
-            box-shadow: 0 10px 30px rgba(59, 116, 255, 0.4);
-            transform: translateY(-20px);
-            opacity: 0;
-            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-        }
-
-        .confirmation-modal.show .confirmation-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* Button Loading Animation */
-        .btn-loading {
-            position: relative;
-            pointer-events: none;
-            /* Disable clicks during loading */
-        }
-
-        .btn-loading .spinner {
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top: 3px solid #fff;
-            border-radius: 50%;
-            width: 1.5rem;
-            height: 1.5rem;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-            vertical-align: middle;
-            margin-right: 0.5rem;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-black">
-
+  <body class="bg-black">
     <!-- Header (Copied from index.html/pricing.html) -->
     <header class="header-nav fixed top-0 left-0 right-0 z-50">
-        <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-brand">Phluowise</h1>
-            <nav class="hidden md:flex items-center space-x-4">
-                <!-- Products Dropdown -->
-                <div class="relative dropdown">
-                    <button class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center">
-                        Products
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="index.html" class="dropdown-item">
-                            <!-- Shopping Bag Icon -->
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5ZM7 7H17V17H7V7ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 11 12 11Z" />
-                                <path
-                                    d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z" />
-                        </svg>
-                            Phluowise Ecommerce
-                        </a>
-                        <a href="company.html" class="dropdown-item">
-                            <!-- Users/Company Icon -->
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" />
-                        </svg>
-                            Phluowise Company
-                        </a>
-                        <a href="driver.html" class="dropdown-item">
-                            <!-- Truck/Delivery Icon -->
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M18 8H16V6H18V8ZM18 10H16V12H18V10ZM18 14H16V16H18V14ZM18 18H16V20H18V18ZM20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM4 6H14V18H4V6ZM16 6V18H20V6H16Z" />
-                        </svg>
-                            Phluowise Drive
-                        </a>
-                    </div>
-                </div>
-                <!-- Resources Dropdown -->
-                <div class="relative dropdown">
-                    <button class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center">
-                        Resources
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a href="https://phluows-documentation.gitbook.io/phluowise-documentation" class="dropdown-item">
-                            <!-- Document Icon -->
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z" />
-                        </svg>
-                            Documentation
-                        </a>
-                        <a href="#" class="dropdown-item">
-                            <!-- Regulations/Newspaper Icon -->
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM5 5H19V19H5V5ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z" />
-                        </svg>
-                            Regulations
-                        </a>
-                    </div>
-                </div>
-                <a href="https://whatsapp.com/channel/0029VbAXsz3JP215oI0cbS3W" class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors">Community</a>
-                <a href="about_us.html" class="text-gray-300 hover:text-white transition">About Us</a>
-                <a href="pricing.html" class="text-gray-300 hover:text-white transition">Pricing</a>
-            </nav>
-            <div class="hidden md:flex items-center space-x-4">
-                <!-- Removed Phluowise marketplace button -->
-                <a href="https://phluowise-labs.github.io/company/pages/user-signup.html"
-                    class="btn-get-started text-white font-semibold px-5 py-2.5 rounded-lg">Get Started</a>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
-                </svg>
+      <div
+        class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center"
+      >
+        <h1 class="text-2xl font-bold text-brand">Phluowise</h1>
+        <nav class="hidden md:flex items-center space-x-4">
+          <!-- Products Dropdown -->
+          <div class="relative dropdown">
+            <button
+              class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center"
+            >
+              Products
+              <svg
+                class="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
             </button>
+            <div class="dropdown-menu">
+              <a href="index.html" class="dropdown-item">
+                <!-- Shopping Bag Icon -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5ZM7 7H17V17H7V7ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 11 12 11Z"
+                  />
+                  <path
+                    d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
+                  />
+                </svg>
+                Phluowise Ecommerce
+              </a>
+              <a href="company.html" class="dropdown-item">
+                <!-- Users/Company Icon -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"
+                  />
+                </svg>
+                Phluowise Company
+              </a>
+              <a href="driver.html" class="dropdown-item">
+                <!-- Truck/Delivery Icon -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M18 8H16V6H18V8ZM18 10H16V12H18V10ZM18 14H16V16H18V14ZM18 18H16V20H18V18ZM20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM4 6H14V18H4V6ZM16 6V18H20V6H16Z"
+                  />
+                </svg>
+                Phluowise Drive
+              </a>
+            </div>
+          </div>
+          <!-- Resources Dropdown -->
+          <div class="relative dropdown">
+            <button
+              class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center"
+            >
+              Resources
+              <svg
+                class="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <div class="dropdown-menu">
+              <a
+                href="https://phluows-documentation.gitbook.io/phluowise-documentation"
+                class="dropdown-item"
+              >
+                <!-- Document Icon -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z"
+                  />
+                </svg>
+                Documentation
+              </a>
+              <a href="#" class="dropdown-item">
+                <!-- Regulations/Newspaper Icon -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM5 5H19V19H5V5ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z"
+                  />
+                </svg>
+                Regulations
+              </a>
+            </div>
+          </div>
+          <a
+            href="https://whatsapp.com/channel/0029VbAXsz3JP215oI0cbS3W"
+            class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors"
+            >Community</a
+          >
+          <a
+            href="about_us.html"
+            class="text-gray-300 hover:text-white transition"
+            >About Us</a
+          >
+          <a
+            href="pricing.html"
+            class="text-gray-300 hover:text-white transition"
+            >Pricing</a
+          >
+        </nav>
+        <div class="hidden md:flex items-center space-x-4">
+          <!-- Removed Phluowise marketplace button -->
+          <a
+            href="https://phluowise-labs.github.io/company/pages/user-signup.html"
+            class="btn-get-started text-white font-semibold px-5 py-2.5 rounded-lg"
+            >Get Started</a
+          >
         </div>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-white focus:outline-none"
+        >
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
     </header>
 
     <!-- Mobile Menu Overlay (Copied from index.html/pricing.html) -->
     <div id="mobile-menu-overlay" class="mobile-menu-overlay">
-        <button id="close-mobile-menu" class="absolute top-6 right-6 text-white focus:outline-none">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      <button
+        id="close-mobile-menu"
+        class="absolute top-6 right-6 text-white focus:outline-none"
+      >
+        <svg
+          class="w-8 h-8"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+      <nav class="flex flex-col items-center space-y-8 text-xl">
+        <!-- Products Dropdown (Mobile) -->
+        <div class="relative w-full text-center mobile-dropdown">
+          <button
+            class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center text-xl"
+            id="mobile-products-button"
+          >
+            Products
+            <svg
+              class="w-5 h-5 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
             </svg>
-        </button>
-        <nav class="flex flex-col items-center space-y-8 text-xl">
-            <!-- Products Dropdown (Mobile) -->
-            <div class="relative w-full text-center mobile-dropdown">
-                <button
-                    class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center text-xl"
-                    id="mobile-products-button">
-                    Products
-                    <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                <div class="mobile-dropdown-menu mt-4 space-y-4">
-                    <a href="index.html" class="dropdown-item mobile-nav-link">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5ZM7 7H17V17H7V7ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 11 12 11Z" />
-                            <path
-                                d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z" />
-                        </svg>
-                        Phluowise Ecommerce
-                    </a>
-                    <a href="company.html" class="dropdown-item mobile-nav-link">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" />
-                        </svg>
-                        Phluowise Company
-                    </a>
-                    <a href="driver.html" class="dropdown-item mobile-nav-link">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M18 8H16V6H18V8ZM18 10H16V12H18V10ZM18 14H16V16H18V14ZM18 18H16V20H18V18ZM20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM4 6H14V18H4V6ZM16 6V18H20V6H16Z" />
-                        </svg>
-                        Phluowise Drive
-                    </a>
-                </div>
-            </div>
-            <!-- Resources Dropdown (Mobile) -->
-            <div class="relative w-full text-center mobile-dropdown">
-                <button
-                    class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center text-xl"
-                    id="mobile-resources-button">
-                    Resources
-                    <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
-                <div class="mobile-dropdown-menu mt-4 space-y-4">
-                    <a href="https://phluows-documentation.gitbook.io/phluowise-documentation" class="dropdown-item mobile-nav-link">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z" />
-                        </svg>
-                        Documentation
-                    </a>
-                    <a href="#" class="dropdown-item mobile-nav-link">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM5 5H19V19H5V5ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z" />
-                        </svg>
-                        Regulations
-                    </a>
-                </div>
-            </div>
-            <a href="https://whatsapp.com/channel/0029VbAXsz3JP215oI0cbS3W" class="text-gray-300 hover:text-white transition mobile-nav-link">Community</a>
-            <a href="about_us.html" class="text-gray-300 hover:text-white transition mobile-nav-link">About Us</a>
-            <a href="pricing.html" class="text-gray-300 hover:text-white transition mobile-nav-link">Pricing</a>
-            <!-- Removed Phluowise marketplace button -->
-            <a href="https://phluowise-labs.github.io/company/pages/user-signup.html"
-                class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg mt-4 mobile-nav-link">Get
-                Started</a>
-        </nav>
+          </button>
+          <div class="mobile-dropdown-menu mt-4 space-y-4">
+            <a href="index.html" class="dropdown-item mobile-nav-link">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5ZM7 7H17V17H7V7ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 11 12 11Z"
+                />
+                <path
+                  d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
+                />
+              </svg>
+              Phluowise Ecommerce
+            </a>
+            <a href="company.html" class="dropdown-item mobile-nav-link">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"
+                />
+              </svg>
+              Phluowise Company
+            </a>
+            <a href="driver.html" class="dropdown-item mobile-nav-link">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M18 8H16V6H18V8ZM18 10H16V12H18V10ZM18 14H16V16H18V14ZM18 18H16V20H18V18ZM20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM4 6H14V18H4V6ZM16 6V18H20V6H16Z"
+                />
+              </svg>
+              Phluowise Drive
+            </a>
+          </div>
+        </div>
+        <!-- Resources Dropdown (Mobile) -->
+        <div class="relative w-full text-center mobile-dropdown">
+          <button
+            class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center text-xl"
+            id="mobile-resources-button"
+          >
+            Resources
+            <svg
+              class="w-5 h-5 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <div class="mobile-dropdown-menu mt-4 space-y-4">
+            <a
+              href="https://phluows-documentation.gitbook.io/phluowise-documentation"
+              class="dropdown-item mobile-nav-link"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z"
+                />
+              </svg>
+              Documentation
+            </a>
+            <a href="#" class="dropdown-item mobile-nav-link">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM5 5H19V19H5V5ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z"
+                />
+              </svg>
+              Regulations
+            </a>
+          </div>
+        </div>
+        <a
+          href="https://whatsapp.com/channel/0029VbAXsz3JP215oI0cbS3W"
+          class="text-gray-300 hover:text-white transition mobile-nav-link"
+          >Community</a
+        >
+        <a
+          href="about_us.html"
+          class="text-gray-300 hover:text-white transition mobile-nav-link"
+          >About Us</a
+        >
+        <a
+          href="pricing.html"
+          class="text-gray-300 hover:text-white transition mobile-nav-link"
+          >Pricing</a
+        >
+        <!-- Removed Phluowise marketplace button -->
+        <a
+          href="https://phluowise-labs.github.io/company/pages/user-signup.html"
+          class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg mt-4 mobile-nav-link"
+          >Get Started</a
+        >
+      </nav>
     </div>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero-section min-h-screen flex flex-col items-center justify-center text-center pt-24 pb-16 relative">
-            <div class="hero-content container mx-auto px-4">
-                <h2 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4 slide-in-from-bottom">
-                    Get your Administrative web app for free
-                </h2>
-                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 slide-in-from-bottom"
-                    style="animation-delay: 0.2s;">
-                    Water management company application. Track your drivers and get access to their work history.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-16 slide-in-from-bottom"
-                    style="animation-delay: 0.4s;">
-                    <a href="https://phluowise-labs.github.io/company/pages/user-signup.html"
-                        class="btn-get-started font-semibold px-6 py-2.5 rounded-lg shadow-lg w-full sm:w-auto">Get
-                        Started</a>
-                </div>
+      <!-- Hero Section -->
+      <section
+        class="hero-section min-h-screen flex flex-col items-center justify-center text-center pt-24 pb-16 relative"
+      >
+        <div class="hero-content container mx-auto px-4">
+          <h2
+            class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4 slide-in-from-bottom"
+          >
+            Get your Administrative web app for free
+          </h2>
+          <p
+            class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 slide-in-from-bottom"
+            style="animation-delay: 0.2s"
+          >
+            Water management company application. Track your drivers and get
+            access to their work history.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 mb-16 slide-in-from-bottom"
+            style="animation-delay: 0.4s"
+          >
+            <a
+              href="https://phluowise-labs.github.io/company/pages/user-signup.html"
+              class="btn-get-started font-semibold px-6 py-2.5 rounded-lg shadow-lg w-full sm:w-auto"
+              >Get Started</a
+            >
+          </div>
 
-                <!-- Hero Image with Glassmorphism and Animated Border -->
-                <div class="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden glassmorphism animated-border p-4 md:p-6 slide-in-from-bottom"
-                    style="animation-delay: 0.8s;">
-                    <img src="images/company-1.png" alt="Phluowise Dashboard Mockup" class="w-full h-auto rounded-lg shadow-2xl">
-                </div>
+          <!-- Hero Image with Glassmorphism and Animated Border -->
+          <div
+            class="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden glassmorphism animated-border p-4 md:p-6 slide-in-from-bottom"
+            style="animation-delay: 0.8s"
+          >
+            <img
+              src="images/company-1.png"
+              alt="Phluowise Dashboard Mockup"
+              class="w-full h-auto rounded-lg shadow-2xl"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Content Sections -->
+      <section class="py-16 md:py-24">
+        <div class="container mx-auto px-4 text-center">
+          <h3 class="text-3xl md:text-5xl font-bold mb-4 slide-in-from-bottom">
+            <span class="text-gradient">Track Driver analytics</span> with ease
+          </h3>
+          <p
+            class="text-gray-400 mb-12 slide-in-from-bottom"
+            style="animation-delay: 0.2s"
+          >
+            We made it simple and easy to navigate through.
+          </p>
+
+          <div
+            class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center glassmorphism slide-in-from-bottom"
+            style="animation-delay: 0.4s"
+          >
+            <div class="text-center md:text-left slide-in-from-left">
+              <img
+                src="images/Driver Analyitcs.png"
+                alt="Phluowise Company App UI Analytics"
+                class="mx-auto md:mx-0 rounded-2xl shadow-2xl"
+              />
             </div>
-        </section>
-
-        <!-- Main Content Sections -->
-        <section class="py-16 md:py-24">
-            <div class="container mx-auto px-4 text-center">
-                <h3 class="text-3xl md:text-5xl font-bold mb-4 slide-in-from-bottom">
-                    <span class="text-gradient">Track Driver analytics</span> with ease
-                </h3>
-                <p class="text-gray-400 mb-12 slide-in-from-bottom" style="animation-delay: 0.2s;">
-                    We made it simple and easy to navigate through.
-                </p>
-
-                <div class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center glassmorphism slide-in-from-bottom"
-                    style="animation-delay: 0.4s;">
-                    <div class="text-center md:text-left slide-in-from-left">
-                        <img src="images/Driver Analyitcs.png" alt="Phluowise Company App UI Analytics" class="mx-auto md:mx-0 rounded-2xl shadow-2xl">
-                    </div>
-                    <div class="space-y-6 slide-in-from-right">
-                        <h4 class="text-3xl font-bold">Track Driver analytics with ease</h4>
-                        <p class="text-gray-300">
-                            Gain insights into driver performance, delivery routes, and overall efficiency. Our intuitive
-                            dashboard provides real-time analytics to help you optimize your operations.
-                        </p>
-                        <div
-                            class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                            <a href="#" class="app-store-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                                </svg>
-                                <div class="text-left">
-                                    <div class="text-xs">GET IT ON</div>
-                                    <div class="text-sm font-semibold">Google Play</div>
-                                </div>
-                            </a>
-                            <a href="#" class="app-store-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
-                                </svg>
-                                <div class="text-left">
-                                    <div class="text-xs">Download on the</div>
-                                    <div class="text-sm font-semibold">App Store</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="space-y-6 slide-in-from-right">
+              <h4 class="text-3xl font-bold">
+                Track Driver analytics with ease
+              </h4>
+              <p class="text-gray-300">
+                Gain insights into driver performance, delivery routes, and
+                overall efficiency. Our intuitive dashboard provides real-time
+                analytics to help you optimize your operations.
+              </p>
+              <div
+                class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4"
+              >
+                <a href="#" class="app-store-btn">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"
+                    />
+                  </svg>
+                  <div class="text-left">
+                    <div class="text-xs">GET IT ON</div>
+                    <div class="text-sm font-semibold">Google Play</div>
+                  </div>
+                </a>
+                <a href="#" class="app-store-btn">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"
+                    />
+                  </svg>
+                  <div class="text-left">
+                    <div class="text-xs">Download on the</div>
+                    <div class="text-sm font-semibold">App Store</div>
+                  </div>
+                </a>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <section class="pb-16 md:pb-24">
-            <div class="container mx-auto px-4">
-                <div class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center glassmorphism slide-in-from-bottom">
-                    <div class="text-center md:text-left space-y-6 slide-in-from-left">
-                        <h4 class="text-3xl font-bold">Track transactions from each driver with ease</h4>
-                        <p class="text-gray-300">
-                            Monitor all financial transactions made by your drivers. Keep a comprehensive record of
-                            sales, payments, and revenue, ensuring transparency and accountability.
-                        </p>
-                        <div
-                            class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                            <a href="#" class="app-store-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                                </svg>
-                                <div class="text-left">
-                                    <div class="text-xs">GET IT ON</div>
-                                    <div class="text-sm font-semibold">Google Play</div>
-                                </div>
-                            </a>
-                            <a href="#" class="app-store-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
-                                </svg>
-                                <div class="text-left">
-                                    <div class="text-xs">Download on the</div>
-                                    <div class="text-sm font-semibold">App Store</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="text-center md:text-right slide-in-from-right">
-                        <img src="images/Driver Transactions.svg" alt="Phluowise Company App UI Transactions" class="mx-auto md:mx-0 rounded-2xl shadow-2xl">
-                    </div>
-                </div>
+      <section class="pb-16 md:pb-24">
+        <div class="container mx-auto px-4">
+          <div
+            class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center glassmorphism slide-in-from-bottom"
+          >
+            <div class="text-center md:text-left space-y-6 slide-in-from-left">
+              <h4 class="text-3xl font-bold">
+                Track transactions from each driver with ease
+              </h4>
+              <p class="text-gray-300">
+                Monitor all financial transactions made by your drivers. Keep a
+                comprehensive record of sales, payments, and revenue, ensuring
+                transparency and accountability.
+              </p>
+              <div
+                class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4"
+              >
+                <a href="#" class="app-store-btn">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"
+                    />
+                  </svg>
+                  <div class="text-left">
+                    <div class="text-xs">GET IT ON</div>
+                    <div class="text-sm font-semibold">Google Play</div>
+                  </div>
+                </a>
+                <a href="#" class="app-store-btn">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"
+                    />
+                  </svg>
+                  <div class="text-left">
+                    <div class="text-xs">Download on the</div>
+                    <div class="text-sm font-semibold">App Store</div>
+                  </div>
+                </a>
+              </div>
             </div>
-        </section>
-
-        <section class="pb-16 md:pb-24">
-            <div class="container mx-auto px-4">
-                <div class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center glassmorphism slide-in-from-bottom">
-                    <div class="text-center md:text-left slide-in-from-left order-last md:order-first">
-                        <img src="images/Driver Request __Page.png" alt="Phluowise Company App UI Schedule" class="mx-auto md:mx-0 rounded-2xl shadow-2xl">
-                    </div>
-                    <div class="space-y-6 slide-in-from-right order-first md:order-last">
-                        <h4 class="text-3xl font-bold">Manage Schedule Orders Request with ease</h4>
-                        <p class="text-gray-300">
-                            Efficiently handle all scheduled orders and pickup requests. Our platform provides tools to
-                            manage your delivery calendar, assign tasks, and ensure timely service to your customers.
-                        </p>
-                        <div
-                            class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                            <a href="#" class="app-store-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
-                                </svg>
-                                <div class="text-left">
-                                    <div class="text-xs">GET IT ON</div>
-                                    <div class="text-sm font-semibold">Google Play</div>
-                                </div>
-                            </a>
-                            <a href="#" class="app-store-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path
-                                        d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
-                                </svg>
-                                <div class="text-left">
-                                    <div class="text-xs">Download on the</div>
-                                    <div class="text-sm font-semibold">App Store</div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="text-center md:text-right slide-in-from-right">
+              <img
+                src="images/Driver Transactions.svg"
+                alt="Phluowise Company App UI Transactions"
+                class="mx-auto md:mx-0 rounded-2xl shadow-2xl"
+              />
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- Key Features Section -->
-        <section class="py-16 md:py-24 text-center">
-            <div class="container mx-auto px-4">
-                <h3 class="text-3xl md:text-5xl font-bold text-gradient mb-4 slide-in-from-bottom">Phluowise Company
-                    app: other Key features</h3>
-                <p class="text-gray-400 mb-12 slide-in-from-bottom" style="animation-delay: 0.2s;">
-                    Company water management application
-                </p>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div
-                        class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom">
-                        <img src="images/icons/analytic icon.png" alt="Analytics Icon" class="rounded-lg mb-6">
-                        <h4 class="text-2xl font-semibold">Comprehensive Analytics Dashboard</h4>
-                        <p class="text-gray-300 text-center mt-2">Get detailed insights into sales, driver performance,
-                            and customer behavior.</p>
-                    </div>
-                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
-                        style="animation-delay: 0.1s;">
-                        <img src="images/icons/driver route iccon.png" alt="Driver Management Icon" class="rounded-lg mb-6">
-                        <h4 class="text-2xl font-semibold">Driver Management & Tracking</h4>
-                        <p class="text-gray-300 text-center mt-2">Efficiently manage your fleet, track driver
-                            locations, and monitor delivery progress.</p>
-                    </div>
-                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
-                        style="animation-delay: 0.2s;">
-                        <img src="images/icons/Request card broadcast.png" alt="Order Management Icon" class="rounded-lg mb-6">
-                        <h4 class="text-2xl font-semibold">Streamlined Order Management</h4>
-                        <p class="text-gray-300 text-center mt-2">Handle incoming orders, schedule deliveries, and
-                            manage inventory with ease.</p>
-                    </div>
-                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
-                        style="animation-delay: 0.3s;">
-                        <img src="images/icons/rate and service (2).png" alt="Customer Support Icon" class="rounded-lg mb-6">
-                        <h4 class="text-2xl font-semibold">Integrated Customer Support</h4>
-                        <p class="text-gray-300 text-center mt-2">Communicate directly with customers and resolve
-                            issues promptly.</p>
-                    </div>
-                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
-                        style="animation-delay: 0.4s;">
-                        <img src="images/icons/Property 1=Open notification transaction.png" alt="Payment Processing Icon" class="rounded-lg mb-6">
-                        <h4 class="text-2xl font-semibold">Secure Payment Processing</h4>
-                        <p class="text-gray-300 text-center mt-2">Process payments securely and manage financial
-                            transactions.</p>
-                    </div>
-                    <div class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
-                        style="animation-delay: 0.5s;">
-                        <img src="images/icons/customer.png" alt="Customization Icon" class="rounded-lg mb-6">
-                        <h4 class="text-2xl font-semibold">Customizable Service Offerings</h4>
-                        <p class="text-gray-300 text-center mt-2">Tailor your services and pricing to meet specific
-                            market demands.</p>
-                    </div>
-                </div>
+      <section class="pb-16 md:pb-24">
+        <div class="container mx-auto px-4">
+          <div
+            class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center glassmorphism slide-in-from-bottom"
+          >
+            <div
+              class="text-center md:text-left slide-in-from-left order-last md:order-first"
+            >
+              <img
+                src="images/Driver Request __Page.png"
+                alt="Phluowise Company App UI Schedule"
+                class="mx-auto md:mx-0 rounded-2xl shadow-2xl"
+              />
             </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section id="faq" class="max-w-4xl mx-auto fade-in px-4 sm:px-0 py-16 md:py-24">
-            <h3 class="text-3xl sm:text-4xl font-bold text-center text-brand mb-8 sm:mb-12">
-                FAQ
-            </h3>
-            <div class="space-y-4">
-                <!-- Accordion Item 1 -->
-                <div class="accordion-item-new glassmorphism">
-                    <button class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
-                        aria-expanded="false" aria-controls="faq-content-1">
-                        <span>What is Phluowise for Company?</span>
-                        <span class="accordion-icon-new">&#x25BC;</span> <!-- Down arrow unicode -->
-                    </button>
-                    <div id="faq-content-1" class="accordion-content-new" role="region"
-                        aria-labelledby="faq-header-1">
-                        <p class="text-gray-300">
-                            Phluowise for Company is a comprehensive platform designed specifically for water delivery
-                            companies. It facilitates logistics management, order fulfillment, and customer interactions,
-                            providing an efficient and streamlined solution for companies operating in the water
-                            delivery industry.
-                        </p>
-                    </div>
-                </div>
-                <!-- Accordion Item 2 -->
-                <div class="accordion-item-new glassmorphism">
-                    <button class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
-                        aria-expanded="false" aria-controls="faq-content-2">
-                        <span>Is Phluowise for Company free?</span>
-                        <span class="accordion-icon-new">&#x25BC;</span>
-                    </button>
-                    <div id="faq-content-2" class="accordion-content-new" role="region"
-                        aria-labelledby="faq-header-2">
-                        <p class="text-gray-300">
-                            No, Phluowise for Company is not free. We offer various plans with different pricing
-                            structures. Basic plans incur discounted transaction fees, while advanced plans (premium)
-                            involve a discounted subscription fee, covering all future updates and features.
-                        </p>
-                    </div>
-                </div>
-                <!-- Accordion Item 3 -->
-                <div class="accordion-item-new glassmorphism">
-                    <button class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
-                        aria-expanded="false" aria-controls="faq-content-3">
-                        <span>What makes Phluowise unique?</span>
-                        <span class="accordion-icon-new">&#x25BC;</span>
-                    </button>
-                    <div id="faq-content-3" class="accordion-content-new" role="region"
-                        aria-labelledby="faq-header-3">
-                        <p class="text-gray-300">
-                            Phluowise stands out for its holistic approach to water delivery company management. It
-                            combines logistics management, customer engagement, and order fulfillment in one platform.
-                            The incorporation of advanced features and future updates in premium plans adds to its
-                            uniqueness, ensuring that companies have access to cutting-edge tools.
-                        </p>
-                    </div>
-                </div>
-                <!-- Accordion Item 4 -->
-                <div class="accordion-item-new glassmorphism">
-                    <button class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
-                        aria-expanded="false" aria-controls="faq-content-4">
-                        <span>What problem does Phluowise for Company solve?</span>
-                        <span class="accordion-icon-new">&#x25BC;</span>
-                    </button>
-                    <div id="faq-content-4" class="accordion-content-new" role="region"
-                        aria-labelledby="faq-header-4">
-                        <p class="text-gray-300">
-                            Phluowise for Company addresses the challenges faced by water delivery companies in managing
-                            logistics and connecting with customers efficiently. It streamlines operations, enhances
-                            order fulfillment, and provides a centralized hub for companies to manage their entire
-                            delivery process seamlessly.
-                        </p>
-                    </div>
-                </div>
-                <!-- Accordion Item 5 -->
-                <div class="accordion-item-new glassmorphism">
-                    <button class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
-                        aria-expanded="false" aria-controls="faq-content-5">
-                        <span>Is Phluowise Drive App free, and what is its purpose?</span>
-                        <span class="accordion-icon-new">&#x25BC;</span>
-                    </button>
-                    <div id="faq-content-5" class="accordion-content-new" role="region"
-                        aria-labelledby="faq-header-5">
-                        <p class="text-gray-300">
-                            No, the Phluowise Drive App is not free. The costs are included in the payment plans,
-                            covering all future updates. The purpose of the Phluowise Drive App is to empower drivers
-                            with a dedicated tool for navigation, order management, and efficient delivery execution,
-                            enhancing the overall delivery experience for both companies and users.
-                        </p>
-                    </div>
-                </div>
-                <!-- Accordion Item 6 -->
-                <div class="accordion-item-new glassmorphism">
-                    <button class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
-                        aria-expanded="false" aria-controls="faq-content-6">
-                        <span>Explain the pricing?</span>
-                        <span class="accordion-icon-new">&#x25BC;</span>
-                    </button>
-                    <div id="faq-content-6" class="accordion-content-new" role="region"
-                        aria-labelledby="faq-header-6">
-                        <p class="text-300">
-                            Phluowise for Company offers a transparent and tiered pricing structure based on the type of
-                            water product being delivered:
-                        </p>
-                        <ul class="list-disc list-inside text-gray-300 mt-2 ml-4 space-y-1">
-                            <li>Pure Water Sachets Transactions: ¢0.3</li>
-                            <li>Bottles and Others: ¢0.4</li>
-                            <li>Dispensers: ¢0.5</li>
-                        </ul>
-                        <p class="text-gray-300 mt-2">
-                            For the first month in business with Phluowise, companies will receive 83.33%, 82.5%, and
-                            84% discount.
-                        </p>
-                    </div>
-                </div>
+            <div
+              class="space-y-6 slide-in-from-right order-first md:order-last"
+            >
+              <h4 class="text-3xl font-bold">
+                Manage Schedule Orders Request with ease
+              </h4>
+              <p class="text-gray-300">
+                Efficiently handle all scheduled orders and pickup requests. Our
+                platform provides tools to manage your delivery calendar, assign
+                tasks, and ensure timely service to your customers.
+              </p>
+              <div
+                class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4"
+              >
+                <a href="#" class="app-store-btn">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.61 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"
+                    />
+                  </svg>
+                  <div class="text-left">
+                    <div class="text-xs">GET IT ON</div>
+                    <div class="text-sm font-semibold">Google Play</div>
+                  </div>
+                </a>
+                <a href="#" class="app-store-btn">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"
+                    />
+                  </svg>
+                  <div class="text-left">
+                    <div class="text-xs">Download on the</div>
+                    <div class="text-sm font-semibold">App Store</div>
+                  </div>
+                </a>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-16 sm:py-20 fade-in px-4 sm:px-0">
-            <div class="text-center">
-                <h3 class="text-3xl sm:text-4xl font-bold text-brand mb-8 sm:mb-12">
-                    Contact Us
-                </h3>
-            </div>
-            <!-- Formspark form integration -->
-            <form id="contact-form" action="https://submit-form.com/BROFHIgzq" method="POST"
-                class="max-w-2xl mx-auto space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <input type="text" id="name" name="name" placeholder="Name" required=""
-                        class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition" />
-                    <input type="email" id="email" name="email" placeholder="Email" required=""
-                        class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition" />
-                </div>
-                <div>
-                    <textarea id="message" name="message" placeholder="Message" rows="6" required=""
-                        class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition"></textarea>
-                </div>
-                <div class="text-center">
-                    <button type="submit" id="submit-button"
-                        class="btn-get-started text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg">
-                        Send
-                    </button>
-                </div>
-            </form>
+      <!-- Key Features Section -->
+      <section class="py-16 md:py-24 text-center">
+        <div class="container mx-auto px-4">
+          <h3
+            class="text-3xl md:text-5xl font-bold text-gradient mb-4 slide-in-from-bottom"
+          >
+            Phluowise Company app: other Key features
+          </h3>
+          <p
+            class="text-gray-400 mb-12 slide-in-from-bottom"
+            style="animation-delay: 0.2s"
+          >
+            Company water management application
+          </p>
 
-            <!-- Confirmation Message Modal -->
-            <div id="confirmation-modal" class="confirmation-modal">
-                <div class="confirmation-content glassmorphism animated-border">
-                    <h4 class="text-2xl font-bold mb-4">Message Sent!</h4>
-                    <p class="text-lg mb-6">Thank0you for contacting us. We will get back to you shortly.</p>
-                    <button id="close-confirmation-modal"
-                        class="btn-get-started text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg">
-                        Close
-                    </button>
-                </div>
+          <div
+            class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          >
+            <div
+              class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
+            >
+              <img
+                src="images/icons/analytic icon.png"
+                alt="Analytics Icon"
+                class="rounded-lg mb-6"
+              />
+              <h4 class="text-2xl font-semibold">
+                Comprehensive Analytics Dashboard
+              </h4>
+              <p class="text-gray-300 text-center mt-2">
+                Get detailed insights into sales, driver performance, and
+                customer behavior.
+              </p>
             </div>
-        </section>
+            <div
+              class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
+              style="animation-delay: 0.1s"
+            >
+              <img
+                src="images/icons/driver route iccon.png"
+                alt="Driver Management Icon"
+                class="rounded-lg mb-6"
+              />
+              <h4 class="text-2xl font-semibold">
+                Driver Management & Tracking
+              </h4>
+              <p class="text-gray-300 text-center mt-2">
+                Efficiently manage your fleet, track driver locations, and
+                monitor delivery progress.
+              </p>
+            </div>
+            <div
+              class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
+              style="animation-delay: 0.2s"
+            >
+              <img
+                src="images/icons/Request card broadcast.png"
+                alt="Order Management Icon"
+                class="rounded-lg mb-6"
+              />
+              <h4 class="text-2xl font-semibold">
+                Streamlined Order Management
+              </h4>
+              <p class="text-gray-300 text-center mt-2">
+                Handle incoming orders, schedule deliveries, and manage
+                inventory with ease.
+              </p>
+            </div>
+            <div
+              class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
+              style="animation-delay: 0.3s"
+            >
+              <img
+                src="images/icons/rate and service (2).png"
+                alt="Customer Support Icon"
+                class="rounded-lg mb-6"
+              />
+              <h4 class="text-2xl font-semibold">
+                Integrated Customer Support
+              </h4>
+              <p class="text-gray-300 text-center mt-2">
+                Communicate directly with customers and resolve issues promptly.
+              </p>
+            </div>
+            <div
+              class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
+              style="animation-delay: 0.4s"
+            >
+              <img
+                src="images/icons/Property 1=Open notification transaction.png"
+                alt="Payment Processing Icon"
+                class="rounded-lg mb-6"
+              />
+              <h4 class="text-2xl font-semibold">Secure Payment Processing</h4>
+              <p class="text-gray-300 text-center mt-2">
+                Process payments securely and manage financial transactions.
+              </p>
+            </div>
+            <div
+              class="feature-box animated-border p-8 flex flex-col items-center justify-center glassmorphism slide-in-from-bottom"
+              style="animation-delay: 0.5s"
+            >
+              <img
+                src="images/icons/customer.png"
+                alt="Customization Icon"
+                class="rounded-lg mb-6"
+              />
+              <h4 class="text-2xl font-semibold">
+                Customizable Service Offerings
+              </h4>
+              <p class="text-gray-300 text-center mt-2">
+                Tailor your services and pricing to meet specific market
+                demands.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section
+        id="faq"
+        class="max-w-4xl mx-auto fade-in px-4 sm:px-0 py-16 md:py-24"
+      >
+        <h3
+          class="text-3xl sm:text-4xl font-bold text-center text-brand mb-8 sm:mb-12"
+        >
+          FAQ
+        </h3>
+        <div class="space-y-4">
+          <!-- Accordion Item 1 -->
+          <div class="accordion-item-new glassmorphism">
+            <button
+              class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
+              aria-expanded="false"
+              aria-controls="faq-content-1"
+            >
+              <span>What is Phluowise for Company?</span>
+              <span class="accordion-icon-new">&#x25BC;</span>
+              <!-- Down arrow unicode -->
+            </button>
+            <div
+              id="faq-content-1"
+              class="accordion-content-new"
+              role="region"
+              aria-labelledby="faq-header-1"
+            >
+              <p class="text-gray-300">
+                Phluowise for Company is a comprehensive platform designed
+                specifically for water delivery companies. It facilitates
+                logistics management, order fulfillment, and customer
+                interactions, providing an efficient and streamlined solution
+                for companies operating in the water delivery industry.
+              </p>
+            </div>
+          </div>
+          <!-- Accordion Item 2 -->
+          <div class="accordion-item-new glassmorphism">
+            <button
+              class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
+              aria-expanded="false"
+              aria-controls="faq-content-2"
+            >
+              <span>Is Phluowise for Company free?</span>
+              <span class="accordion-icon-new">&#x25BC;</span>
+            </button>
+            <div
+              id="faq-content-2"
+              class="accordion-content-new"
+              role="region"
+              aria-labelledby="faq-header-2"
+            >
+              <p class="text-gray-300">
+                No, Phluowise for Company is not free. We offer various plans
+                with different pricing structures. Basic plans incur discounted
+                transaction fees, while advanced plans (premium) involve a
+                discounted subscription fee, covering all future updates and
+                features.
+              </p>
+            </div>
+          </div>
+          <!-- Accordion Item 3 -->
+          <div class="accordion-item-new glassmorphism">
+            <button
+              class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
+              aria-expanded="false"
+              aria-controls="faq-content-3"
+            >
+              <span>What makes Phluowise unique?</span>
+              <span class="accordion-icon-new">&#x25BC;</span>
+            </button>
+            <div
+              id="faq-content-3"
+              class="accordion-content-new"
+              role="region"
+              aria-labelledby="faq-header-3"
+            >
+              <p class="text-gray-300">
+                Phluowise stands out for its holistic approach to water delivery
+                company management. It combines logistics management, customer
+                engagement, and order fulfillment in one platform. The
+                incorporation of advanced features and future updates in premium
+                plans adds to its uniqueness, ensuring that companies have
+                access to cutting-edge tools.
+              </p>
+            </div>
+          </div>
+          <!-- Accordion Item 4 -->
+          <div class="accordion-item-new glassmorphism">
+            <button
+              class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
+              aria-expanded="false"
+              aria-controls="faq-content-4"
+            >
+              <span>What problem does Phluowise for Company solve?</span>
+              <span class="accordion-icon-new">&#x25BC;</span>
+            </button>
+            <div
+              id="faq-content-4"
+              class="accordion-content-new"
+              role="region"
+              aria-labelledby="faq-header-4"
+            >
+              <p class="text-gray-300">
+                Phluowise for Company addresses the challenges faced by water
+                delivery companies in managing logistics and connecting with
+                customers efficiently. It streamlines operations, enhances order
+                fulfillment, and provides a centralized hub for companies to
+                manage their entire delivery process seamlessly.
+              </p>
+            </div>
+          </div>
+          <!-- Accordion Item 5 -->
+          <div class="accordion-item-new glassmorphism">
+            <button
+              class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
+              aria-expanded="false"
+              aria-controls="faq-content-5"
+            >
+              <span>Is Phluowise Drive App free, and what is its purpose?</span>
+              <span class="accordion-icon-new">&#x25BC;</span>
+            </button>
+            <div
+              id="faq-content-5"
+              class="accordion-content-new"
+              role="region"
+              aria-labelledby="faq-header-5"
+            >
+              <p class="text-gray-300">
+                No, the Phluowise Drive App is not free. The costs are included
+                in the payment plans, covering all future updates. The purpose
+                of the Phluowise Drive App is to empower drivers with a
+                dedicated tool for navigation, order management, and efficient
+                delivery execution, enhancing the overall delivery experience
+                for both companies and users.
+              </p>
+            </div>
+          </div>
+          <!-- Accordion Item 6 -->
+          <div class="accordion-item-new glassmorphism">
+            <button
+              class="accordion-header-new w-full flex justify-between items-center text-left text-lg sm:text-xl font-semibold"
+              aria-expanded="false"
+              aria-controls="faq-content-6"
+            >
+              <span>Explain the pricing?</span>
+              <span class="accordion-icon-new">&#x25BC;</span>
+            </button>
+            <div
+              id="faq-content-6"
+              class="accordion-content-new"
+              role="region"
+              aria-labelledby="faq-header-6"
+            >
+              <p class="text-300">
+                Phluowise for Company offers a transparent and tiered pricing
+                structure based on the type of water product being delivered:
+              </p>
+              <ul
+                class="list-disc list-inside text-gray-300 mt-2 ml-4 space-y-1"
+              >
+                <li>Pure Water Sachets Transactions: ¢0.3</li>
+                <li>Bottles and Others: ¢0.4</li>
+                <li>Dispensers: ¢0.5</li>
+              </ul>
+              <p class="text-gray-300 mt-2">
+                For the first month in business with Phluowise, companies will
+                receive 83.33%, 82.5%, and 84% discount.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="py-16 sm:py-20 fade-in px-4 sm:px-0">
+        <div class="text-center">
+          <h3 class="text-3xl sm:text-4xl font-bold text-brand mb-8 sm:mb-12">
+            Contact Us
+          </h3>
+        </div>
+        <!-- Formspark form integration -->
+        <form
+          id="contact-form"
+          action="https://submit-form.com/BROFHIgzq"
+          method="POST"
+          class="max-w-2xl mx-auto space-y-6"
+        >
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Name"
+              required=""
+              class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition"
+            />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              required=""
+              class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition"
+            />
+          </div>
+          <div>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Message"
+              rows="6"
+              required=""
+              class="form-input w-full bg-gray-900 text-white p-3 sm:p-4 rounded-lg border border-gray-700 focus:outline-none transition"
+            ></textarea>
+          </div>
+          <div class="text-center">
+            <button
+              type="submit"
+              id="submit-button"
+              class="btn-get-started text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg"
+            >
+              Send
+            </button>
+          </div>
+        </form>
+
+        <!-- Confirmation Message Modal -->
+        <div id="confirmation-modal" class="confirmation-modal">
+          <div class="confirmation-content glassmorphism animated-border">
+            <h4 class="text-2xl font-bold mb-4">Message Sent!</h4>
+            <p class="text-lg mb-6">
+              Thank0you for contacting us. We will get back to you shortly.
+            </p>
+            <button
+              id="close-confirmation-modal"
+              class="btn-get-started text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Footer -->
-    <footer class="text-white py-8 sm:py-10 mt-16 sm:mt-20 border-t border-gray-800 px-4">
-        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-sm">
-            <p class="text-gray-500 text-center md:text-left">&copy; Phluowise Company, <span id="current-year"></span></p>
-            <p class="text-gray-500 text-center md:text-center">From: <span class="text-brand">Phluowise</span>, All rights reserved.</p>
-            <div class="flex space-x-6 justify-center md:justify-end">
-                <a href="#" class="hover:text-brand transition-colors">Instagram</a>
-                <a href="#" class="hover:text-brand transition-colors">Facebook</a>
-                <a href="#" class="hover:text-brand transition-colors">X</a>
-                <a href="#" class="hover:text-brand transition-colors">LinkedIn</a>
-                <a href="#" class="hover:text-brand transition-colors">Youtube</a>
-            </div>
+    <footer
+      class="text-white py-8 sm:py-10 mt-16 sm:mt-20 border-t border-gray-800 px-4"
+    >
+      <div
+        class="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-sm"
+      >
+        <p class="text-gray-500 text-center md:text-left">
+          &copy; Phluowise Company, <span id="current-year"></span>
+        </p>
+        <p class="text-gray-500 text-center md:text-center">
+          From: <span class="text-brand">Phluowise</span>, All rights reserved.
+        </p>
+        <div class="flex space-x-6 justify-center md:justify-end">
+          <a href="#" class="hover:text-brand transition-colors">Instagram</a>
+          <a href="#" class="hover:text-brand transition-colors">Facebook</a>
+          <a href="#" class="hover:text-brand transition-colors">X</a>
+          <a href="#" class="hover:text-brand transition-colors">LinkedIn</a>
+          <a href="#" class="hover:text-brand transition-colors">Youtube</a>
         </div>
+      </div>
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Get the current year and update the footer
-            const currentYearSpan = document.getElementById('current-year');
-            if (currentYearSpan) {
-                currentYearSpan.textContent = new Date().getFullYear();
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get the current year and update the footer
+        const currentYearSpan = document.getElementById("current-year");
+        if (currentYearSpan) {
+          currentYearSpan.textContent = new Date().getFullYear();
+        }
+
+        // Mobile Menu Toggle logic (Copied from existing files)
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const closeMobileMenuButton =
+          document.getElementById("close-mobile-menu");
+        const mobileMenuOverlay = document.getElementById(
+          "mobile-menu-overlay"
+        );
+        const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+        // Products Dropdown elements
+        const mobileProductsButton = document.getElementById(
+          "mobile-products-button"
+        );
+        const mobileProductsDropdownMenu = mobileProductsButton
+          ? mobileProductsButton.nextElementSibling
+          : null;
+
+        // Resources Dropdown elements
+        const mobileResourcesButton = document.getElementById(
+          "mobile-resources-button"
+        );
+        const mobileResourcesDropdownMenu = mobileResourcesButton
+          ? mobileResourcesButton.nextElementSibling
+          : null;
+
+        if (mobileMenuButton && closeMobileMenuButton && mobileMenuOverlay) {
+          mobileMenuButton.addEventListener("click", () => {
+            mobileMenuOverlay.classList.add("open");
+          });
+
+          closeMobileMenuButton.addEventListener("click", () => {
+            mobileMenuOverlay.classList.remove("open");
+            closeAllMobileDropdowns(); // Close dropdowns when closing the main menu
+          });
+
+          // Function to close all mobile dropdowns
+          function closeAllMobileDropdowns() {
+            if (
+              mobileProductsDropdownMenu &&
+              mobileProductsDropdownMenu.classList.contains("open")
+            ) {
+              mobileProductsDropdownMenu.classList.remove("open");
+              mobileProductsDropdownMenu.style.maxHeight = "0";
+              mobileProductsDropdownMenu.style.opacity = "0";
             }
-
-            // Mobile Menu Toggle logic (Copied from existing files)
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const closeMobileMenuButton = document.getElementById('close-mobile-menu');
-            const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-            // Products Dropdown elements
-            const mobileProductsButton = document.getElementById('mobile-products-button');
-            const mobileProductsDropdownMenu = mobileProductsButton ? mobileProductsButton.nextElementSibling : null;
-
-            // Resources Dropdown elements
-            const mobileResourcesButton = document.getElementById('mobile-resources-button');
-            const mobileResourcesDropdownMenu = mobileResourcesButton ? mobileResourcesButton.nextElementSibling : null;
-
-            if (mobileMenuButton && closeMobileMenuButton && mobileMenuOverlay) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenuOverlay.classList.add('open');
-                });
-
-                closeMobileMenuButton.addEventListener('click', () => {
-                    mobileMenuOverlay.classList.remove('open');
-                    closeAllMobileDropdowns(); // Close dropdowns when closing the main menu
-                });
-
-                // Function to close all mobile dropdowns
-                function closeAllMobileDropdowns() {
-                    if (mobileProductsDropdownMenu && mobileProductsDropdownMenu.classList.contains('open')) {
-                        mobileProductsDropdownMenu.classList.remove('open');
-                        mobileProductsDropdownMenu.style.maxHeight = '0';
-                        mobileProductsDropdownMenu.style.opacity = '0';
-                    }
-                    if (mobileResourcesDropdownMenu && mobileResourcesDropdownMenu.classList.contains('open')) {
-                        mobileResourcesDropdownMenu.classList.remove('open');
-                        mobileResourcesDropdownMenu.style.maxHeight = '0';
-                        mobileResourcesDropdownMenu.style.opacity = '0';
-                    }
-                }
-
-                mobileNavLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenuOverlay.classList.remove('open');
-                        closeAllMobileDropdowns();
-                    });
-                });
-
-                // Toggle logic for Products Dropdown (Mobile)
-                if (mobileProductsButton && mobileProductsDropdownMenu) {
-                    mobileProductsButton.addEventListener('click', (event) => {
-                        event.stopPropagation(); // Prevent closing the main mobile menu
-                        // Close other dropdowns before opening this one
-                        if (mobileResourcesDropdownMenu && mobileResourcesDropdownMenu.classList.contains('open')) {
-                            mobileResourcesDropdownMenu.classList.remove('open');
-                            mobileResourcesDropdownMenu.style.maxHeight = '0';
-                            mobileResourcesDropdownMenu.style.opacity = '0';
-                        }
-
-                        if (mobileProductsDropdownMenu.classList.contains('open')) {
-                            mobileProductsDropdownMenu.classList.remove('open');
-                            mobileProductsDropdownMenu.style.maxHeight = '0';
-                            mobileProductsDropdownMenu.style.opacity = '0';
-                        } else {
-                            mobileProductsDropdownMenu.classList.add('open');
-                            mobileProductsDropdownMenu.style.maxHeight = mobileProductsDropdownMenu.scrollHeight + 'px';
-                            mobileProductsDropdownMenu.style.opacity = '1';
-                        }
-                    });
-
-                    // Close mobile products dropdown if clicking outside
-                    document.addEventListener('click', (event) => {
-                        if (!mobileProductsButton.contains(event.target) && mobileProductsDropdownMenu && !mobileProductsDropdownMenu.contains(event.target)) {
-                            if (mobileProductsDropdownMenu.classList.contains('open')) {
-                                mobileProductsDropdownMenu.classList.remove('open');
-                                mobileProductsDropdownMenu.style.maxHeight = '0';
-                                mobileProductsDropdownMenu.style.opacity = '0';
-                            }
-                        }
-                    });
-                }
-
-                // Toggle logic for Resources Dropdown (Mobile)
-                if (mobileResourcesButton && mobileResourcesDropdownMenu) {
-                    mobileResourcesButton.addEventListener('click', (event) => {
-                        event.stopPropagation(); // Prevent closing the main mobile menu
-                        // Close other dropdowns before opening this one
-                        if (mobileProductsDropdownMenu && mobileProductsDropdownMenu.classList.contains('open')) {
-                            mobileProductsDropdownMenu.classList.remove('open');
-                            mobileProductsDropdownMenu.style.maxHeight = '0';
-                            mobileProductsDropdownMenu.style.opacity = '0';
-                        }
-
-                        if (mobileResourcesDropdownMenu.classList.contains('open')) {
-                            mobileResourcesDropdownMenu.classList.remove('open');
-                            mobileResourcesDropdownMenu.style.maxHeight = '0';
-                            mobileResourcesDropdownMenu.style.opacity = '0';
-                        } else {
-                            mobileResourcesDropdownMenu.classList.add('open');
-                            mobileResourcesDropdownMenu.style.maxHeight = mobileResourcesDropdownMenu.scrollHeight + 'px';
-                            mobileResourcesDropdownMenu.style.opacity = '1';
-                        }
-                    });
-
-                    // Close mobile resources dropdown if clicking outside
-                    document.addEventListener('click', (event) => {
-                        if (!mobileResourcesButton.contains(event.target) && mobileResourcesDropdownMenu && !mobileResourcesDropdownMenu.contains(event.target)) {
-                            if (mobileResourcesDropdownMenu.classList.contains('open')) {
-                                mobileResourcesDropdownMenu.classList.remove('open');
-                                mobileResourcesDropdownMenu.style.maxHeight = '0';
-                                mobileResourcesDropdownMenu.style.opacity = '0';
-                            }
-                        }
-                    });
-                }
+            if (
+              mobileResourcesDropdownMenu &&
+              mobileResourcesDropdownMenu.classList.contains("open")
+            ) {
+              mobileResourcesDropdownMenu.classList.remove("open");
+              mobileResourcesDropdownMenu.style.maxHeight = "0";
+              mobileResourcesDropdownMenu.style.opacity = "0";
             }
+          }
 
-            // Intersection Observer for scroll animations
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1 // Trigger when 10% of the element is visible
-            };
+          mobileNavLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              mobileMenuOverlay.classList.remove("open");
+              closeAllMobileDropdowns();
+            });
+          });
 
-            const observerCallback = (entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target); // Stop observing once visible
-                    }
-                });
-            };
+          // Toggle logic for Products Dropdown (Mobile)
+          if (mobileProductsButton && mobileProductsDropdownMenu) {
+            mobileProductsButton.addEventListener("click", (event) => {
+              event.stopPropagation(); // Prevent closing the main mobile menu
+              // Close other dropdowns before opening this one
+              if (
+                mobileResourcesDropdownMenu &&
+                mobileResourcesDropdownMenu.classList.contains("open")
+              ) {
+                mobileResourcesDropdownMenu.classList.remove("open");
+                mobileResourcesDropdownMenu.style.maxHeight = "0";
+                mobileResourcesDropdownMenu.style.opacity = "0";
+              }
 
-            const sectionObserver = new IntersectionObserver(observerCallback, observerOptions);
-            const animatedElements = document.querySelectorAll('.slide-in-from-bottom, .slide-in-from-left, .slide-in-from-right, .fade-in');
-
-            animatedElements.forEach(el => {
-                sectionObserver.observe(el);
+              if (mobileProductsDropdownMenu.classList.contains("open")) {
+                mobileProductsDropdownMenu.classList.remove("open");
+                mobileProductsDropdownMenu.style.maxHeight = "0";
+                mobileProductsDropdownMenu.style.opacity = "0";
+              } else {
+                mobileProductsDropdownMenu.classList.add("open");
+                mobileProductsDropdownMenu.style.maxHeight =
+                  mobileProductsDropdownMenu.scrollHeight + "px";
+                mobileProductsDropdownMenu.style.opacity = "1";
+              }
             });
 
-            // Manually trigger the observer callback for elements already in view on load
-            observerCallback(sectionObserver.takeRecords(), sectionObserver);
+            // Close mobile products dropdown if clicking outside
+            document.addEventListener("click", (event) => {
+              if (
+                !mobileProductsButton.contains(event.target) &&
+                mobileProductsDropdownMenu &&
+                !mobileProductsDropdownMenu.contains(event.target)
+              ) {
+                if (mobileProductsDropdownMenu.classList.contains("open")) {
+                  mobileProductsDropdownMenu.classList.remove("open");
+                  mobileProductsDropdownMenu.style.maxHeight = "0";
+                  mobileProductsDropdownMenu.style.opacity = "0";
+                }
+              }
+            });
+          }
 
-            // Accordion functionality (New logic from index.html, animation removed)
-            const accordionItemsNew = document.querySelectorAll(".accordion-item-new");
+          // Toggle logic for Resources Dropdown (Mobile)
+          if (mobileResourcesButton && mobileResourcesDropdownMenu) {
+            mobileResourcesButton.addEventListener("click", (event) => {
+              event.stopPropagation(); // Prevent closing the main mobile menu
+              // Close other dropdowns before opening this one
+              if (
+                mobileProductsDropdownMenu &&
+                mobileProductsDropdownMenu.classList.contains("open")
+              ) {
+                mobileProductsDropdownMenu.classList.remove("open");
+                mobileProductsDropdownMenu.style.maxHeight = "0";
+                mobileProductsDropdownMenu.style.opacity = "0";
+              }
 
-            accordionItemsNew.forEach((item) => {
-                const header = item.querySelector(".accordion-header-new");
-                const content = item.querySelector(".accordion-content-new");
-                // Ensure the content is initially hidden for JS-controlled accordions
-                content.style.maxHeight = "0";
-                content.setAttribute('aria-hidden', 'true');
-
-                header.addEventListener("click", () => {
-                    const isOpen = item.classList.contains("active");
-
-                    // Close all other accordion items
-                    accordionItemsNew.forEach((otherItem) => {
-                        if (otherItem !== item && otherItem.classList.contains("active")) {
-                            otherItem.classList.remove("active");
-                            otherItem.querySelector(".accordion-content-new").style.maxHeight = "0";
-                            otherItem.querySelector(".accordion-content-new").setAttribute('aria-hidden', 'true');
-                            otherItem.querySelector(".accordion-header-new").setAttribute('aria-expanded', 'false');
-                        }
-                    });
-
-                    // Toggle the clicked item
-                    if (isOpen) {
-                        item.classList.remove("active");
-                        content.style.maxHeight = "0";
-                        content.setAttribute('aria-hidden', 'true');
-                        header.setAttribute('aria-expanded', 'false');
-                    } else {
-                        item.classList.add("active");
-                        // Set max-height to scrollHeight immediately for instant display
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        content.setAttribute('aria-hidden', 'false');
-                        header.setAttribute('aria-expanded', 'true');
-                        // Set maxHeight to 'auto' after a very short delay or next frame
-                        // to allow content to naturally resize if it changes dynamically.
-                        // This effectively removes the transition.
-                        requestAnimationFrame(() => {
-                            content.style.maxHeight = "auto";
-                        });
-                    }
-                });
+              if (mobileResourcesDropdownMenu.classList.contains("open")) {
+                mobileResourcesDropdownMenu.classList.remove("open");
+                mobileResourcesDropdownMenu.style.maxHeight = "0";
+                mobileResourcesDropdownMenu.style.opacity = "0";
+              } else {
+                mobileResourcesDropdownMenu.classList.add("open");
+                mobileResourcesDropdownMenu.style.maxHeight =
+                  mobileResourcesDropdownMenu.scrollHeight + "px";
+                mobileResourcesDropdownMenu.style.opacity = "1";
+              }
             });
 
-            // Formspark Integration Logic
-            const contactForm = document.getElementById('contact-form');
-            const submitButton = document.getElementById('submit-button');
-            const confirmationModal = document.getElementById('confirmation-modal');
-            const closeConfirmationModalButton = document.getElementById('close-confirmation-modal');
+            // Close mobile resources dropdown if clicking outside
+            document.addEventListener("click", (event) => {
+              if (
+                !mobileResourcesButton.contains(event.target) &&
+                mobileResourcesDropdownMenu &&
+                !mobileResourcesDropdownMenu.contains(event.target)
+              ) {
+                if (mobileResourcesDropdownMenu.classList.contains("open")) {
+                  mobileResourcesDropdownMenu.classList.remove("open");
+                  mobileResourcesDropdownMenu.style.maxHeight = "0";
+                  mobileResourcesDropdownMenu.style.opacity = "0";
+                }
+              }
+            });
+          }
+        }
 
-            if (contactForm && submitButton && confirmationModal && closeConfirmationModalButton) {
-                contactForm.addEventListener('submit', async function (event) {
-                    event.preventDefault(); // Prevent default form submission
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.1, // Trigger when 10% of the element is visible
+        };
 
-                    // Show loading state on button
-                    submitButton.innerHTML = '<span class="spinner"></span> Sending...';
-                    submitButton.classList.add('btn-loading');
-                    submitButton.disabled = true; // Disable button during submission
-                    submitButton.setAttribute('aria-busy', 'true'); // ARIA for loading state
-
-                    const formData = new FormData(contactForm);
-                    const formProps = Object.fromEntries(formData);
-
-                    try {
-                        const response = await fetch(contactForm.action, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json'
-                            },
-                            body: JSON.stringify(formProps)
-                        });
-
-                        if (response.ok) {
-                            // On successful submission
-                            contactForm.reset(); // Clear form fields
-                            contactForm.style.display = 'none'; // Hide the form
-                            confirmationModal.classList.add('show'); // Show confirmation modal
-                            confirmationModal.setAttribute('aria-hidden', 'false');
-                        } else {
-                            // Handle non-OK responses (e.g., server errors, Formspark issues)
-                            const errorData = await response.json();
-                            console.error('Form submission error:', errorData);
-                            // You might want to display a different message for errors
-                            document.querySelector('#confirmation-modal h4').textContent = 'Submission Failed!';
-                            document.querySelector('#confirmation-modal p').textContent = 'There was an error sending your message. Please try again later.';
-                            confirmationModal.classList.add('show');
-                            confirmationModal.setAttribute('aria-hidden', 'false');
-                        }
-                    } catch (error) {
-                        console.error('Network or fetch error:', error);
-                        // Handle network errors
-                        document.querySelector('#confirmation-modal h4').textContent = 'Submission Failed!';
-                        document.querySelector('#confirmation-modal p').textContent = 'Could not connect to the server. Please check your internet connection and try again.';
-                        confirmationModal.classList.add('show');
-                            confirmationModal.setAttribute('aria-hidden', 'false');
-                    } finally {
-                        // Reset button state regardless of success or failure
-                        submitButton.innerHTML = 'Send';
-                        submitButton.classList.remove('btn-loading');
-                        submitButton.disabled = false;
-                        submitButton.setAttribute('aria-busy', 'false');
-                    }
-                });
-
-                closeConfirmationModalButton.addEventListener('click', () => {
-                    confirmationModal.classList.remove('show'); // Hide confirmation modal
-                    confirmationModal.setAttribute('aria-hidden', 'true');
-                    contactForm.style.display = 'block'; // Show the form again
-                    // Reset confirmation message content to default for next time
-                    document.querySelector('#confirmation-modal h4').textContent = 'Message Sent!';
-                    document.querySelector('#confirmation-modal p').textContent = 'Thank you for contacting us. We will get back to you shortly.';
-                });
-
-                // Close modal if clicking outside the content
-                confirmationModal.addEventListener('click', (event) => {
-                    if (event.target === confirmationModal) {
-                        confirmationModal.classList.remove('show');
-                        confirmationModal.setAttribute('aria-hidden', 'true');
-                        contactForm.style.display = 'block';
-                        document.querySelector('#confirmation-modal h4').textContent = 'Message Sent!';
-                        document.querySelector('#confirmation-modal p').textContent = 'Thank you for contacting us. We will get back to you shortly.';
-                    }
-                });
+        const observerCallback = (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target); // Stop observing once visible
             }
+          });
+        };
+
+        const sectionObserver = new IntersectionObserver(
+          observerCallback,
+          observerOptions
+        );
+        const animatedElements = document.querySelectorAll(
+          ".slide-in-from-bottom, .slide-in-from-left, .slide-in-from-right, .fade-in"
+        );
+
+        animatedElements.forEach((el) => {
+          sectionObserver.observe(el);
         });
-    </script>
-</body>
 
+        // Manually trigger the observer callback for elements already in view on load
+        observerCallback(sectionObserver.takeRecords(), sectionObserver);
+
+        // Accordion functionality (New logic from index.html, animation removed)
+        const accordionItemsNew = document.querySelectorAll(
+          ".accordion-item-new"
+        );
+
+        accordionItemsNew.forEach((item) => {
+          const header = item.querySelector(".accordion-header-new");
+          const content = item.querySelector(".accordion-content-new");
+          // Ensure the content is initially hidden for JS-controlled accordions
+          content.style.maxHeight = "0";
+          content.setAttribute("aria-hidden", "true");
+
+          header.addEventListener("click", () => {
+            const isOpen = item.classList.contains("active");
+
+            // Close all other accordion items
+            accordionItemsNew.forEach((otherItem) => {
+              if (
+                otherItem !== item &&
+                otherItem.classList.contains("active")
+              ) {
+                otherItem.classList.remove("active");
+                otherItem.querySelector(
+                  ".accordion-content-new"
+                ).style.maxHeight = "0";
+                otherItem
+                  .querySelector(".accordion-content-new")
+                  .setAttribute("aria-hidden", "true");
+                otherItem
+                  .querySelector(".accordion-header-new")
+                  .setAttribute("aria-expanded", "false");
+              }
+            });
+
+            // Toggle the clicked item
+            if (isOpen) {
+              item.classList.remove("active");
+              content.style.maxHeight = "0";
+              content.setAttribute("aria-hidden", "true");
+              header.setAttribute("aria-expanded", "false");
+            } else {
+              item.classList.add("active");
+              // Set max-height to scrollHeight immediately for instant display
+              content.style.maxHeight = content.scrollHeight + "px";
+              content.setAttribute("aria-hidden", "false");
+              header.setAttribute("aria-expanded", "true");
+              // Set maxHeight to 'auto' after a very short delay or next frame
+              // to allow content to naturally resize if it changes dynamically.
+              // This effectively removes the transition.
+              requestAnimationFrame(() => {
+                content.style.maxHeight = "auto";
+              });
+            }
+          });
+        });
+
+        // Formspark Integration Logic
+        const contactForm = document.getElementById("contact-form");
+        const submitButton = document.getElementById("submit-button");
+        const confirmationModal = document.getElementById("confirmation-modal");
+        const closeConfirmationModalButton = document.getElementById(
+          "close-confirmation-modal"
+        );
+
+        if (
+          contactForm &&
+          submitButton &&
+          confirmationModal &&
+          closeConfirmationModalButton
+        ) {
+          contactForm.addEventListener("submit", async function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Show loading state on button
+            submitButton.innerHTML = '<span class="spinner"></span> Sending...';
+            submitButton.classList.add("btn-loading");
+            submitButton.disabled = true; // Disable button during submission
+            submitButton.setAttribute("aria-busy", "true"); // ARIA for loading state
+
+            const formData = new FormData(contactForm);
+            const formProps = Object.fromEntries(formData);
+
+            try {
+              const response = await fetch(contactForm.action, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Accept: "application/json",
+                },
+                body: JSON.stringify(formProps),
+              });
+
+              if (response.ok) {
+                // On successful submission
+                contactForm.reset(); // Clear form fields
+                contactForm.style.display = "none"; // Hide the form
+                confirmationModal.classList.add("show"); // Show confirmation modal
+                confirmationModal.setAttribute("aria-hidden", "false");
+              } else {
+                // Handle non-OK responses (e.g., server errors, Formspark issues)
+                const errorData = await response.json();
+                console.error("Form submission error:", errorData);
+                // You might want to display a different message for errors
+                document.querySelector("#confirmation-modal h4").textContent =
+                  "Submission Failed!";
+                document.querySelector("#confirmation-modal p").textContent =
+                  "There was an error sending your message. Please try again later.";
+                confirmationModal.classList.add("show");
+                confirmationModal.setAttribute("aria-hidden", "false");
+              }
+            } catch (error) {
+              console.error("Network or fetch error:", error);
+              // Handle network errors
+              document.querySelector("#confirmation-modal h4").textContent =
+                "Submission Failed!";
+              document.querySelector("#confirmation-modal p").textContent =
+                "Could not connect to the server. Please check your internet connection and try again.";
+              confirmationModal.classList.add("show");
+              confirmationModal.setAttribute("aria-hidden", "false");
+            } finally {
+              // Reset button state regardless of success or failure
+              submitButton.innerHTML = "Send";
+              submitButton.classList.remove("btn-loading");
+              submitButton.disabled = false;
+              submitButton.setAttribute("aria-busy", "false");
+            }
+          });
+
+          closeConfirmationModalButton.addEventListener("click", () => {
+            confirmationModal.classList.remove("show"); // Hide confirmation modal
+            confirmationModal.setAttribute("aria-hidden", "true");
+            contactForm.style.display = "block"; // Show the form again
+            // Reset confirmation message content to default for next time
+            document.querySelector("#confirmation-modal h4").textContent =
+              "Message Sent!";
+            document.querySelector("#confirmation-modal p").textContent =
+              "Thank you for contacting us. We will get back to you shortly.";
+          });
+
+          // Close modal if clicking outside the content
+          confirmationModal.addEventListener("click", (event) => {
+            if (event.target === confirmationModal) {
+              confirmationModal.classList.remove("show");
+              confirmationModal.setAttribute("aria-hidden", "true");
+              contactForm.style.display = "block";
+              document.querySelector("#confirmation-modal h4").textContent =
+                "Message Sent!";
+              document.querySelector("#confirmation-modal p").textContent =
+                "Thank you for contacting us. We will get back to you shortly.";
+            }
+          });
+        }
+      });
+    </script>
+  </body>
 </html>
