@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phluowise - Regulations & Policies</title>
+    <link rel="icon" href="images/phluowise_mobile _icon.jpeg" type="image/jpeg" />
 
     <!-- Google tag (gtag.js) -->
     <script
@@ -28,12 +29,7 @@
     <style>
       body {
         font-family: "Inter", sans-serif;
-        background: linear-gradient(
-          135deg,
-          #0d1117 0%,
-          #161b22 50%,
-          #21262d 100%
-        );
+        background: #000000;
         color: #e6edf3;
         scroll-behavior: smooth;
         overflow-x: hidden;
@@ -136,13 +132,13 @@
       .regulation-card {
         background: linear-gradient(
           135deg,
-          rgba(22, 27, 34, 0.95) 0%,
-          rgba(33, 38, 45, 0.9) 50%,
-          rgba(22, 27, 34, 0.95) 100%
+          rgba(0, 0, 0, 0.92) 0%,
+          rgba(10, 10, 10, 0.9) 50%,
+          rgba(0, 0, 0, 0.92) 100%
         );
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);
-        border: 2px solid transparent;
+        border: 1px solid rgba(255, 255, 255, 0.06);
         background-clip: padding-box;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
@@ -212,14 +208,14 @@
         transform: translateY(-10px) scale(1.02);
         background: linear-gradient(
           135deg,
-          rgba(22, 27, 34, 0.98) 0%,
-          rgba(33, 38, 45, 0.95) 50%,
-          rgba(22, 27, 34, 0.98) 100%
+          rgba(0, 0, 0, 0.98) 0%,
+          rgba(12, 12, 12, 0.96) 50%,
+          rgba(0, 0, 0, 0.98) 100%
         );
         backdrop-filter: blur(30px);
         -webkit-backdrop-filter: blur(30px);
-        box-shadow: 0 25px 50px rgba(59, 116, 255, 0.15),
-          0 0 0 1px rgba(74, 222, 128, 0.1);
+        box-shadow: 0 25px 50px rgba(59, 116, 255, 0.12),
+          0 0 0 1px rgba(255, 255, 255, 0.05);
       }
 
       /* Enhanced button with multiple states */
@@ -376,197 +372,113 @@
       }
     </style>
   </head>
-  <body>
+  <body class="bg-[#0d1117] text-white">
     <!-- Floating particles background -->
     <div class="particles"></div>
 
-    <!-- Floating Home Button -->
-    <a href="index.html" class="floating-home-btn" aria-label="Go to Home Page">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="w-6 h-6"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
-        />
-      </svg>
-    </a>
+    <!-- Header Title -->
+    <section class="pt-16 pb-8 text-center">
+      <h1 class="hero-title text-5xl md:text-6xl font-bold leading-tight">
+        Regulations & Policies
+      </h1>
+      <p class="text-gray-300 max-w-3xl mx-auto mt-4">
+        Explore our policies with a clean, intuitive interface. Switch between
+        Business and E‑commerce tabs and expand topics to learn more.
+      </p>
+    </section>
 
-    <main class="relative z-10 pt-16 pb-16 min-h-screen">
+    <!-- Sticky Tabs -->
+    <div class="sticky top-0 z-40 bg-black/85 backdrop-blur border-b border-white/10">
       <div class="container mx-auto px-4 max-w-6xl">
-        <!-- Enhanced Hero Section -->
-        <section
-          class="text-center mb-20 animate-fade-in-up"
-          style="animation-delay: 0.2s"
-        >
-          <h1
-            class="hero-title text-6xl md:text-7xl font-bold mb-6 leading-tight"
-          >
-            Regulations & Policies
-          </h1>
-          <div
-            class="w-24 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto mb-8 rounded-full"
-          ></div>
-          <p
-            class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light"
-          >
-            Navigate through our comprehensive regulatory framework designed to
-            ensure
-            <span class="text-gradient font-semibold">transparency</span>,
-            <span class="text-gradient font-semibold">compliance</span>, and
-            <span class="text-gradient font-semibold">trust</span> in all our
-            services.
-          </p>
+        <div class="flex space-x-4 md:space-x-6 py-3">
+          <button id="tab-business" class="tab-btn text-sm md:text-base px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition">
+            Business
+          </button>
+          <button id="tab-ecom" class="tab-btn text-sm md:text-base px-4 py-2 rounded-lg hover:bg-white/10 border border-white/0 transition">
+            E‑commerce
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <main class="relative z-10 py-8 md:py-12 min-h-screen">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <!-- Business Panel -->
+        <section id="panel-business" class="space-y-6">
+          <div class="regulation-card p-6 md:p-8 rounded-2xl">
+            <h2 class="text-2xl md:text-3xl font-bold text-gradient mb-2">Overview</h2>
+            <p class="text-gray-300">Service agreements, billing, partnerships, and delivery standards that govern operations.</p>
+          </div>
+          <div class="regulation-card p-6 md:p-8 rounded-2xl">
+            <button class="accordion w-full text-left flex justify-between items-center">
+              <span class="font-semibold text-lg">Service Level Agreements (SLA)</span>
+              <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content text-gray-300 pt-3">
+              Clear timelines, uptime guarantees, and resolution processes to ensure reliability.
+            </div>
+          </div>
+          <div class="regulation-card p-6 md:p-8 rounded-2xl">
+            <button class="accordion w-full text-left flex justify-between items-center">
+              <span class="font-semibold text-lg">Partnership Terms & Conditions</span>
+              <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content text-gray-300 pt-3">
+              Partner obligations, acceptable use, and mutual responsibilities for long‑term success.
+            </div>
+          </div>
+          <div class="regulation-card p-6 md:p-8 rounded-2xl">
+            <button class="accordion w-full text-left flex justify-between items-center">
+              <span class="font-semibold text-lg">Billing & Payment Policies</span>
+              <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content text-gray-300 pt-3">
+              Transparent billing cycles, supported methods, refunds, and dispute handling.
+            </div>
+          </div>
+          <div class="text-center">
+            <a href="https://concrete-aurora-836.notion.site/Phluowise-Business-Regulations-1c7c077ea64280279c9cc658ffe027ed?pvs=74" class="regulations-link inline-flex">View full Business Regulations</a>
+          </div>
         </section>
 
-        <!-- Enhanced Regulations Cards -->
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          <!-- Business Regulations Card -->
-          <section
-            class="regulation-card p-8 md:p-10 rounded-3xl animate-slide-left relative"
-            style="animation-delay: 0.4s"
-          >
-            <div class="status-indicator"></div>
-
-            <!-- Business Icon -->
-            <div class="flex justify-center">
-              <svg
-                class="regulation-icon text-blue-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm2 6a2 2 0 114 0 2 2 0 01-4 0zm8 0a2 2 0 100-4 2 2 0 000 4z"
-                  clip-rule="evenodd"
-                />
-              </svg>
+        <!-- E‑commerce Panel -->
+        <section id="panel-ecom" class="space-y-6 hidden">
+          <div class="regulation-card p-6 md:p-8 rounded-2xl">
+            <h2 class="text-2xl md:text-3xl font-bold text-gradient mb-2">Overview</h2>
+            <p class="text-gray-300">Terms of service, privacy, payments, refunds, and consumer protection.</p>
+          </div>
+          <div class="regulation-card p-6 md:p-8 rounded-2xl">
+            <button class="accordion w-full text-left flex justify-between items-center">
+              <span class="font-semibold text-lg">Terms of Service & Privacy</span>
+              <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content text-gray-300 pt-3">
+              User rights, data handling, consent, and compliance with applicable laws.
             </div>
-
-            <h2 class="text-4xl font-bold mb-6 text-gradient text-center">
-              Business Regulations
-            </h2>
-            <p
-              class="text-gray-300 mb-8 text-center text-lg leading-relaxed max-w-md mx-auto"
-            >
-              Comprehensive service agreements, billing policies, partnership
-              terms, and delivery standards that govern our business
-              relationships and operations.
-            </p>
-
-            <!-- Feature highlights - Blue/Green colors only -->
-            <div class="space-y-3 mb-8">
-              <div class="flex items-center text-sm text-gray-400">
-                <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                Service Level Agreements (SLA)
-              </div>
-              <div class="flex items-center text-sm text-gray-400">
-                <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                Partnership Terms & Conditions
-              </div>
-              <div class="flex items-center text-sm text-gray-400">
-                <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                Billing & Payment Policies
-              </div>
+          </div>
+          <div class="regulation-card p-6 md:p-8 rounded-2xl">
+            <button class="accordion w-full text-left flex justify-between items-center">
+              <span class="font-semibold text-lg">Payment & Refund Policies</span>
+              <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content text-gray-300 pt-3">
+              Accepted methods, chargebacks, refund windows, and fraud prevention safeguards.
             </div>
-
-            <div class="text-center">
-              <a
-                href="https://concrete-aurora-836.notion.site/Phluowise-Business-Regulations-1c7c077ea64280279c9cc658ffe027ed?pvs=74"
-                class="regulations-link"
-              >
-                <span>View Business Regulations</span>
-                <svg
-                  class="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  ></path>
-                </svg>
-              </a>
+          </div>
+          <div class="regulation-card p-6 md:p-8 rounded-2xl">
+            <button class="accordion w-full text-left flex justify-between items-center">
+              <span class="font-semibold text-lg">Consumer Protection Standards</span>
+              <span class="icon">▼</span>
+            </button>
+            <div class="accordion-content text-gray-300 pt-3">
+              Transparency, safety, and support expectations for fair marketplace experiences.
             </div>
-          </section>
-
-          <!-- E-commerce Regulations Card -->
-          <section
-            class="regulation-card p-8 md:p-10 rounded-3xl animate-slide-right relative"
-            style="animation-delay: 0.6s"
-          >
-            <div class="status-indicator"></div>
-
-            <!-- E-commerce Icon -->
-            <div class="flex justify-center">
-              <svg
-                class="regulation-icon text-green-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 2L3 7v11a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V7l-7-5zM6 16v-3h8v3H6z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </div>
-
-            <h2 class="text-4xl font-bold mb-6 text-gradient text-center">
-              E-commerce Regulations
-            </h2>
-            <p
-              class="text-gray-300 mb-8 text-center text-lg leading-relaxed max-w-md mx-auto"
-            >
-              Complete terms of service, payment processing guidelines, refund
-              policies, and consumer protection measures for our digital
-              marketplace.
-            </p>
-
-            <!-- Feature highlights - Blue/Green colors only -->
-            <div class="space-y-3 mb-8">
-              <div class="flex items-center text-sm text-gray-400">
-                <div class="w-2 h-2 bg-blue-400 rounded-full mr-3"></div>
-                Terms of Service & Privacy Policy
-              </div>
-              <div class="flex items-center text-sm text-gray-400">
-                <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
-                Payment & Refund Policies
-              </div>
-              <div class="flex items-center text-sm text-gray-400">
-                <div class="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                Consumer Protection Standards
-              </div>
-            </div>
-
-            <div class="text-center">
-              <a
-                href="https://concrete-aurora-836.notion.site/Phluowise-Ecommerce-Regulations-1c7c077ea6428075b4c6f68ad38d15c1?pvs=74"
-                class="regulations-link"
-              >
-                <span>View E-commerce Regulations</span>
-                <svg
-                  class="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-          </section>
-        </div>
+          </div>
+          <div class="text-center">
+            <a href="https://concrete-aurora-836.notion.site/Phluowise-Ecommerce-Regulations-1c7c077ea6428075b4c6f68ad38d15c1?pvs=74" class="regulations-link inline-flex">View full E‑commerce Regulations</a>
+          </div>
+        </section>
       </div>
     </main>
 
@@ -580,7 +492,7 @@
         </div>
         <p class="text-gray-400 text-sm mb-4">Committed to transparency</p>
         <div class="flex justify-center space-x-6 text-sm text-gray-500">
-          <span>© 2025 Phluowise</span>
+          <span>© <span id="current-year"></span> Phluowise</span>
           <span>•</span>
           <span>All rights reserved</span>
         </div>
@@ -588,6 +500,52 @@
     </footer>
 
     <script>
+      // Set dynamic year
+      document.addEventListener("DOMContentLoaded", function(){
+        var y = document.getElementById("current-year");
+        if (y) y.textContent = new Date().getFullYear();
+      });
+
+      // Tabs + Accordions
+      document.addEventListener('DOMContentLoaded', function(){
+        const tabBusiness = document.getElementById('tab-business');
+        const tabEcom = document.getElementById('tab-ecom');
+        const panelBusiness = document.getElementById('panel-business');
+        const panelEcom = document.getElementById('panel-ecom');
+
+        function setActive(tab) {
+          [tabBusiness, tabEcom].forEach(t => t.classList.remove('bg-white/10','border-white/20'));
+          tab.classList.add('bg-white/10','border-white/20');
+        }
+
+        tabBusiness.addEventListener('click', () => {
+          setActive(tabBusiness);
+          panelBusiness.classList.remove('hidden');
+          panelEcom.classList.add('hidden');
+        });
+        tabEcom.addEventListener('click', () => {
+          setActive(tabEcom);
+          panelEcom.classList.remove('hidden');
+          panelBusiness.classList.add('hidden');
+        });
+
+        setActive(tabBusiness);
+
+        document.querySelectorAll('.accordion').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('.icon');
+            if (content.style.maxHeight) {
+              content.style.maxHeight = null;
+              icon.textContent = '▼';
+            } else {
+              content.style.maxHeight = content.scrollHeight + 'px';
+              icon.textContent = '▲';
+            }
+          });
+        });
+      });
+
       // Create floating particles
       function createParticles() {
         const particles = document.querySelector(".particles");

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phluowise - For Companies</title>
+    <link rel="icon" href="images/phluowise_mobile _icon.jpeg" type="image/jpeg" />
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Google tag (gtag.js) -->
@@ -274,6 +275,14 @@
 
       .dropdown-item svg {
         margin-right: 0.75rem;
+        width: 1.5rem; /* w-6 */
+        height: 1.5rem; /* h-6 */
+        transition: transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+      }
+
+      .dropdown-item:hover svg {
+        transform: translateX(2px) scale(1.08);
+        opacity: 0.95;
       }
 
       /* Mobile Menu Overlay */
@@ -600,32 +609,20 @@
             </button>
             <div class="dropdown-menu">
               <a href="index.html" class="dropdown-item">
-                <!-- Shopping Bag Icon -->
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5ZM7 7H17V17H7V7ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 11 12 11Z"
-                  />
-                  <path
-                    d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
-                  />
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 10-8 0v4M5 9h14l1 11H4L5 9z" />
                 </svg>
                 Phluowise Ecommerce
               </a>
               <a href="company.html" class="dropdown-item">
-                <!-- Users/Company Icon -->
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"
-                  />
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M4 21V7a1 1 0 011-1h4v15M10 6h4a1 1 0 011 1v14M15 10h2M15 14h2M7 10h2M7 14h2" />
                 </svg>
                 Phluowise Company
               </a>
               <a href="driver.html" class="dropdown-item">
-                <!-- Truck/Delivery Icon -->
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M18 8H16V6H18V8ZM18 10H16V12H18V10ZM18 14H16V16H18V14ZM18 18H16V20H18V18ZM20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM4 6H14V18H4V6ZM16 6V18H20V6H16Z"
-                  />
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 13h10V6a1 1 0 00-1-1H4a1 1 0 00-1 1v7zm10 0h4l3 3v2a1 1 0 01-1 1h-6m0-6v6M7 19a2 2 0 11-4 0 2 2 0 014 0zm12 0a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
                 Phluowise Drive
               </a>
@@ -1111,6 +1108,108 @@
         </div>
       </section>
 
+      <!-- Branches & Advanced Analytics Section -->
+      <section class="pb-16 md:pb-24">
+        <div class="container mx-auto px-4">
+          <div
+            class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center glassmorphism slide-in-from-bottom"
+          >
+            <div class="space-y-6 slide-in-from-left">
+              <h4 class="text-3xl font-bold">
+                Add branches and monitor advanced analytics with ease
+              </h4>
+              <p class="text-gray-300">
+                Expand confidently by creating multiple branches and tracking their
+                performance in one place. Compare revenue, orders, fulfillment speed,
+                retention, and route efficiency across branches using intuitive
+                dashboards designed for clarity and action.
+              </p>
+              <ul class="text-gray-300 list-disc list-inside space-y-1">
+                <li>Branch-level KPIs and leaderboards</li>
+                <li>Side-by-side performance comparisons</li>
+                <li>Automated insights and trend highlights</li>
+              </ul>
+              <div
+                class="flex flex-col sm:flex-row justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4"
+              >
+                <a
+                  href="https://phluowise-labs.github.io/company/pages/user-signup.html"
+                  class="btn-get-started font-semibold px-6 py-2.5 rounded-lg shadow-lg"
+                  >Get Started</a
+                >
+              </div>
+            </div>
+            <div class="text-center md:text-right slide-in-from-right">
+              <div class="w-full max-w-xl mx-auto rounded-2xl overflow-hidden glassmorphism animated-border p-1">
+                <div class="relative" data-carousel="branches">
+                  <img
+                    src="images/branch-management.jpg"
+                    alt="Branch management overview"
+                    class="carousel-item block w-full h-auto rounded-2xl shadow-2xl"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Advanced Metrics Section -->
+      <section class="pb-16 md:pb-24">
+        <div class="container mx-auto px-4">
+          <div
+            class="solid-container animated-border p-8 md:p-12 grid md:grid-cols-2 gap-8 items-center glassmorphism slide-in-from-bottom"
+          >
+            <div class="text-center md:text-left slide-in-from-left order-last md:order-first">
+              <div class="w-full max-w-xl mx-auto rounded-2xl overflow-hidden glassmorphism animated-border p-1">
+                <div class="relative" data-carousel="metrics">
+                  <img
+                    src="images/metrics.png"
+                    alt="Advanced metrics overview"
+                    class="carousel-item block w-full h-auto rounded-2xl shadow-2xl"
+                  />
+                  <img
+                    src="images/metrics-2.png"
+                    alt="Advanced metrics breakdown"
+                    class="carousel-item hidden w-full h-auto rounded-2xl shadow-2xl"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="space-y-6 slide-in-from-right order-first md:order-last">
+              <h4 class="text-3xl font-bold">
+                Access advanced metrics for your operations
+              </h4>
+              <p class="text-gray-300">
+                Make better decisions with granular metrics across the entire
+                operation—orders, fulfillment, drivers, routes, payments, and
+                customers. Export reports, spot anomalies, and share insights with
+                your team in seconds.
+              </p>
+              <ul class="text-gray-300 list-disc list-inside space-y-1">
+                <li>Real‑time KPIs and trend analysis</li>
+                <li>Custom report exports and filters</li>
+                <li>Role‑based views for teams and stakeholders</li>
+              </ul>
+              <div
+                class="flex flex-col sm:flex-row justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4"
+              >
+                <a
+                  href="pricing.html"
+                  class="btn-outline font-semibold px-6 py-2.5 rounded-lg"
+                  >See Pricing</a
+                >
+                <a
+                  href="#contact"
+                  class="btn-get-started font-semibold px-6 py-2.5 rounded-lg shadow-lg"
+                  >Talk to Sales</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Key Features Section -->
       <section class="py-16 md:py-24 text-center">
         <div class="container mx-auto px-4">
@@ -1385,21 +1484,17 @@
               role="region"
               aria-labelledby="faq-header-6"
             >
-              <p class="text-300">
-                Phluowise for Company offers a transparent and tiered pricing
-                structure based on the type of water product being delivered:
+              <p class="text-gray-300">
+                Transparent, pay‑as‑you‑go pricing tailored to your operations.
+                Costs scale with usage and feature needs. Visit the pricing page
+                for full breakdowns and current promotions.
               </p>
-              <ul
-                class="list-disc list-inside text-gray-300 mt-2 ml-4 space-y-1"
-              >
-                <li>Pure Water Sachets Transactions: ¢0.3</li>
-                <li>Bottles and Others: ¢0.4</li>
-                <li>Dispensers: ¢0.5</li>
+              <ul class="list-disc list-inside text-gray-300 mt-3 ml-4 space-y-1">
+                <li>Simple per‑unit fees by product type</li>
+                <li>No hidden charges; cancel anytime</li>
+                <li>Generous launch discounts and free trial options</li>
               </ul>
-              <p class="text-gray-300 mt-2">
-                For the first month in business with Phluowise, companies will
-                receive 83.33%, 82.5%, and 84% discount.
-              </p>
+              <a href="pricing.html" class="inline-block mt-4 text-brand hover:underline">See detailed pricing →</a>
             </div>
           </div>
         </div>
@@ -1837,6 +1932,35 @@
             }
           });
         }
+
+        // Simple auto-rotating carousel for image sections
+        const initCarousel = (rootSelector) => {
+          const containers = document.querySelectorAll(`[data-carousel="${rootSelector}"]`);
+          containers.forEach((container) => {
+            const items = container.querySelectorAll('.carousel-item');
+            if (!items || items.length <= 1) return;
+            let index = 0;
+            const show = (i) => {
+              items.forEach((el, idx) => {
+                if (idx === i) {
+                  el.classList.remove('hidden');
+                  el.classList.add('block');
+                } else {
+                  el.classList.remove('block');
+                  el.classList.add('hidden');
+                }
+              });
+            };
+            show(index);
+            setInterval(() => {
+              index = (index + 1) % items.length;
+              show(index);
+            }, 3500);
+          });
+        };
+
+        initCarousel('branches');
+        initCarousel('metrics');
       });
     </script>
   </body>

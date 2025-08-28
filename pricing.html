@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Phluowise - Pricing</title>
+    <link rel="icon" href="images/phluowise_mobile _icon.jpeg" type="image/jpeg" />
 
     <!-- Google tag (gtag.js) -->
     <script
@@ -99,6 +100,11 @@
         overflow: hidden;
         border: 1px solid rgba(59, 116, 255, 0.3);
         transition: all 0.3s ease;
+      }
+
+      /* Ensure tooltips can extend outside pricing cards */
+      .pricing-card.animated-border {
+        overflow: visible;
       }
 
       .animated-border::before {
@@ -237,10 +243,10 @@
         border-radius: 6px;
         padding: 10px;
         position: absolute;
-        z-index: 1;
-        bottom: 125%;
+        z-index: 10000; /* ensure above all cards */
+        bottom: calc(100% + 12px);
         left: 50%;
-        margin-left: -140px;
+        transform: translateX(-50%);
         opacity: 0;
         transition: opacity 0.3s;
         font-size: 0.875rem;
@@ -764,7 +770,8 @@
 
         <!-- Large Companies Plan -->
         <div
-          class="pricing-card glassmorphic-blue animated-border rounded-3xl p-6 sm:p-8 text-center flex flex-col w-full relative z-10 border-2 border-blue-500"
+          class="pricing-card glassmorphic-blue animated-border rounded-3xl p-6 sm:p-8 text-center flex flex-col w-full relative z-0 border-2 border-blue-500 ring-2 ring-blue-400/40"
+          aria-selected="true"
         >
           <h3 class="text-3xl font-bold text-white mb-2">Large Companies</h3>
           <p class="text-gray-400 mb-4">Comprehensive features for scaling businesses.</p>
@@ -840,8 +847,10 @@
         <div
           class="pricing-card glassmorphic-blue animated-border rounded-3xl p-6 sm:p-8 text-center flex flex-col w-full relative"
         >
-          <div class="bg-yellow-500 text-gray-900 text-xs font-semibold px-3 py-1 rounded-full absolute -top-4 left-1/2 transform -translate-x-1/2">
-            Coming Soon
+          <div class="flex justify-center">
+            <div class="bg-yellow-500 text-gray-900 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+              Coming Soon
+            </div>
           </div>
           <h3 class="text-3xl font-bold text-white mb-4 mt-4">
             <span class="inline-block px-4 py-2 bg-white text-gray-900 rounded-full">
@@ -850,12 +859,9 @@
           </h3>
           <div class="flex justify-center items-center mb-1">
             <p class="text-5xl font-bold text-white">GH₵ 60</p>
-<!--             <div class="bg-red-500 text-white text-xs font-semibold px-2 py-4 rounded-full inline-block ml-2">
-              50% off
-            </div> -->
           </div>
-          <p class="text-gray-400 text-lg mb-6">/ month</p>
-          <div class="bg-red-500 text-white text-xs font-semibold px-2 py-4 rounded-full inline-block ml-2">
+          <p class="text-gray-400 text-lg mb-2">/ month</p>
+          <div class="bg-red-500 text-white text-xs font-semibold px-2 py-1.5 rounded-full inline-block mx-auto mb-6">
               50% off
             </div>
           
@@ -903,7 +909,7 @@
         class="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-sm"
       >
         <p class="text-gray-500 text-center md:text-left">
-          &copy; Phluowise Company, 2025
+          &copy; Phluowise Company, <span id="current-year"></span>
         </p>
         <p class="text-gray-500 text-center md:text-center">
           From: <span class="text-brand">Phluowise</span>, All rights reserved.
@@ -920,6 +926,8 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        const y = document.getElementById("current-year");
+        if (y) y.textContent = new Date().getFullYear();
         // Mobile Menu Toggle logic
         const mobileMenuButton = document.getElementById("mobile-menu-button");
         const closeMobileMenuButton =
