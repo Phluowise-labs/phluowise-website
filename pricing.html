@@ -186,40 +186,34 @@
 
       /* Custom styles for pricing cards */
 
-      .pricing-card-free {
+      .pricing-card {
         background: rgba(30, 30, 30, 0.5);
-        /* Darker background for free plan */
         border: 1px solid rgba(255, 255, 255, 0.1);
         transition: all 0.3s ease;
       }
-
-      .pricing-card-free:hover {
+      
+      .pricing-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       }
-
-      .pricing-card-basic {
+      
+      /* NEW STYLE FOR GLASSMORPHIC CARDS */
+      .pricing-card.glassmorphic-blue {
         background: rgba(59, 116, 255, 0.1);
-        /* Glassmorphism effect */
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(59, 116, 255, 0.2);
-        transition: all 0.3s ease;
+      }
+      .pricing-card.glassmorphic-blue:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(59, 116, 255, 0.2);
       }
 
-      .pricing-card-premium {
-        background: rgba(59, 116, 255, 0.1);
-        /* Glassmorphism effect */
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(59, 116, 255, 0.2);
-        transition: all 0.3s ease;
-      }
 
       .feature-list-item {
         display: flex;
         align-items: flex-start;
-        gap: 0.5rem;
+        gap: 0.75rem; /* Increased gap for better spacing */
       }
 
       .feature-list-item svg {
@@ -227,6 +221,48 @@
         margin-top: 0.25rem;
         /* Adjust alignment of checkmark */
       }
+      
+      /* Info icon tooltip */
+      .info-icon-container {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .info-tooltip {
+        visibility: hidden;
+        width: 280px;
+        background-color: #1f2937;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 10px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -140px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 0.875rem;
+        line-height: 1.4;
+      }
+      
+      .info-tooltip::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #1f2937 transparent transparent transparent;
+      }
+      
+      .info-icon-container:hover .info-tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+
 
       /* Mobile navigation overlay styles */
       .mobile-menu-overlay {
@@ -638,167 +674,220 @@
         Flexible Pricing for Your Needs
       </h2>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl w-full">
-        <!-- Free Plan Card -->
-        <div class="col-span-1 py-8">
-          <div
-            class="pricing-card-free rounded-3xl p-6 sm:p-8 text-center flex flex-col items-center w-full max-w-xs md:max-w-none hover:transform hover:translate-y-[-5px] hover:shadow-lg mx-auto"
-          >
-            <h3 class="text-2xl font-bold mb-2">Free Plan</h3>
-            <p class="text-gray-400 text-sm mb-4">Expires in 20 days</p>
-            <button
-              class="btn-secondary text-white font-semibold px-6 py-3 rounded-lg shadow-lg opacity-70 cursor-not-allowed"
-            >
-              Current Plan
-            </button>
-          </div>
-        </div>
-
-        <!-- Basic Pack Card -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl w-full items-stretch">
+        <!-- Small Companies Plan -->
         <div
-          class="col-span-1 pricing-card-basic animated-border rounded-3xl p-6 sm:p-8 text-center flex flex-col w-full hover:transform hover:translate-y-[-5px] hover:shadow-lg"
+          class="pricing-card glassmorphic-blue animated-border rounded-3xl p-6 sm:p-8 text-center flex flex-col w-full"
         >
-          <p class="text-sm text-gray-400 mb-2">Subscription Plan</p>
-          <h3 class="text-3xl font-bold text-white mb-4">Basic Pack</h3>
-          <div
-            class="bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full absolute top-6 left-1/2 transform -translate-x-1/2"
-          >
-            83.9% off (1st month)
+          <h3 class="text-3xl font-bold text-white mb-2">Small Companies</h3>
+          <p class="text-gray-400 mb-4">Ideal for businesses with no branches.</p>
+          
+          <div class="mb-6">
+            <span class="text-xl font-semibold text-white">Pay As You Go</span>
+            <div class="info-icon-container ml-2">
+              <svg class="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <div class="info-tooltip">
+                <strong class="block mb-1">Why Pay-As-You-Go?</strong>
+                This model ensures you only pay for what you use, making it cost-effective. Here's the breakdown:
+                <ul class="list-disc list-inside mt-2 text-gray-300">
+                    <li><strong>70%:</strong> Cloud & Service Infrastructure</li>
+                    <li><strong>10%:</strong> App Maintenance Cost</li>
+                    <li><strong>10%:</strong> Phluowise Commission</li>
+                    <li><strong>10%:</strong> Product Marketing</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <p class="text-5xl font-bold text-white mb-2">0.3+</p>
-          <p class="text-gray-400 text-lg mb-6">per sales</p>
-          <p class="text-gray-300 text-base mb-6 flex-grow">
-            Manage logistics easily with Phluowise
-          </p>
 
           <div class="space-y-4 mb-6">
             <div class="bg-gray-800 p-3 rounded-xl">
-              <p class="text-white text-lg font-medium">GH₵ 0.3 /</p>
-              <p class="text-gray-400 text-sm">Sachets Transaction</p>
+              <p class="text-white text-lg font-medium">GH₵ 0.05 /</p>
+              <p class="text-gray-400 text-sm">Sachets per bag</p>
             </div>
             <div class="bg-gray-800 p-3 rounded-xl">
-              <p class="text-white text-lg font-medium">GH₵ 0.4 /</p>
-              <p class="text-gray-400 text-sm">Bottle pack Transaction</p>
+              <p class="text-white text-lg font-medium">GH₵ 0.08 /</p>
+              <p class="text-gray-400 text-sm">Bottles per pack</p>
             </div>
             <div class="bg-gray-800 p-3 rounded-xl">
-              <p class="text-white text-lg font-medium">GH₵ 0.5 /</p>
-              <p class="text-gray-400 text-sm">Dispenser Transaction</p>
+              <p class="text-white text-lg font-medium">GH₵ 0.09 /</p>
+              <p class="text-gray-400 text-sm">Dispenser per dispenser</p>
             </div>
           </div>
 
-          <button
-            class="btn-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg mb-6"
-          >
+          <button class="btn-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg mb-6">
             Activate Plan
           </button>
 
-          <ul class="text-left space-y-3">
+          <ul class="text-left space-y-3 flex-grow">
             <li class="feature-list-item">
-              <svg
-                class="w-5 h-5 text-green-400 mt-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 sand 0 00-1.414 1.414l2 2a1 1 sand 0 001.414 0l4-4z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              Transactions fees
+              <svg class="w-5 h-5 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
+              <span>Branch management</span>
             </li>
             <li class="feature-list-item">
-              <svg
-                class="w-5 h-5 text-green-400 mt-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 sand 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 sand 0 00-1.414 1.414l2 2a1 1 sand 0 001.414 0l4-4z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              Access to all initial version updates
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Account</span>
             </li>
             <li class="feature-list-item">
-              <svg
-                class="w-5 h-5 text-green-400 mt-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 sand 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 sand 0 00-1.414 1.414l2 2a1 1 sand 0 001.414 0l4-4z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              Customer Service
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Requests</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Get Return pickups</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Limited inventory management</span>
+            </li>
+             <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Driver app with limited features</span>
+            </li>
+             <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Access to free trial plan</span>
+            </li>
+             <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Plugins</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
+              <span>Access to advance features</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Customer Support</span>
             </li>
           </ul>
         </div>
 
-        <!-- Premium Pack Card -->
+        <!-- Large Companies Plan -->
         <div
-          class="col-span-1 pricing-card-premium animated-border rounded-3xl p-6 sm:p-8 text-center flex flex-col w-full hover:transform hover:translate-y-[-5px] hover:shadow-lg"
+          class="pricing-card glassmorphic-blue animated-border rounded-3xl p-6 sm:p-8 text-center flex flex-col w-full relative z-10 border-2 border-blue-500"
         >
-          <div class="relative w-full mb-4">
-            <!-- "coming soon" badge -->
-            <div
-              class="bg-yellow-500 text-gray-900 text-xs font-semibold px-3 py-1 rounded-full absolute -top-4 left-1/2 transform -translate-x-1/2"
-            >
-              coming soon
+          <h3 class="text-3xl font-bold text-white mb-2">Large Companies</h3>
+          <p class="text-gray-400 mb-4">Comprehensive features for scaling businesses.</p>
+          
+          <div class="mb-6">
+            <span class="text-xl font-semibold text-white">Pay As You Go</span>
+          </div>
+
+          <div class="space-y-4 mb-6">
+            <div class="bg-gray-800 p-3 rounded-xl">
+              <p class="text-white text-lg font-medium">GH₵ 0.2 /</p>
+              <p class="text-gray-400 text-sm">Sachets per bag</p>
+            </div>
+            <div class="bg-gray-800 p-3 rounded-xl">
+              <p class="text-white text-lg font-medium">GH₵ 0.3 /</p>
+              <p class="text-gray-400 text-sm">Bottles per pack</p>
+            </div>
+            <div class="bg-gray-800 p-3 rounded-xl">
+              <p class="text-white text-lg font-medium">GH₵ 0.4 /</p>
+              <p class="text-gray-400 text-sm">Dispenser per dispenser</p>
             </div>
           </div>
-          <p class="text-sm text-gray-400 mb-2">Subscription Plan</p>
-          <h3 class="text-3xl font-bold text-white mb-4">
-            <span
-              class="inline-block px-4 py-2 bg-white text-gray-900 rounded-full"
-            >
+
+          <button class="btn-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg mb-6">
+            Activate Plan
+          </button>
+
+          <ul class="text-left space-y-3 flex-grow">
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Branch management</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Account</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Requests</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Get Return pickups</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Full inventory management</span>
+            </li>
+             <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Driver app with full features</span>
+            </li>
+             <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Access to free trial plan</span>
+            </li>
+             <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Plugins</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Access to advance features</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Priority Customer Support</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Premium Pack Card -->
+        <div
+          class="pricing-card glassmorphic-blue animated-border rounded-3xl p-6 sm:p-8 text-center flex flex-col w-full relative"
+        >
+          <div class="bg-yellow-500 text-gray-900 text-xs font-semibold px-3 py-1 rounded-full absolute -top-2 left-1/2 transform -translate-x-1/2">
+            Coming Soon
+          </div>
+          <h3 class="text-3xl font-bold text-white mb-4 mt-4">
+            <span class="inline-block px-4 py-2 bg-white text-gray-900 rounded-full">
               Premium Pack
             </span>
           </h3>
-          <div class="relative w-full mb-2">
-            <!-- Reduced mb from mb-4 to mb-2 -->
-            <p class="text-5xl font-bold text-white inline-block">GH₵ 60</p>
-            <!-- "50% off" discount -->
-            <div
-              class="bg-red-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full inline-block ml-2"
-            >
+          <div class="flex justify-center items-center mb-1">
+            <p class="text-5xl font-bold text-white">GH₵ 60</p>
+            <div class="bg-red-500 text-white text-xs font-semibold px-2 py-0.5 rounded-full inline-block ml-2">
               50% off
             </div>
           </div>
-
-          <p class="text-gray-400 text-lg mb-4">month</p>
-          <!-- Reduced mb from mb-6 to mb-4 -->
-          <p class="text-gray-300 text-base mb-0 flex-grow">
-            Manage logistics easily with Phluowise
+          <p class="text-gray-400 text-lg mb-6">/ month</p>
+          <p class="text-gray-300 text-base mb-6 flex-grow">
+            Unlock the full potential with our AI-powered tools and dedicated support.
           </p>
-          <!-- Reduced mb from mb-6 to mb-4 -->
-
-          <button
-            class="btn-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg mb-4 opacity-70 cursor-not-allowed"
-          >
+          <button class="btn-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg mb-6 opacity-70 cursor-not-allowed">
             Choose Plan
           </button>
-
           <ul class="text-left space-y-3">
             <li class="feature-list-item">
-              <svg
-                class="w-5 h-5 text-green-400 mt-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 sand 0 00-1.414 1.414l2 2a1 1 sand 0 001.414 0l4-4z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              Access to all future updates for free (1st year only)
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Access to all advance AI features</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Customer support and assistance</span>
             </li>
           </ul>
         </div>
+
+        <!-- Free Trial Card -->
+        <div
+          class="pricing-card rounded-3xl p-6 sm:p-8 text-center flex flex-col items-center w-full"
+        >
+            <h3 class="text-2xl font-bold mb-2">Free Trial</h3>
+            <p class="text-gray-400 text-sm mb-4">Get started and explore basic features</p>
+            <p class="text-5xl font-bold text-white mb-2">Free</p>
+            <p class="text-gray-400 text-lg mb-6">for 20 days</p>
+            <button
+              class="btn-secondary text-white font-semibold px-6 py-3 rounded-lg shadow-lg"
+            >
+              Start Free Trial
+            </button>
+        </div>
+
       </div>
     </main>
 
@@ -984,7 +1073,7 @@
 
         // Apply fade-in to pricing cards with a stagger
         const pricingCards = document.querySelectorAll(
-          ".pricing-card-free, .pricing-card-basic, .pricing-card-premium"
+          ".pricing-card"
         );
         pricingCards.forEach((card, index) => {
           card.style.opacity = "0"; // Hide initially
