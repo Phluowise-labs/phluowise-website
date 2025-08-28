@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phluowise - Pricing</title>
+    <link rel="icon" href="images/phluowise_mobile _icon.jpeg" type="image/jpeg" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-Q0GRN94KH5"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-Q0GRN94KH5");
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Custom styles for glassmorphism, animations, and other effects - Replicated from Landing Page for consistency */
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0d1117;
+        color: #e6edf3;
+        scroll-behavior: smooth;
+      }
+
+      .glassmorphism {
+        background: rgba(59, 116, 255, 0.1);
+        /* Updated brand color tint */
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(59, 116, 255, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .glassmorphism:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(59, 116, 255, 0.2);
+      }
+
+      /* Navbar style from driver-page */
+      .header-nav {
+        background: rgba(13, 17, 23, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Enhanced Animation classes */
+      .fade-in {
+        opacity: 0;
+        transition: opacity 1.2s ease-in-out;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+      }
+
+      .slide-in-from-bottom {
+        opacity: 0;
+        transform: translateY(60px);
+        transition: opacity 1s ease-out, transform 1s ease-out;
+      }
+
+      .slide-in-from-bottom.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Animated Border */
+
+      @keyframes animated-border-flow {
+        0% {
+          background-position: -100% 50%;
+          box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
+        }
+        50% {
+          box-shadow: 0 0 30px rgba(59, 116, 255, 0.3);
+        }
+        100% {
+          background-position: 100% 50%;
+          box-shadow: 0 0 20px rgba(59, 116, 255, 0.1);
+        }
+      }
+
+      .animated-border {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(59, 116, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      /* Ensure tooltips can extend outside pricing cards */
+      .pricing-card.animated-border {
+        overflow: visible;
+      }
+
+      .animated-border::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: inherit;
+        padding: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #3b74ff,
+          #60a5fa,
+          #3b74ff,
+          transparent
+        );
+        background-size: 200% 100%;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: destination-out;
+        mask-composite: exclude;
+        animation: animated-border-flow 4s linear infinite;
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out;
+      }
+
+      .animated-border:hover::before {
+        opacity: 1;
+      }
+
+      /* Button styles (Replicated for consistency) */
+
+      .btn-primary {
+        background: linear-gradient(135deg, #3b74ff, #60a5fa);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #508bff, #7bb3ff);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
+      }
+
+      .btn-secondary {
+        background: linear-gradient(135deg, #374151, #4b5563);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .btn-secondary:hover {
+        background: linear-gradient(135deg, #4b5563, #6b7280);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Text colors */
+
+      .text-brand {
+        color: #3b74ff;
+      }
+
+      /* Custom styles for pricing cards */
+
+      .pricing-card {
+        background: rgba(30, 30, 30, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+      
+      .pricing-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+      
+      /* NEW STYLE FOR GLASSMORPHIC CARDS */
+      .pricing-card.glassmorphic-blue {
+        background: rgba(59, 116, 255, 0.1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(59, 116, 255, 0.2);
+      }
+      .pricing-card.glassmorphic-blue:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(59, 116, 255, 0.2);
+      }
+
+
+      .feature-list-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem; /* Increased gap for better spacing */
+      }
+
+      .feature-list-item svg {
+        flex-shrink: 0;
+        margin-top: 0.25rem;
+        /* Adjust alignment of checkmark */
+      }
+      
+      /* Info icon tooltip */
+      .info-icon-container {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .info-tooltip {
+        visibility: hidden;
+        width: 280px;
+        background-color: #1f2937;
+        color: #fff;
+        text-align: left;
+        border-radius: 6px;
+        padding: 10px;
+        position: absolute;
+        z-index: 10000; /* ensure above all cards */
+        bottom: calc(100% + 12px);
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 0.875rem;
+        line-height: 1.4;
+      }
+      
+      .info-tooltip::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #1f2937 transparent transparent transparent;
+      }
+      
+      .info-icon-container:hover .info-tooltip {
+        visibility: visible;
+        opacity: 1;
+      }
+
+
+      /* Mobile navigation overlay styles */
+      .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(13, 17, 23, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 60;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s ease-in-out;
+        opacity: 0;
+        /* Ensure the overlay itself can scroll if content inside is too tall */
+        overflow-y: auto;
+      }
+
+      .mobile-menu-overlay.open {
+        display: flex;
+        opacity: 1;
+      }
+
+      /* Mobile Dropdown specific styles */
+      .mobile-dropdown-menu {
+        display: none;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+        max-height: 0;
+        opacity: 0;
+        /* Added for centering and width control */
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 384px; /* max-w-sm in Tailwind */
+      }
+
+      .mobile-dropdown-menu.open {
+        display: block;
+        /* will be controlled by JS for max-height */
+      }
+
+      /* Dropdown specific styles (from driver-page) */
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        background-color: rgba(13, 17, 23, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 0.5rem;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        z-index: 100;
+        min-width: 200px;
+        padding: 0.5rem 0;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .dropdown-item {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1.25rem;
+        color: #e6edf3;
+        text-decoration: none;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+
+      .dropdown-item:hover {
+        background-color: rgba(59, 116, 255, 0.1);
+        color: #3b74ff;
+      }
+
+      .dropdown-item svg {
+        margin-right: 0.75rem;
+      }
+
+      /* Updated Get Started button style */
+      .btn-get-started {
+        background-color: #3b74ff;
+        /* Solid blue background */
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-get-started:hover {
+        background-color: #508bff;
+        /* Slightly lighter blue on hover */
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
+      }
+
+      /* Remove the ::before pseudo-element for btn-get-started */
+      .btn-get-started::before {
+        content: none;
+      }
+    </style>
+  </head>
+
+  <body class="bg-black">
+    <!-- Header -->
+    <header class="header-nav fixed top-0 left-0 right-0 z-50">
+      <div
+        class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center"
+      >
+        <h1 class="text-2xl font-bold text-brand">Phluowise</h1>
+        <nav class="hidden md:flex items-center space-x-4">
+          <!-- Products Dropdown -->
+          <div class="relative dropdown">
+            <button
+              class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center"
+            >
+              Products
+              <svg
+                class="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <div class="dropdown-menu">
+              <a href="index.html" class="dropdown-item">
+                <!-- Shopping Bag Icon -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5ZM7 7H17V17H7V7ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 11 12 11Z"
+                  />
+                  <path
+                    d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
+                  />
+                </svg>
+                Phluowise Ecommerce
+              </a>
+              <a href="company.html" class="dropdown-item">
+                <!-- Users/Company Icon -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"
+                  />
+                </svg>
+                Phluowise Company
+              </a>
+              <a href="driver.html" class="dropdown-item">
+                <!-- Truck/Delivery Icon -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M18 8H16V6H18V8ZM18 10H16V12H18V10ZM18 14H16V16H18V14ZM18 18H16V20H18V18ZM20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM4 6H14V18H4V6ZM16 6V18H20V6H16Z"
+                  />
+                </svg>
+                Phluowise Drive
+              </a>
+            </div>
+          </div>
+          <!-- Resources Dropdown -->
+          <div class="relative dropdown">
+            <button
+              class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center"
+            >
+              Resources
+              <svg
+                class="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                ></path>
+              </svg>
+            </button>
+            <div class="dropdown-menu">
+              <a
+                href="https://phluows-documentation.gitbook.io/phluowise-documentation"
+                class="dropdown-item"
+              >
+                <!-- Document Icon -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z"
+                  />
+                </svg>
+                Documentation
+              </a>
+              <a href="regulations.html" class="dropdown-item">
+                <!-- Regulations/Newspaper Icon -->
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM5 5H19V19H5V5ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z"
+                  />
+                </svg>
+                Regulations
+              </a>
+            </div>
+          </div>
+          <a
+            href="https://whatsapp.com/channel/0029VbAXsz3JP215oI0cbS3W"
+            class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors"
+            >Community</a
+          >
+          <a
+            href="about_us.html"
+            class="text-gray-300 hover:text-white transition"
+            >About Us</a
+          >
+          <a href="pricing.html" class="text-white font-semibold transition"
+            >Pricing</a
+          >
+        </nav>
+        <a
+          href="https://phluowise-labs.github.io/company/pages/user-signup.html"
+          class="btn-get-started text-white font-semibold px-5 py-2.5 rounded-lg hidden md:block"
+          >Get Started</a
+        >
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-white focus:outline-none"
+        >
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="mobile-menu-overlay">
+      <button
+        id="close-mobile-menu"
+        class="absolute top-6 right-6 text-white focus:outline-none"
+      >
+        <svg
+          class="w-8 h-8"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+      <nav
+        class="flex flex-col items-center space-y-8 text-xl w-full max-h-full overflow-y-auto py-12"
+      >
+        <!-- Products Dropdown (Mobile) -->
+        <div class="relative w-full text-center mobile-dropdown">
+          <button
+            class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center text-xl"
+            id="mobile-products-button"
+          >
+            Products
+            <svg
+              class="w-5 h-5 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <div class="mobile-dropdown-menu mt-4 space-y-4">
+            <a href="index.html" class="dropdown-item mobile-nav-link">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M17 5H7C5.89543 5 5 5.89543 5 7V17C5 18.1046 5.89543 19 7 19H17C18.1046 19 19 18.1046 19 17V7C19 5.89543 18.1046 5 17 5ZM7 7H17V17H7V7ZM12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 11 12 11Z"
+                />
+                <path
+                  d="M12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11Z"
+                />
+              </svg>
+              Phluowise Ecommerce
+            </a>
+            <a href="company.html" class="dropdown-item mobile-nav-link">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z"
+                />
+              </svg>
+              Phluowise Company
+            </a>
+            <a href="driver.html" class="dropdown-item mobile-nav-link">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M18 8H16V6H18V8ZM18 10H16V12H18V10ZM18 14H16V16H18V14ZM18 18H16V20H18V18ZM20 4H4C2.89543 4 2 4.89543 2 6V18C2 19.1046 2.89543 20 4 20H20C21.1046 20 22 19.1046 22 18V6C22 4.89543 21.1046 4 20 4ZM4 6H14V18H4V6ZM16 6V18H20V6H16Z"
+                />
+              </svg>
+              Phluowise Drive
+            </a>
+          </div>
+        </div>
+        <!-- Resources Dropdown (Mobile) -->
+        <div class="relative w-full text-center mobile-dropdown">
+          <button
+            class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors inline-flex items-center text-xl"
+            id="mobile-resources-button"
+          >
+            Resources
+            <svg
+              class="w-5 h-5 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+          <div class="mobile-dropdown-menu mt-4 space-y-4">
+            <a
+              href="https://phluows-documentation.gitbook.io/phluowise-documentation"
+              class="dropdown-item mobile-nav-link"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z"
+                />
+              </svg>
+              Documentation
+            </a>
+            <a href="regulations.html" class="dropdown-item mobile-nav-link">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3ZM5 5H19V19H5V5ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z"
+                />
+              </svg>
+              Regulations
+            </a>
+          </div>
+        </div>
+        <a
+          href="https://whatsapp.com/channel/0029VbAXsz3JP215oI0cbS3W"
+          class="text-gray-300 hover:text-white transition mobile-nav-link"
+          >Community</a
+        >
+        <a
+          href="about_us.html"
+          class="text-gray-300 hover:text-white transition mobile-nav-link"
+          >About Us</a
+        >
+        <a
+          href="pricing.html"
+          class="text-white font-semibold transition mobile-nav-link"
+          >Pricing</a
+        >
+        <a
+          href="https://phluowise-labs.github.io/company/pages/user-signup.html"
+          class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg mt-4 mobile-nav-link"
+          >Get Started</a
+        >
+      </nav>
+    </div>
+
+    <main
+      class="min-h-screen flex flex-col justify-center items-center py-24 px-4 sm:px-6"
+    >
+      <h2
+        class="text-4xl md:text-5xl font-bold text-white text-center mb-12 fade-in"
+      >
+        Flexible Pricing for Your Needs
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl w-full items-stretch">
+        <!-- Small Companies Plan -->
+        <div
+          class="pricing-card glassmorphic-blue animated-border rounded-3xl p-6 sm:p-8 text-center flex flex-col w-full"
+        >
+          <h3 class="text-3xl font-bold text-white mb-2">Small Companies</h3>
+          <p class="text-gray-400 mb-4">Ideal for businesses with no branches.</p>
+          
+          <div class="mb-6">
+            <span class="text-xl font-semibold text-white">Pay As You Go</span>
+            <div class="info-icon-container ml-2">
+              <svg class="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <div class="info-tooltip">
+                <strong class="block mb-1">Why Pay-As-You-Go?</strong>
+                This model ensures you only pay for what you use, making it cost-effective. Here's the breakdown:
+                <ul class="list-disc list-inside mt-2 text-gray-300">
+                    <li><strong>70%:</strong> Cloud & Service Infrastructure</li>
+                    <li><strong>10%:</strong> App Maintenance Cost</li>
+                    <li><strong>10%:</strong> Phluowise Commission</li>
+                    <li><strong>10%:</strong> Product Marketing</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4 mb-6">
+            <div class="bg-gray-800 p-3 rounded-xl">
+              <p class="text-white text-lg font-medium">GH₵ 0.05 /</p>
+              <p class="text-gray-400 text-sm">Sachets per bag</p>
+            </div>
+            <div class="bg-gray-800 p-3 rounded-xl">
+              <p class="text-white text-lg font-medium">GH₵ 0.07 /</p>
+              <p class="text-gray-400 text-sm">Bottles per pack</p>
+            </div>
+            <div class="bg-gray-800 p-3 rounded-xl">
+              <p class="text-white text-lg font-medium">GH₵ 0.08 /</p>
+              <p class="text-gray-400 text-sm">Dispenser per dispenser</p>
+            </div>
+          </div>
+
+          <button class="btn-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg mb-6">
+            Activate Plan
+          </button>
+
+          <ul class="text-left space-y-3 flex-grow">
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
+              <span>Branch management</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Account</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Requests</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Get Return pickups</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Limited inventory management</span>
+            </li>
+             <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Driver app with limited features</span>
+            </li>
+             <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Access to free trial plan</span>
+            </li>
+             <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Plugins</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
+              <span>Access to advance features</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Customer Support</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Large Companies Plan -->
+        <div
+          class="pricing-card glassmorphic-blue animated-border rounded-3xl p-6 sm:p-8 text-center flex flex-col w-full relative z-0 border-2 border-blue-500 ring-2 ring-blue-400/40"
+          aria-selected="true"
+        >
+          <h3 class="text-3xl font-bold text-white mb-2">Large Companies</h3>
+          <p class="text-gray-400 mb-4">Comprehensive features for scaling businesses.</p>
+          
+          <div class="mb-6">
+            <span class="text-xl font-semibold text-white">Pay As You Go</span>
+          </div>
+
+          <div class="space-y-4 mb-6">
+            <div class="bg-gray-800 p-3 rounded-xl">
+              <p class="text-white text-lg font-medium">GH₵ 0.1 /</p>
+              <p class="text-gray-400 text-sm">Sachets per bag</p>
+            </div>
+            <div class="bg-gray-800 p-3 rounded-xl">
+              <p class="text-white text-lg font-medium">GH₵ 0.1 /</p>
+              <p class="text-gray-400 text-sm">Bottles per pack</p>
+            </div>
+            <div class="bg-gray-800 p-3 rounded-xl">
+              <p class="text-white text-lg font-medium">GH₵ 0.1 /</p>
+              <p class="text-gray-400 text-sm">Dispenser per dispenser</p>
+            </div>
+          </div>
+
+          <button class="btn-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg mb-6">
+            Activate Plan
+          </button>
+
+          <ul class="text-left space-y-3 flex-grow">
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Branch management</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Account</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Requests</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Get Return pickups</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Full inventory management</span>
+            </li>
+             <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Driver app with full features</span>
+            </li>
+             <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Access to free trial plan</span>
+            </li>
+             <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Plugins</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Access to advance features</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Priority Customer Support</span>
+            </li>
+          </ul>
+        </div>
+        
+        <!-- Premium Pack Card -->
+        <div
+          class="pricing-card glassmorphic-blue animated-border rounded-3xl p-6 sm:p-8 text-center flex flex-col w-full relative"
+        >
+          <div class="flex justify-center">
+            <div class="bg-yellow-500 text-gray-900 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+              Coming Soon
+            </div>
+          </div>
+          <h3 class="text-3xl font-bold text-white mb-4 mt-4">
+            <span class="inline-block px-4 py-2 bg-white text-gray-900 rounded-full">
+              Premium Pack
+            </span>
+          </h3>
+          <div class="flex justify-center items-center mb-1">
+            <p class="text-5xl font-bold text-white">GH₵ 60</p>
+          </div>
+          <p class="text-gray-400 text-lg mb-2">/ month</p>
+          <div class="bg-red-500 text-white text-xs font-semibold px-2 py-1.5 rounded-full inline-block mx-auto mb-6">
+              50% off
+            </div>
+          
+          <p class="text-gray-300 text-base mb-6 flex-grow">
+            Unlock the full potential with our AI-powered tools and dedicated support.
+          </p>
+          <button class="btn-primary text-white font-semibold px-6 py-3 rounded-lg shadow-lg mb-6 opacity-70 cursor-not-allowed">
+            Choose Plan
+          </button>
+          <ul class="text-left space-y-3">
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Access to all advance AI features</span>
+            </li>
+            <li class="feature-list-item">
+              <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+              <span>Customer support and assistance</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Free Trial Card -->
+        <div
+          class="pricing-card rounded-3xl p-6 sm:p-8 text-center flex flex-col items-center w-full"
+        >
+            <h3 class="text-2xl font-bold mb-2">Free Trial</h3>
+            <p class="text-gray-400 text-sm mb-4">Get started and explore basic features</p>
+            <p class="text-5xl font-bold text-white mb-2">Free</p>
+            <p class="text-gray-400 text-lg mb-6">for 20 days</p>
+            <button
+              class="btn-secondary text-white font-semibold px-6 py-3 rounded-lg shadow-lg"
+            >
+              Start Free Trial
+            </button>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="text-white py-8 sm:py-10 mt-16 sm:mt-20 border-t border-gray-800 px-4"
+    >
+      <div
+        class="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-sm"
+      >
+        <p class="text-gray-500 text-center md:text-left">
+          &copy; Phluowise Company, <span id="current-year"></span>
+        </p>
+        <p class="text-gray-500 text-center md:text-center">
+          From: <span class="text-brand">Phluowise</span>, All rights reserved.
+        </p>
+        <div class="flex space-x-6 justify-center md:justify-end">
+          <a href="#" class="hover:text-brand transition-colors">Instagram</a>
+          <a href="#" class="hover:text-brand transition-colors">Facebook</a>
+          <a href="#" class="hover:text-brand transition-colors">X</a>
+          <a href="#" class="hover:text-brand transition-colors">LinkedIn</a>
+          <a href="#" class="hover:text-brand transition-colors">Youtube</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const y = document.getElementById("current-year");
+        if (y) y.textContent = new Date().getFullYear();
+        // Mobile Menu Toggle logic
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const closeMobileMenuButton =
+          document.getElementById("close-mobile-menu");
+        const mobileMenuOverlay = document.getElementById(
+          "mobile-menu-overlay"
+        );
+        const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+        // Products Dropdown elements
+        const mobileProductsButton = document.getElementById(
+          "mobile-products-button"
+        );
+        const mobileProductsDropdownMenu = mobileProductsButton
+          ? mobileProductsButton.nextElementSibling
+          : null;
+
+        // Resources Dropdown elements
+        const mobileResourcesButton = document.getElementById(
+          "mobile-resources-button"
+        );
+        const mobileResourcesDropdownMenu = mobileResourcesButton
+          ? mobileResourcesButton.nextElementSibling
+          : null;
+
+        if (mobileMenuButton && closeMobileMenuButton && mobileMenuOverlay) {
+          mobileMenuButton.addEventListener("click", () => {
+            mobileMenuOverlay.classList.add("open");
+          });
+
+          closeMobileMenuButton.addEventListener("click", () => {
+            mobileMenuOverlay.classList.remove("open");
+          });
+
+          // Function to close all mobile dropdowns
+          function closeAllMobileDropdowns() {
+            if (
+              mobileProductsDropdownMenu &&
+              mobileProductsDropdownMenu.classList.contains("open")
+            ) {
+              mobileProductsDropdownMenu.classList.remove("open");
+              mobileProductsDropdownMenu.style.maxHeight = "0";
+              mobileProductsDropdownMenu.style.opacity = "0";
+            }
+            if (
+              mobileResourcesDropdownMenu &&
+              mobileResourcesDropdownMenu.classList.contains("open")
+            ) {
+              mobileResourcesDropdownMenu.classList.remove("open");
+              mobileResourcesDropdownMenu.style.maxHeight = "0";
+              mobileResourcesDropdownMenu.style.opacity = "0";
+            }
+          }
+
+          mobileNavLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              mobileMenuOverlay.classList.remove("open");
+              closeAllMobileDropdowns();
+            });
+          });
+
+          // Toggle logic for Products Dropdown (Mobile)
+          if (mobileProductsButton && mobileProductsDropdownMenu) {
+            mobileProductsButton.addEventListener("click", (event) => {
+              event.stopPropagation(); // Prevent closing the main mobile menu
+              // Close other dropdowns before opening this one
+              if (
+                mobileResourcesDropdownMenu &&
+                mobileResourcesDropdownMenu.classList.contains("open")
+              ) {
+                mobileResourcesDropdownMenu.classList.remove("open");
+                mobileResourcesDropdownMenu.style.maxHeight = "0";
+                mobileResourcesDropdownMenu.style.opacity = "0";
+              }
+
+              if (mobileProductsDropdownMenu.classList.contains("open")) {
+                mobileProductsDropdownMenu.classList.remove("open");
+                mobileProductsDropdownMenu.style.maxHeight = "0";
+                mobileProductsDropdownMenu.style.opacity = "0";
+              } else {
+                mobileProductsDropdownMenu.classList.add("open");
+                mobileProductsDropdownMenu.style.maxHeight =
+                  mobileProductsDropdownMenu.scrollHeight + "px";
+                mobileProductsDropdownMenu.style.opacity = "1";
+              }
+            });
+
+            // Close mobile products dropdown if clicking outside
+            document.addEventListener("click", (event) => {
+              if (
+                !mobileProductsButton.contains(event.target) &&
+                mobileProductsDropdownMenu &&
+                !mobileProductsDropdownMenu.contains(event.target)
+              ) {
+                if (mobileProductsDropdownMenu.classList.contains("open")) {
+                  mobileProductsDropdownMenu.classList.remove("open");
+                  mobileProductsDropdownMenu.style.maxHeight = "0";
+                  mobileProductsDropdownMenu.style.opacity = "0";
+                }
+              }
+            });
+          }
+
+          // Toggle logic for Resources Dropdown (Mobile)
+          if (mobileResourcesButton && mobileResourcesDropdownMenu) {
+            mobileResourcesButton.addEventListener("click", (event) => {
+              event.stopPropagation(); // Prevent closing the main mobile menu
+              // Close other dropdowns before opening this one
+              if (
+                mobileProductsDropdownMenu &&
+                mobileProductsDropdownMenu.classList.contains("open")
+              ) {
+                mobileProductsDropdownMenu.classList.remove("open");
+                mobileProductsDropdownMenu.style.maxHeight = "0";
+                mobileProductsDropdownMenu.style.opacity = "0";
+              }
+
+              if (mobileResourcesDropdownMenu.classList.contains("open")) {
+                mobileResourcesDropdownMenu.classList.remove("open");
+                mobileResourcesDropdownMenu.style.maxHeight = "0";
+                mobileResourcesDropdownMenu.style.opacity = "0";
+              } else {
+                mobileResourcesDropdownMenu.classList.add("open");
+                mobileResourcesDropdownMenu.style.maxHeight =
+                  mobileResourcesDropdownMenu.scrollHeight + "px";
+                mobileResourcesDropdownMenu.style.opacity = "1";
+              }
+            });
+
+            // Close mobile resources dropdown if clicking outside
+            document.addEventListener("click", (event) => {
+              if (
+                !mobileResourcesButton.contains(event.target) &&
+                mobileResourcesDropdownMenu &&
+                !mobileResourcesDropdownMenu.contains(event.target)
+              ) {
+                if (mobileResourcesDropdownMenu.classList.contains("open")) {
+                  mobileResourcesDropdownMenu.classList.remove("open");
+                  mobileResourcesDropdownMenu.style.maxHeight = "0";
+                  mobileResourcesDropdownMenu.style.opacity = "0";
+                }
+              }
+            });
+          }
+        }
+
+        // Simple Fade-in animation for page content (can be extended with IntersectionObserver if needed)
+        const pageContent = document.querySelector("main");
+        if (pageContent) {
+          pageContent.classList.add("fade-in");
+          setTimeout(() => {
+            pageContent.classList.add("visible");
+          }, 100); // Small delay to ensure CSS is applied before animation
+        }
+
+        // Apply fade-in to pricing cards with a stagger
+        const pricingCards = document.querySelectorAll(
+          ".pricing-card"
+        );
+        pricingCards.forEach((card, index) => {
+          card.style.opacity = "0"; // Hide initially
+          card.style.transform = "translateY(20px)"; // Start slightly below
+          card.style.transition =
+            "opacity 0.8s ease-out, transform 0.8s ease-out";
+          card.style.transitionDelay = `${index * 0.1}s`; // Stagger delay
+
+          // Simple check for visibility
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.style.opacity = "1";
+                  entry.target.style.transform = "translateY(0)";
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.2,
+            }
+          );
+          observer.observe(card);
+        });
+      });
+    </script>
+  </body>
+</html>
+
+
+
