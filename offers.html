@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exclusive Offers - Phluowise</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="images/phluowise_mobile _icon.jpeg"
+      type="image/jpeg"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #0d1117;
+        color: #e6edf3;
+      }
+      .glassmorphism {
+        background: rgba(59, 116, 255, 0.1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(59, 116, 255, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .glassmorphism:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(59, 116, 255, 0.2);
+      }
+      .header-nav {
+        background: rgba(13, 17, 23, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #3b74ff, #60a5fa);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #508bff, #7bb3ff);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
+      }
+      .referral-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+      .referral-card:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(59, 116, 255, 0.3);
+      }
+      .copy-btn {
+        background-color: #374151;
+        transition: background-color 0.2s ease;
+      }
+      .copy-btn:hover {
+        background-color: #4b5563;
+      }
+      .copy-btn.copied {
+        background-color: #22c55e;
+      }
+      /* Style for truncating text with ellipsis */
+      .truncated-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+        max-width: 100%;
+        vertical-align: middle;
+      }
+      .referral-code-container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+      .referral-code {
+        flex-grow: 1;
+        overflow: hidden; /* This is key for the truncation to work */
+      }
+    </style>
+  </head>
+  <body class="bg-black">
+    <!-- Header -->
+    <header class="header-nav sticky top-0 left-0 right-0 z-50">
+      <div
+        class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center"
+      >
+        <a href="index.html" class="flex items-center">
+          <img
+            src="image_ae8c60.png"
+            alt="Phluowise Logo"
+            class="h-8 md:h-10"
+            onerror="this.onerror=null;this.src='https://placehold.co/150x40/0D1117/3B74FF?text=Phluowise';"
+          />
+        </a>
+        <a
+          href="index.html"
+          class="text-gray-300 hover:text-white px-3 py-2 rounded-lg transition-colors"
+          >Back to Home</a
+        >
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 sm:px-6 py-16 sm:py-20">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight">
+          Exclusive Offers & Referrals
+        </h1>
+        <p class="text-lg md:text-xl text-gray-400 mt-4 max-w-3xl mx-auto">
+          Share these codes with your friends and explore our recommended
+          products.
+        </p>
+      </div>
+
+      <!-- Referral Codes Section -->
+      <section id="referrals" class="mb-20">
+        <h2 class="text-3xl font-bold text-center text-brand mb-8">
+          Get free Referral Codes
+        </h2>
+
+        <!-- Filter and Search Controls -->
+        <div class="flex flex-col sm:flex-row gap-4 mb-8 max-w-2xl mx-auto">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search offers..."
+            class="w-full px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          />
+          <select
+            id="filterSelect"
+            aria-label="Filter offers by category"
+            class="w-full sm:w-64 px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          >
+            <option value="all">All Categories</option>
+          </select>
+        </div>
+
+        <div
+          id="referral-grid"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <!-- Referral cards will be dynamically inserted here -->
+        </div>
+      </section>
+
+      <!-- Products Section -->
+      <section id="products">
+        <h2 class="text-3xl font-bold text-center text-brand mb-8">
+          Featured Products
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Product Card 1 -->
+          <div class="glassmorphism rounded-2xl overflow-hidden flex flex-col">
+            <img
+              src="https://placehold.co/600x400/0D1117/3B74FF?text=Product+1"
+              alt="Water Purifier"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6 flex-grow flex flex-col">
+              <h3 class="text-2xl font-bold mb-2">Advanced Water Purifier</h3>
+              <p class="text-gray-400 mb-4 flex-grow">
+                State-of-the-art purification system for the cleanest water.
+              </p>
+              <a
+                href="#"
+                class="btn-primary text-white font-semibold px-6 py-3 rounded-lg text-center mt-4"
+                >View Product</a
+              >
+            </div>
+          </div>
+          <!-- Product Card 2 -->
+          <div class="glassmorphism rounded-2xl overflow-hidden flex flex-col">
+            <img
+              src="https://placehold.co/600x400/0D1117/3B74FF?text=Product+2"
+              alt="Eco-Friendly Water Bottle"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6 flex-grow flex flex-col">
+              <h3 class="text-2xl font-bold mb-2">Eco-Friendly Bottle</h3>
+              <p class="text-gray-400 mb-4 flex-grow">
+                Stay hydrated on the go with our sustainable, reusable water
+                bottle.
+              </p>
+              <a
+                href="#"
+                class="btn-primary text-white font-semibold px-6 py-3 rounded-lg text-center mt-4"
+                >View Product</a
+              >
+            </div>
+          </div>
+          <!-- Product Card 3 -->
+          <div class="glassmorphism rounded-2xl overflow-hidden flex flex-col">
+            <img
+              src="https://placehold.co/600x400/0D1117/3B74FF?text=Product+3"
+              alt="Smart Water Dispenser"
+              class="w-full h-48 object-cover"
+            />
+            <div class="p-6 flex-grow flex flex-col">
+              <h3 class="text-2xl font-bold mb-2">Smart Water Dispenser</h3>
+              <p class="text-gray-400 mb-4 flex-grow">
+                Instant hot, cold, and ambient water at your fingertips.
+              </p>
+              <a
+                href="#"
+                class="btn-primary text-white font-semibold px-6 py-3 rounded-lg text-center mt-4"
+                >View Product</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Marketing Association Section -->
+      <section id="marketing-association" class="my-20">
+        <div
+          class="glassmorphism rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto"
+        >
+          <h2 class="text-3xl font-bold text-white mb-4">
+            Join the Phluowise Marketing Association
+          </h2>
+          <p class="text-lg text-gray-400 max-w-2xl mx-auto mb-8">
+            Are you a marketing team ready to make an impact? Register to
+            participate in Phluowise marketing campaigns and get paid for
+            referring water companies to our platform.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row justify-center items-center gap-4"
+          >
+            <a
+              href="#"
+              class="btn-primary text-white font-semibold px-8 py-3 rounded-lg text-center w-full sm:w-auto"
+              >Get Started</a
+            >
+            <a
+              href="#"
+              class="text-gray-300 hover:text-white font-medium px-8 py-3 rounded-lg transition-colors w-full sm:w-auto"
+              >Learn More</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const referrals = [
+          {
+            title: "General Discount",
+            description:
+              "Share this code to give your friends 10% off their first order! Buy hosting, VPS, and email plans (12+ months)",
+            link: "https://hostinger.com?REFERRALCODE=I8RPHLUOWGQM",
+            category: "General",
+          },
+          {
+            title: "Premium Web Hosting",
+            description:
+              "Everything you need to create your website with Hostinger",
+            link: "https://www.hostinger.com/cart?product=hosting%3Ahostinger_premium&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc46-bd85-7115-8d2e-29058873df56",
+            category: "Hosting",
+          },
+          {
+            title: "Business Web Hosting",
+            description: "Level-up with more power and enhanced features",
+            link: "https://www.hostinger.com/cart?product=hosting%3Ahostinger_business&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc4a-9fd7-709e-a20e-ea5da119472a",
+            category: "Hosting",
+          },
+          {
+            title: "Cloud Startup",
+            description: "Optimized for business and eCommerce websites",
+            link: "https://www.hostinger.com/cart?product=hosting%3Acloud_economy&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc52-fbb9-72ad-be22-9494501634e4",
+            category: "Cloud",
+          },
+          {
+            title: "Cloud Professional",
+            description: "Optimized for scaling professional websites",
+            link: "https://www.hostinger.com/cart?product=hosting%3Acloud_professional&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc54-305d-719f-bbca-6f993977fd82",
+            category: "Cloud",
+          },
+          {
+            title: "Cloud Enterprise",
+            description: "Maximum performance for your websites",
+            link: "https://www.hostinger.com/cart?product=hosting%3Acloud_enterprise&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc54-9d9d-7321-8264-733a6db93784",
+            category: "Cloud",
+          },
+          {
+            title: "Agency Startup",
+            description: "Optimized for business and ecommerce websites.",
+            link: "https://www.hostinger.com/cart?product=hosting%3Aagency_startup&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc55-242a-70cd-a4b8-e3e4381fe5f9",
+            category: "Agency",
+          },
+          {
+            title: "Agency Professional",
+            description: "More power for bigger projects.",
+            link: "https://www.hostinger.com/cart?product=hosting%3Aagency_professional&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc59-794e-7375-b764-21b4d0a5e553",
+            category: "Agency",
+          },
+          {
+            title: "Agency Growth",
+            description: "Built for serious growth and seamless scaling.",
+            link: "https://www.hostinger.com/cart?product=hosting%3Aagency_growth&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc59-b8b2-72d8-bfe0-ec0ddc22e9c7",
+            category: "Agency",
+          },
+          {
+            title: "KVM 1",
+            description:
+              "1 vCPU Core, 4 GB RAM, 50 GB NVMe, 4 TB Bandwidth. US$ 5.99/mo",
+            link: "https://www.hostinger.com/cart?product=vps%3Avps_kvm_1&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc5a-578c-7174-975a-100624662e79",
+            category: "KVM",
+          },
+          {
+            title: "KVM 2",
+            description:
+              "2 vCPU Core, 8 GB RAM, 100 GB NVMe, 8 TB Bandwidth. US$ 8.49/mo",
+            link: "https://www.hostinger.com/cart?product=vps%3Avps_kvm_2&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc5a-d058-73fd-a1e4-94bb700f6c16",
+            category: "KVM",
+          },
+          {
+            title: "KVM 4",
+            description:
+              "4 vCPU Core, 16 GB RAM, 200 GB NVMe, 16 TB Bandwidth. US$ 12.99/mo",
+            link: "https://www.hostinger.com/cart?product=vps%3Avps_kvm_4&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc5b-3c01-7281-a53b-35daf7649c18",
+            category: "KVM",
+          },
+          {
+            title: "KVM 8",
+            description:
+              "8 vCPU Core, 32 GB RAM, 400 GB NVMe, 32 TB Bandwidth. US$ 24.99/mo",
+            link: "https://www.hostinger.com/cart?product=vps%3Avps_kvm_8&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc5b-a37a-71aa-a6fe-82be4d07af48",
+            category: "KVM",
+          },
+          {
+            title: "Premium Website Builder",
+            description:
+              "Get the essentials you need to create a website. 25 Websites, AI website builder, Free Domain. US$ 3.99/mo",
+            link: "https://www.hostinger.com/cart?product=hosting%3Ahostinger_premium&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc5c-9f6f-73d3-8da4-dbc9e1a99384&product_type=website-builder",
+            category: "Website Builder",
+          },
+          {
+            title: "Business Website Builder",
+            description:
+              "Grow with advanced AI tools and eCommerce features. 50 Websites, AI website builder, Free Domain, eCommerce Features. US$ 4.99/mo",
+            link: "https://www.hostinger.com/cart?product=hosting%3Ahostinger_business&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc5c-f271-72e1-ad9b-4c4a7569db1c&product_type=website-builder",
+            category: "Website Builder",
+          },
+          {
+            title: "Business Starter email",
+            description:
+              "Perfect for small businesses. 10 GB Storage, 10 Forwarding Rules, 10 Email Aliases. US$ 0.39/mo per mailbox",
+            link: "https://www.hostinger.com/cart?product=hostinger_mail%3Apro&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc5d-8108-7166-a1ea-4560c437cd95",
+            category: "Email",
+          },
+          {
+            title: "Business Premium email",
+            description:
+              "For scaling teams who need plenty of email storage. 50 GB Storage, 50 Forwarding Rules, 50 Email Aliases, Free domain. US$ 1.99/mo per mailbox",
+            link: "https://www.hostinger.com/cart?product=hostinger_mail%3Apremium&period=12&referral_type=cart_link&REFERRALCODE=I8RPHLUOWGQM&referral_id=0198fc5d-e3e0-736f-83d5-fc849258c6fa",
+            category: "Email",
+          },
+        ];
+
+        const referralGrid = document.getElementById("referral-grid");
+        const searchInput = document.getElementById("searchInput");
+        const filterSelect = document.getElementById("filterSelect");
+
+        // Populate filter dropdown
+        const categories = [...new Set(referrals.map((ref) => ref.category))];
+        categories.sort().forEach((category) => {
+          const option = document.createElement("option");
+          option.value = category;
+          option.textContent = category;
+          filterSelect.appendChild(option);
+        });
+
+        const renderReferrals = (filteredReferrals) => {
+          referralGrid.innerHTML = "";
+          if (filteredReferrals.length === 0) {
+            referralGrid.innerHTML = `<p class="text-gray-400 col-span-full text-center">No offers found matching your criteria.</p>`;
+            return;
+          }
+          filteredReferrals.forEach((ref, index) => {
+            const card = document.createElement("div");
+            card.className =
+              "referral-card rounded-2xl p-6 flex flex-col text-center glassmorphism";
+
+            const uniqueId = `refCode${index}`;
+
+            card.innerHTML = `
+                    <h3 class="text-xl font-semibold mb-2">${ref.title}</h3>
+                    <p class="text-gray-400 mb-4 flex-grow">${ref.description}</p>
+                    <div class="w-full bg-gray-900 rounded-lg px-4 py-2 mb-4">
+                        <span class="truncated-text" title="${ref.link}">${ref.link}</span>
+                        <span class="hidden" id="${uniqueId}">${ref.link}</span>
+                    </div>
+                    <div class="w-full flex items-center justify-center gap-4 mt-auto">
+                        <button
+                            class="copy-btn text-white font-semibold px-4 py-2 rounded-lg w-full"
+                            data-clipboard-target="#${uniqueId}"
+                        >
+                            Copy Link
+                        </button>
+                        <a
+                            href="${ref.link}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn-primary text-white font-semibold px-4 py-2 rounded-lg w-full text-center"
+                        >
+                            Open
+                        </a>
+                    </div>
+                `;
+            referralGrid.appendChild(card);
+          });
+        };
+
+        const filterAndSearch = () => {
+          const searchTerm = searchInput.value.toLowerCase();
+          const selectedCategory = filterSelect.value;
+
+          const filteredReferrals = referrals.filter((ref) => {
+            const matchesCategory =
+              selectedCategory === "all" || ref.category === selectedCategory;
+            const matchesSearch =
+              ref.title.toLowerCase().includes(searchTerm) ||
+              ref.description.toLowerCase().includes(searchTerm);
+            return matchesCategory && matchesSearch;
+          });
+
+          renderReferrals(filteredReferrals);
+        };
+
+        // Initial render
+        renderReferrals(referrals);
+
+        // Event listeners for search and filter
+        searchInput.addEventListener("input", filterAndSearch);
+        filterSelect.addEventListener("change", filterAndSearch);
+
+        // Event delegation for copy buttons
+        referralGrid.addEventListener("click", (event) => {
+          if (event.target.classList.contains("copy-btn")) {
+            const button = event.target;
+            const targetSelector = button.dataset.clipboardTarget;
+            const textToCopy = document.querySelector(targetSelector).innerText;
+
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+              document.execCommand("copy");
+              button.textContent = "Copied!";
+              button.classList.add("copied");
+              setTimeout(() => {
+                button.textContent = "Copy Link";
+                button.classList.remove("copied");
+              }, 2000);
+            } catch (err) {
+              console.error("Failed to copy text: ", err);
+            }
+            document.body.removeChild(textArea);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
