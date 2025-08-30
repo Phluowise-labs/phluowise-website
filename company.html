@@ -575,6 +575,68 @@
           transform: rotate(360deg);
         }
       }
+      
+      /* Static Image Display with Auto-Changing and Blue Border Animation */
+      .image-display {
+          height: 400px; 
+          position: relative;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 1.5rem;
+          background: rgba(13, 17, 23, 0.5);
+          overflow: hidden;
+      }
+
+      .image-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 15px;
+      }
+
+      .image-container img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 1rem;
+          transition: all 0.5s ease;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+          border: 2px solid #3b74ff;
+          animation: animate-border-color 4s linear infinite;
+      }
+      
+      .image-container img:hover {
+          transform: scale(1.02);
+          box-shadow: 0 15px 40px rgba(59, 116, 255, 0.3);
+      }
+
+      @keyframes animate-border-color {
+          0% { 
+              border-color: #3b74ff; 
+              box-shadow: 0 0 20px rgba(59, 116, 255, 0.3);
+          }
+          50% { 
+              border-color: #60a5fa; 
+              box-shadow: 0 0 30px rgba(96, 165, 250, 0.5);
+          }
+          100% { 
+              border-color: #3b74ff; 
+              box-shadow: 0 0 20px rgba(59, 116, 255, 0.3);
+          }
+      }
+
+      /* Responsive adjustments for image display */
+      @media (max-width: 768px) {
+          .image-display {
+              height: 300px;
+          }
+      }
+
     </style>
   </head>
 
@@ -692,7 +754,7 @@
         <div class="hidden md:flex items-center space-x-4">
           <!-- Removed Phluowise marketplace button -->
           <a
-            href="https://phluowise-labs.github.io/company/pages/user-signup.html"
+            href="onboarding.html"
             class="btn-get-started text-white font-semibold px-5 py-2.5 rounded-lg"
             >Get Started</a
           >
@@ -856,7 +918,7 @@
         >
         <!-- Removed Phluowise marketplace button -->
         <a
-          href="https://phluowise-labs.github.io/company/pages/user-signup.html"
+          href="onboarding.html"
           class="btn-get-started text-white font-semibold px-6 py-3 rounded-lg shadow-lg mt-4 mobile-nav-link"
           >Get Started</a
         >
@@ -886,7 +948,7 @@
             style="animation-delay: 0.4s"
           >
             <a
-              href="https://phluowise-labs.github.io/company/pages/user-signup.html"
+              href="onboarding.html"
               class="btn-get-started font-semibold px-6 py-2.5 rounded-lg shadow-lg w-full sm:w-auto"
               >Get Started</a
             >
@@ -1133,7 +1195,7 @@
                 class="flex flex-col sm:flex-row justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4"
               >
                 <a
-                  href="https://phluowise-labs.github.io/company/pages/user-signup.html"
+                  href="onboarding.html"
                   class="btn-get-started font-semibold px-6 py-2.5 rounded-lg shadow-lg"
                   >Get Started</a
                 >
@@ -1324,6 +1386,23 @@
                 Tailor your services and pricing to meet specific market
                 demands.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Image Slider Section -->
+      <section class="py-16 md:py-24 text-center overflow-hidden">
+        <div class="container mx-auto px-4">
+          <h3 class="text-3xl md:text-5xl font-bold text-gradient mb-4 slide-in-from-bottom">
+            Intuitive and Powerful Interface
+          </h3>
+          <p class="text-gray-400 mb-12 max-w-2xl mx-auto slide-in-from-bottom" style="animation-delay: 0.2s">
+            Explore our platform's user-friendly design, crafted for seamless management and powerful analytics at your fingertips.
+          </p>
+          <div class="image-display slide-in-from-bottom" style="animation-delay: 0.4s">
+            <div class="image-container">
+              <img id="interface-image" src="images/p1.jpeg" alt="Phluowise Interface" />
             </div>
           </div>
         </div>
@@ -1931,6 +2010,22 @@
                 "Thank you for contacting us. We will get back to you shortly.";
             }
           });
+        }
+
+        // Auto-changing interface images
+        const interfaceImages = ['images/p1.jpeg', 'images/p2.jpeg'];
+        let currentImageIndex = 0;
+        const interfaceImage = document.getElementById('interface-image');
+        
+        if (interfaceImage) {
+          setInterval(() => {
+            currentImageIndex = (currentImageIndex + 1) % interfaceImages.length;
+            interfaceImage.style.opacity = '0';
+            setTimeout(() => {
+              interfaceImage.src = interfaceImages[currentImageIndex];
+              interfaceImage.style.opacity = '1';
+            }, 300);
+          }, 4000); // Change every 4 seconds
         }
 
         // Simple auto-rotating carousel for image sections

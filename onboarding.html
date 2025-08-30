@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Phluowise - Company Setup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            color: #e6edf3;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        .onboarding-container {
+            background: rgba(13, 17, 23, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 2px solid #3b74ff;
+            animation: animate-border-color 4s linear infinite;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: #3b74ff rgba(59, 116, 255, 0.1);
+        }
+
+        .onboarding-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .onboarding-container::-webkit-scrollbar-track {
+            background: rgba(59, 116, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .onboarding-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #3b74ff, #3b74ff);
+            border-radius: 3px;
+        }
+
+        .onboarding-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #508bff, #508bff);
+        }
+
+        .onboarding-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .onboarding-container::-webkit-scrollbar-track {
+            background: rgba(59, 116, 255, 0.1);
+            border-radius: 3px;
+        }
+
+        .onboarding-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #3b74ff, #3b74ff);
+            border-radius: 3px;
+        }
+
+        .onboarding-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #508bff, #508bff);
+        }
+
+
+        .onboarding-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 116, 255, 0.08) 0%, transparent 70%);
+            animation: background-pan 25s linear infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes background-pan {
+            0% { transform: translate(0%, 0%); }
+            100% { transform: translate(-50%, -50%); }
+        }
+        
+        .progress-bar-bg {
+            background: rgba(55, 65, 81, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(135deg, #3b74ff, #3b74ff);
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b74ff, #3b74ff);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #508bff, #508bff);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
+        }
+
+        .btn-secondary {
+             background: transparent;
+            border: 1px solid #3b74ff;
+            color: #3b74ff;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(59, 116, 255, 0.1);
+            color: #3b74ff;
+            border-color: #3b74ff;
+            transform: translateY(-1px);
+        }
+
+        .btn-skip {
+            background: transparent;
+            color: #9ca3af;
+            border: 1px solid #4b5563;
+            transition: all 0.3s ease;
+        }
+
+        .btn-skip:hover {
+            background: rgba(156, 163, 175, 0.1);
+            color: #d1d5db;
+            border-color: #6b7280;
+        }
+
+        .step {
+            display: none;
+            animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes slideInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px) scale(0.98); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
+        }
+
+        @keyframes animate-border-color {
+            0% { 
+                border-color: #3b74ff; 
+            }
+            50% { 
+                border-color: #508bff; 
+            }
+            100% { 
+                border-color: #3b74ff; 
+            }
+        }
+
+        .icon-container {
+            background: linear-gradient(135deg, rgba(59, 116, 255, 0.1), rgba(59, 116, 255, 0.1));
+            border: 1px solid rgba(59, 116, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 116, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .icon-container:hover::before {
+            left: 100%;
+        }
+
+        .icon-container:hover {
+            transform: translateY(-3px) rotate(2deg);
+            box-shadow: 0 8px 25px rgba(59, 116, 255, 0.3);
+        }
+
+        .feature-highlight {
+            background: linear-gradient(135deg, rgba(59, 116, 255, 0.05), rgba(59, 116, 255, 0.05));
+            border: 1px solid rgba(59, 116, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-highlight::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(59, 116, 255, 0.05) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .feature-highlight:hover::after {
+            transform: translateX(100%);
+        }
+
+        .feature-highlight:hover {
+            background: linear-gradient(135deg, rgba(59, 116, 255, 0.1), rgba(59, 116, 255, 0.1));
+            transform: translateY(-2px);
+            border-color: rgba(59, 116, 255, 0.2);
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #3b74ff;
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+            background: #3b74ff;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        .floating-element:nth-child(4) {
+            top: 40%;
+            right: 25%;
+            animation-delay: 6s;
+            background: #3b74ff;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.7; }
+            50% { transform: translateY(-20px) scale(1.3); opacity: 1; }
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(156, 163, 175, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .step-dot.active {
+            background: #3b74ff;
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(59, 116, 255, 0.5);
+        }
+
+        .step-dot.completed {
+            background: #3b74ff;
+            transform: scale(1.1);
+        }
+
+        .step-dot:hover {
+            transform: scale(1.2);
+        }
+
+        .text-gradient {
+            background: linear-gradient(90deg, #3b74ff, #3b74ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .survey-container {
+            background: rgba(59, 116, 255, 0.05);
+            border: 1px solid rgba(59, 116, 255, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            backdrop-filter: blur(10px);
+            max-width: 100%;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        .survey-question {
+            margin-bottom: 1.5rem;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .survey-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .survey-option {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background: rgba(59, 116, 255, 0.05);
+            border: 1px solid rgba(59, 116, 255, 0.1);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .survey-option:hover {
+            background: rgba(59, 116, 255, 0.1);
+            border-color: rgba(59, 116, 255, 0.3);
+            transform: translateX(5px);
+        }
+
+        .survey-option.selected {
+            background: rgba(59, 116, 255, 0.15);
+            border-color: #3b74ff;
+            box-shadow: 0 0 10px rgba(59, 116, 255, 0.3);
+        }
+
+        .survey-option input[type="radio"] {
+            margin-right: 0.75rem;
+            accent-color: #3b74ff;
+        }
+
+        .survey-input {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(59, 116, 255, 0.05);
+            border: 1px solid rgba(59, 116, 255, 0.2);
+            border-radius: 0.5rem;
+            color: #e6edf3;
+            transition: all 0.3s ease;
+        }
+
+        .survey-input:focus {
+            outline: none;
+            border-color: #3b74ff;
+            box-shadow: 0 0 10px rgba(59, 116, 255, 0.3);
+        }
+
+        .survey-input::placeholder {
+            color: #9ca3af;
+        }
+        
+        .button-container {
+            padding: 1rem 0;
+            margin-top: 1.5rem; /* Increased margin for better spacing */
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .bounce-in {
+            animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 relative">
+    <!-- Floating background elements -->
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+
+    <div class="onboarding-container w-full max-w-2xl mx-auto rounded-3xl p-6 md:p-8 relative">
+        <!-- Skip Button -->
+        <div class="absolute top-4 right-4 z-10">
+            <button onclick="goToSignup()" 
+               class="btn-skip font-medium px-3 py-1.5 rounded-lg text-sm hover:scale-105 transition-transform">
+                Skip Setup
+            </button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mb-6 relative z-10">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-xs text-gray-400">Setup Progress</span>
+                <span class="text-xs text-brand font-medium" id="progress-text">25%</span>
+            </div>
+            <div class="progress-bar-bg w-full h-2 rounded-full overflow-hidden">
+                <div id="progressBar" class="progress-bar-fill h-2 rounded-full" style="width: 25%;"></div>
+            </div>
+        </div>
+
+        <!-- Step Indicators -->
+        <div class="step-indicator relative z-10">
+            <div class="step-dot active" data-step="1" onclick="goToStep(1)"></div>
+            <div class="step-dot" data-step="2" onclick="goToStep(2)"></div>
+            <div class="step-dot" data-step="3" onclick="goToStep(3)"></div>
+            <div class="step-dot" data-step="4" onclick="goToStep(4)"></div>
+        </div>
+
+        <div id="onboarding-steps" class="relative z-10">
+            <!-- Step 1 -->
+            <div id="step-1" class="step active">
+                <div class="text-center">
+                    <div class="icon-container w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center bounce-in">
+                        <img src="https://placehold.co/48x48/3b74ff/ffffff?text=📊" alt="Analytics" class="h-12 w-12 rounded-lg">
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">
+                        Welcome to Phluowise!
+                    </h2>
+                    <p class="text-base text-gray-300 mb-6 max-w-lg mx-auto leading-relaxed">
+                        Transform your water delivery business with our comprehensive management platform. 
+                        Let's get you set up quickly.
+                    </p>
+                    
+                    <div class="feature-highlight p-4 rounded-xl mb-6 max-w-lg mx-auto">
+                        <h3 class="text-base font-semibold text-brand mb-2">What you'll get:</h3>
+                        <ul class="text-gray-400 space-y-1 text-left text-sm">
+                            <li>• Real-time driver tracking and analytics</li>
+                            <li>• Streamlined order management system</li>
+                            <li>• Advanced business insights and reporting</li>
+                            <li>• Multi-branch management capabilities</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="button-container flex justify-end">
+                        <button onclick="nextStep(2)" class="btn-primary font-semibold px-6 py-2.5 rounded-lg text-base pulse-animation">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div id="step-2" class="step">
+                <div class="text-center">
+                    <div class="icon-container w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center bounce-in">
+                         <img src="https://placehold.co/48x48/3b74ff/ffffff?text=🚚" alt="Driver Management" class="h-12 w-12 rounded-lg">
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                        Fleet Management Made Simple
+                    </h2>
+                    <p class="text-base text-gray-300 mb-6 max-w-lg mx-auto leading-relaxed">
+                        Take control of your delivery operations with powerful tools designed specifically for water delivery companies.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 gap-4 mb-6 max-w-lg mx-auto">
+                        <div class="feature-highlight p-4 rounded-xl text-left">
+                            <h4 class="text-base font-semibold text-brand mb-2">🚚 Driver Tracking</h4>
+                            <p class="text-gray-400 text-sm">Monitor driver locations, routes, and performance in real-time</p>
+                        </div>
+                        <div class="feature-highlight p-4 rounded-xl text-left">
+                            <h4 class="text-base font-semibold text-brand mb-2">📊 Analytics Dashboard</h4>
+                            <p class="text-gray-400 text-sm">Get insights into delivery efficiency and customer satisfaction</p>
+                        </div>
+                        <div class="feature-highlight p-4 rounded-xl text-left">
+                            <h4 class="text-base font-semibold text-brand mb-2">🔄 Route Optimization</h4>
+                            <p class="text-gray-400 text-sm">AI-powered route planning for maximum efficiency</p>
+                        </div>
+                        <div class="feature-highlight p-4 rounded-xl text-left">
+                            <h4 class="text-base font-semibold text-brand mb-2">📱 Mobile App</h4>
+                            <p class="text-gray-400 text-sm">Driver app for seamless communication and updates</p>
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <div class="flex justify-between items-center">
+                            <button onclick="prevStep(1)" class="btn-secondary font-semibold px-4 py-2.5 rounded-lg text-sm">
+                                ← Back
+                            </button>
+                            <button onclick="nextStep(3)" class="btn-primary font-semibold px-6 py-2.5 rounded-lg text-base">
+                                Continue
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div id="step-3" class="step">
+                <div class="text-center">
+                    <div class="icon-container w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center bounce-in">
+                        <img src="https://placehold.co/48x48/3b74ff/ffffff?text=📦" alt="Order Management" class="h-12 w-12 rounded-lg">
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
+                        Streamline Your Operations
+                    </h2>
+                    <p class="text-base text-gray-300 mb-6 max-w-lg mx-auto leading-relaxed">
+                        From order intake to delivery completion, manage everything seamlessly in one platform.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 gap-4 mb-6 max-w-lg mx-auto">
+                        <div class="feature-highlight p-4 rounded-xl text-left">
+                            <h4 class="text-base font-semibold text-brand mb-2">📋 Order Management</h4>
+                            <p class="text-gray-400 text-sm">Handle requests, schedule deliveries, and track fulfillment</p>
+                        </div>
+                        <div class="feature-highlight p-4 rounded-xl text-left">
+                            <h4 class="text-base font-semibold text-brand mb-2">💰 Payment Processing</h4>
+                            <p class="text-gray-400 text-sm">Secure transactions and automated billing</p>
+                        </div>
+                        <div class="feature-highlight p-4 rounded-xl text-left">
+                            <h4 class="text-base font-semibold text-brand mb-2">🏢 Branch Management</h4>
+                            <p class="text-gray-400 text-sm">Scale your business with multi-location support</p>
+                        </div>
+                        <div class="feature-highlight p-4 rounded-xl text-left">
+                            <h4 class="text-base font-semibold text-brand mb-2">📈 Performance Metrics</h4>
+                            <p class="text-gray-400 text-sm">Track KPIs and business growth indicators</p>
+                        </div>
+                    </div>
+
+                    <div class="button-container">
+                        <div class="flex justify-between items-center">
+                            <button onclick="prevStep(2)" class="btn-secondary font-semibold px-4 py-2.5 rounded-lg text-sm">
+                                ← Back
+                            </button>
+                            <button onclick="nextStep(4)" class="btn-primary font-semibold px-6 py-2.5 rounded-lg text-base">
+                                Almost Done
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 4 -->
+            <div id="step-4" class="step">
+                <div class="text-center">
+                    <div class="icon-container w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center bounce-in">
+                        <img src="https://placehold.co/48x48/3b74ff/ffffff?text=👤" alt="Ready to go" class="h-12 w-12 rounded-lg">
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">
+                        You're All Set!
+                    </h2>
+                    <p class="text-base text-gray-300 mb-6 max-w-lg mx-auto leading-relaxed">
+                        Congratulations! You're ready to revolutionize your water delivery business. 
+                        Create your company profile and start experiencing the Phluowise advantage.
+                    </p>
+                    
+                    <div class="feature-highlight p-6 rounded-xl mb-6 max-w-lg mx-auto">
+                        <h3 class="text-lg font-bold text-brand mb-3">🎉 Ready to Launch?</h3>
+                        <p class="text-gray-300 mb-4 text-sm">
+                            Join thousands of companies already using Phluowise to grow their business
+                        </p>
+                        <div class="text-xs text-gray-400 space-y-1">
+                            <p>✓ No setup fees</p>
+                            <p>✓ Free trial available</p>
+                            <p>✓ 24/7 support</p>
+                        </div>
+                    </div>
+
+                    <!-- Simplified Formspark Survey -->
+                    <div class="survey-container mb-6 max-w-lg mx-auto">
+                        <h3 class="text-lg font-bold text-brand mb-4">Quick Survey</h3>
+                        <form id="onboarding-survey" action="https://submit-form.com/BROFHIgzq" method="POST">
+                            <input type="hidden" name="source" value="onboarding">
+                            <input type="hidden" name="step" value="4">
+                            
+                            <div class="survey-question">
+                                <label class="text-sm font-medium text-gray-300 mb-2 block">What's your primary business goal?</label>
+                                <div class="survey-options">
+                                    <label class="survey-option">
+                                        <input type="radio" name="business_goal" value="increase_efficiency" required>
+                                        <span>Increase operational efficiency</span>
+                                    </label>
+                                    <label class="survey-option">
+                                        <input type="radio" name="business_goal" value="expand_business" required>
+                                        <span>Expand to new locations</span>
+                                    </label>
+                                    <label class="survey-option">
+                                        <input type="radio" name="business_goal" value="improve_customer_service" required>
+                                        <span>Improve customer service</span>
+                                    </label>
+                                    <label class="survey-option">
+                                        <input type="radio" name="business_goal" value="reduce_costs" required>
+                                        <span>Reduce operational costs</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="survey-question">
+                                <label class="text-sm font-medium text-gray-300 mb-2 block">How many drivers do you currently manage?</label>
+                                <input type="number" name="driver_count" class="survey-input" placeholder="Enter number of drivers" min="1" required>
+                            </div>
+
+                            <div class="survey-question">
+                                <label class="text-sm font-medium text-gray-300 mb-2 block">What's your biggest challenge?</label>
+                                <div class="survey-options">
+                                    <label class="survey-option">
+                                        <input type="radio" name="biggest_challenge" value="route_optimization" required>
+                                        <span>Route optimization</span>
+                                    </label>
+                                    <label class="survey-option">
+                                        <input type="radio" name="biggest_challenge" value="driver_management" required>
+                                        <span>Driver management</span>
+                                    </label>
+                                    <label class="survey-option">
+                                        <input type="radio" name="biggest_challenge" value="customer_communication" required>
+                                        <span>Customer communication</span>
+                                    </label>
+                                    <label class="survey-option">
+                                        <input type="radio" name="biggest_challenge" value="payment_processing" required>
+                                        <span>Payment processing</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="button-container">
+                        <div class="flex flex-col sm:flex-row justify-center items-center gap-3">
+                            <button onclick="prevStep(3)" class="btn-secondary font-semibold px-4 py-2.5 rounded-lg text-sm">
+                                ← Back
+                            </button>
+                            <button onclick="submitSurveyAndContinue()" class="btn-primary text-white font-semibold px-6 py-2.5 rounded-lg text-base text-center">
+                                Complete Setup →
+                            </button>
+                        </div>
+                        
+                        <!-- Direct Signup Option -->
+                        <div class="text-center mt-4">
+                            <button onclick="goToSignup()" class="text-sm text-gray-400 hover:text-blue-400 transition-colors underline">
+                                Skip survey and go directly to signup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 4;
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progress-text');
+        const onboardingContainer = document.querySelector('.onboarding-container');
+
+        function updateStepIndicators(step) {
+            document.querySelectorAll('.step-dot').forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index + 1 === step) {
+                    dot.classList.add('active');
+                } else if (index + 1 < step) {
+                    dot.classList.add('completed');
+                }
+            });
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
+            document.getElementById(`step-${step}`).classList.add('active');
+            
+            const progress = (step / totalSteps) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${Math.round(progress)}%`;
+            
+            updateStepIndicators(step);
+            
+            // Scroll to the top of the container when changing steps
+            if(onboardingContainer) {
+               onboardingContainer.scrollTop = 0;
+            }
+        }
+
+        function nextStep(step) {
+            if (step <= totalSteps) {
+                currentStep = step;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep(step) {
+            if (step >= 1) {
+                currentStep = step;
+                showStep(currentStep);
+            }
+        }
+
+        function goToStep(step) {
+            if (step >= 1 && step <= totalSteps) {
+                currentStep = step;
+                showStep(currentStep);
+            }
+        }
+
+        // Initialize step indicators
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStepIndicators(1);
+            
+            // Add hover effects to step dots
+            document.querySelectorAll('.step-dot').forEach(dot => {
+                dot.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('active') && !this.classList.contains('completed')) {
+                        this.style.transform = 'scale(1.1)';
+                        this.style.background = 'rgba(59, 116, 255, 0.5)';
+                    }
+                });
+                
+                dot.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('active') && !this.classList.contains('completed')) {
+                        this.style.transform = 'scale(1)';
+                        this.style.background = 'rgba(156, 163, 175, 0.3)';
+                    }
+                });
+            });
+
+            // Add survey option interactions
+            document.querySelectorAll('.survey-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options in the same group
+                    const radioName = this.querySelector('input[type="radio"]').name;
+                    document.querySelectorAll(`input[name="${radioName}"]`).forEach(input => {
+                        input.closest('.survey-option').classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    this.querySelector('input[type="radio"]').checked = true;
+                });
+            });
+        });
+
+        // Function to go directly to signup
+        function goToSignup() {
+            Swal.fire({
+                title: 'Skip Onboarding?',
+                text: 'You can always come back to complete the setup later. Would you like to go directly to signup?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Go to Signup',
+                cancelButtonText: 'Continue Setup',
+                confirmButtonColor: '#3b74ff',
+                cancelButtonColor: '#6b7280',
+                background: '#1e293b',
+                color: '#e6edf3'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = 'https://phluowise-labs.github.io/company/pages/user-signup.html';
+                }
+            });
+        }
+
+        // Survey submission function
+        async function submitSurveyAndContinue() {
+            const surveyForm = document.getElementById('onboarding-survey');
+            const submitButton = event.target;
+            
+            // Check if form is valid
+            if (!surveyForm.checkValidity()) {
+                surveyForm.reportValidity();
+                return;
+            }
+
+            // Show loading state
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+
+            try {
+                const formData = new FormData(surveyForm);
+                const formProps = Object.fromEntries(formData);
+
+                const response = await fetch(surveyForm.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
+                    body: JSON.stringify(formProps),
+                });
+
+                if (response.ok) {
+                    // Show success message with SweetAlert2
+                    Swal.fire({
+                        title: 'Survey Submitted Successfully! 🎉',
+                        text: 'Thank you for your responses. We\'re redirecting you to create your company profile.',
+                        icon: 'success',
+                        confirmButtonText: 'Continue',
+                        confirmButtonColor: '#3b74ff',
+                        background: '#1e293b',
+                        color: '#e6edf3',
+                        showClass: {
+                            popup: 'animate__animated animate__fadeInDown'
+                        },
+                        hideClass: {
+                            popup: 'animate__animated animate__fadeOutUp'
+                        }
+                    }).then((result) => {
+                        // Auto-redirect to onboarding page
+                        window.location.href = 'onboarding.html';
+                    });
+                } else {
+                    // Handle error
+                    console.error('Survey submission failed');
+                    Swal.fire({
+                        title: 'Submission Failed!',
+                        text: 'There was an error submitting your survey. Please try again.',
+                        icon: 'error',
+                        confirmButtonText: 'Try Again',
+                        confirmButtonColor: '#3b74ff',
+                        background: '#1e293b',
+                        color: '#e6edf3'
+                    });
+                    submitButton.textContent = 'Try Again';
+                    submitButton.disabled = false;
+                }
+            } catch (error) {
+                console.error('Network error:', error);
+                Swal.fire({
+                    title: 'Network Error!',
+                    text: 'Could not connect to the server. Please check your internet connection and try again.',
+                    icon: 'error',
+                    confirmButtonText: 'Try Again',
+                    confirmButtonColor: '#3b74ff',
+                    background: '#1e293b',
+                    color: '#e6edf3'
+                });
+                submitButton.textContent = 'Try Again';
+                submitButton.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
