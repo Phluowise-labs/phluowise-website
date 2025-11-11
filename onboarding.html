@@ -1,9 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Phluowise - Company Setup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Streamline your water delivery business with Phluowise. Get started with our easy onboarding process to manage deliveries, track drivers, and optimize routes.">
+    <meta name="keywords" content="water delivery, delivery management, route optimization, fleet management, delivery software">
+    <meta name="author" content="Phluowise">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0f172a">
+    <meta property="og:title" content="Phluowise - Water Delivery Management Platform">
+    <meta property="og:description" content="Transform your water delivery business with Phluowise's comprehensive management platform.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://phluowise.com/onboarding">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://phluowise.com/onboarding">
+    <title>Phluowise - Water Delivery Management | Get Started</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
 
     <!-- Favicon -->
     <link
@@ -12,381 +27,272 @@
       type="image/jpeg"
     />
 
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-ZRN6QTDBW4"
-    ></script>
+    <!-- Google tag (gtag.js) with performance optimization -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-ZRN6QTDBW4");
+        // Load gtag with requestIdleCallback for better performance
+        function loadGTag() {
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZRN6QTDBW4';
+            document.head.appendChild(script);
+            
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ZRN6QTDBW4', { 'transport_type': 'beacon' });
+        }
+        
+        if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadGTag, { timeout: 2000 });
+        } else {
+            window.addEventListener('load', function() {
+                setTimeout(loadGTag, 0);
+            });
+        }
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Preload critical resources -->
+    <link rel="preload" as="script" href="https://cdn.tailwindcss.com">
+    <link rel="preload" as="script" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    
+    <!-- Load scripts with defer -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <style>
+        /* Critical CSS - Inline for faster rendering */
+        .skeleton {
+            animation: skeleton-loading 1.5s linear infinite alternate;
+        }
+        
+        @keyframes skeleton-loading {
+            0% { background-color: rgba(255, 255, 255, 0.05); }
+            100% { background-color: rgba(255, 255, 255, 0.1); }
+        }
+        
+        /* Optimize font-display */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url('https://fonts.gstatic.com/s/inter/v12/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2') format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
         body {
             font-family: 'Inter', sans-serif;
             background: #000000;
-            color: #e6edf3;
+            color: #e2e8f0;
             margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            width: 100%;
-            max-width: 100vw;
+            padding: 1rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .onboarding-container {
-            background: rgba(13, 17, 23, 0.95);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 2px solid #3b74ff;
-            animation: animate-border-color 4s linear infinite;
+            background: rgba(15, 23, 42, 0.2);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
             position: relative;
             max-height: 90vh;
             overflow-y: auto;
-            overflow-x: hidden;
             width: 100%;
-            max-width: 100%;
+            max-width: 600px;
             box-sizing: border-box;
-            scrollbar-width: thin;
-            scrollbar-color: #3b74ff rgba(59, 116, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .onboarding-container::-webkit-scrollbar {
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
             width: 6px;
         }
 
-        .onboarding-container::-webkit-scrollbar-track {
-            background: rgba(59, 116, 255, 0.1);
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 3px;
         }
 
-        .onboarding-container::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #3b74ff, #3b74ff);
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 3px;
         }
 
-        .onboarding-container::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #508bff, #508bff);
-        }
-
-        .onboarding-container::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .onboarding-container::-webkit-scrollbar-track {
-            background: rgba(59, 116, 255, 0.1);
-            border-radius: 3px;
-        }
-
-        .onboarding-container::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #3b74ff, #3b74ff);
-            border-radius: 3px;
-        }
-
-        .onboarding-container::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #508bff, #508bff);
-        }
-
-
-        .onboarding-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 50% 50%, rgba(59, 116, 255, 0.08) 0%, transparent 70%);
-            animation: background-pan 25s linear infinite alternate;
-            z-index: 0;
-        }
-
-        @keyframes background-pan {
-            0% { transform: translate(0%, 0%); }
-            100% { transform: translate(-50%, -50%); }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
         
-        .progress-bar-bg {
-            background: rgba(55, 65, 81, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
+        .progress-bar-bg,
         .progress-bar-fill {
-            background: linear-gradient(135deg, #3b74ff, #3b74ff);
-            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-bar-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: shimmer 2.5s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
+            display: none; /* Hide progress bar but keep in DOM for potential future use */
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #3b74ff, #3b74ff);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn-primary:hover::before {
-            left: 100%;
+            background: rgba(59, 130, 246, 0.15);
+            color: #e0f2fe;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
         .btn-primary:hover {
-            background: linear-gradient(135deg, #508bff, #508bff);
+            background: rgba(59, 130, 246, 0.25);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(59, 116, 255, 0.4);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border-color: rgba(96, 165, 250, 0.5);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .btn-secondary {
-             background: transparent;
-            border: 1px solid #3b74ff;
-            color: #3b74ff;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            cursor: pointer;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
-            background: rgba(59, 116, 255, 0.1);
-            color: #3b74ff;
-            border-color: #3b74ff;
-            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .btn-skip {
             background: transparent;
-            color: #9ca3af;
-            border: 1px solid #4b5563;
-            transition: all 0.3s ease;
+            color: #94a3b8;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
         }
 
         .btn-skip:hover {
-            background: rgba(156, 163, 175, 0.1);
-            color: #d1d5db;
-            border-color: #6b7280;
+            color: #e2e8f0;
+            text-decoration: underline;
         }
 
         .step {
             display: none;
-            animation: slideInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            z-index: 1;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease-out;
         }
 
         .step.active {
             display: block;
         }
 
-        @keyframes slideInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(20px) scale(0.98); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
-            }
-        }
-
-        @keyframes animate-border-color {
-            0% { 
-                border-color: #3b74ff; 
-            }
-            50% { 
-                border-color: #508bff; 
-            }
-            100% { 
-                border-color: #3b74ff; 
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .icon-container {
-            background: linear-gradient(135deg, rgba(59, 116, 255, 0.1), rgba(59, 116, 255, 0.1));
-            border: 1px solid rgba(59, 116, 255, 0.2);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .icon-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(59, 116, 255, 0.1), transparent);
-            transition: left 0.6s;
-        }
-
-        .icon-container:hover::before {
-            left: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 1.25rem;
+            width: 5.5rem;
+            height: 5.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
 
         .icon-container:hover {
-            transform: translateY(-3px) rotate(2deg);
-            box-shadow: 0 8px 25px rgba(59, 116, 255, 0.3);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .feature-highlight {
-            background: linear-gradient(135deg, rgba(59, 116, 255, 0.05), rgba(59, 116, 255, 0.05));
-            border: 1px solid rgba(59, 116, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin-bottom: 0.75rem;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-highlight::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(59, 116, 255, 0.05) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 0.6s;
-        }
-
-        .feature-highlight:hover::after {
-            transform: translateX(100%);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         .feature-highlight:hover {
-            background: linear-gradient(135deg, rgba(59, 116, 255, 0.1), rgba(59, 116, 255, 0.1));
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
-            border-color: rgba(59, 116, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .floating-element {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: #3b74ff;
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-element:nth-child(2) {
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-            background: #3b74ff;
-        }
-
-        .floating-element:nth-child(3) {
-            bottom: 30%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-
-        .floating-element:nth-child(4) {
-            top: 40%;
-            right: 25%;
-            animation-delay: 6s;
-            background: #3b74ff;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.7; }
-            50% { transform: translateY(-20px) scale(1.3); opacity: 1; }
-        }
+        /* Removed floating elements for cleaner design */
 
         .step-indicator {
             display: flex;
             justify-content: center;
-            gap: 8px;
-            margin-bottom: 1.5rem;
+            gap: 0.75rem;
+            margin: 0 auto 2rem;
+            max-width: 80%;
         }
 
         .step-dot {
-            width: 12px;
-            height: 12px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background: rgba(156, 163, 175, 0.3);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
             cursor: pointer;
         }
 
         .step-dot.active {
-            background: #3b74ff;
-            transform: scale(1.3);
-            box-shadow: 0 0 15px rgba(59, 116, 255, 0.5);
+            background: #3b82f6;
+            width: 24px;
+            border-radius: 4px;
         }
 
         .step-dot.completed {
-            background: #3b74ff;
-            transform: scale(1.1);
-        }
-
-        .step-dot:hover {
-            transform: scale(1.2);
+            background: #3b82f6;
         }
 
         .text-gradient {
-            background: linear-gradient(90deg, #3b74ff, #3b74ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #3b82f6;
+            font-weight: 700;
         }
 
         .survey-container {
-            background: rgba(59, 116, 255, 0.05);
-            border: 1px solid rgba(59, 116, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 1rem;
             padding: 1.5rem;
-            margin: 1rem 0;
-            backdrop-filter: blur(10px);
+            margin: 1.5rem 0;
             max-width: 100%;
-            overflow-x: hidden;
             box-sizing: border-box;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .survey-question {
@@ -475,34 +381,46 @@
             100% { transform: scale(1); opacity: 1; }
         }
     </style>
+    <link rel="preload" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"></noscript>
+    
+    <!-- Preload hero image if any -->
+    <link rel="preload" as="image" href="images/phluowise_mobile_icon.jpeg">
+    
+    <!-- Preconnect to required origins -->
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Phluowise",
+        "description": "Comprehensive water delivery management platform",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "Phluowise"
+        }
+    }
+    </script>
 </head>
-<body class="flex items-center justify-center min-h-screen p-4 relative">
-    <!-- Floating background elements -->
-    <div class="floating-elements">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-    </div>
+<body itemscope itemtype="https://schema.org/WebPage" class="flex items-center justify-center min-h-screen p-4 relative">
 
-    <div class="onboarding-container w-full max-w-2xl mx-auto rounded-3xl p-6 md:p-8 relative">
-        <!-- Skip Button -->
-        <div class="absolute top-4 right-4 z-10">
+    <div class="onboarding-container p-6 md:p-8 relative">
+        <!-- Header with Skip Button -->
+        <div class="flex justify-end items-center mb-6">
             <button onclick="goToSignup()" 
-               class="btn-skip font-medium px-3 py-1.5 rounded-lg text-sm hover:scale-105 transition-transform">
+               class="btn-skip whitespace-nowrap px-3 py-1 text-sm">
                 Skip Setup
             </button>
-        </div>
-
-        <!-- Progress Bar -->
-        <div class="mb-6 relative z-10">
-            <div class="flex justify-between items-center mb-2">
-                <span class="text-xs text-gray-400">Setup Progress</span>
-                <span class="text-xs text-brand font-medium" id="progress-text">25%</span>
-            </div>
-            <div class="progress-bar-bg w-full h-2 rounded-full overflow-hidden">
-                <div id="progressBar" class="progress-bar-fill h-2 rounded-full" style="width: 25%;"></div>
-            </div>
         </div>
 
         <!-- Step Indicators -->
@@ -517,10 +435,10 @@
             <!-- Step 1 -->
             <div id="step-1" class="step active">
                 <div class="text-center">
-                    <div class="icon-container w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center bounce-in">
-                        <img src="https://placehold.co/48x48/3b74ff/ffffff?text=📊" alt="Analytics" class="h-12 w-12 rounded-lg">
+                    <div class="icon-container">
+                        <span class="material-icons-round text-4xl text-blue-500">analytics</span>
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4 text-gradient">
                         Welcome to Phluowise!
                     </h2>
                     <p class="text-base text-gray-300 mb-6 max-w-lg mx-auto leading-relaxed">
@@ -549,8 +467,8 @@
             <!-- Step 2 -->
             <div id="step-2" class="step">
                 <div class="text-center">
-                    <div class="icon-container w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center bounce-in">
-                         <img src="https://placehold.co/48x48/3b74ff/ffffff?text=🚚" alt="Driver Management" class="h-12 w-12 rounded-lg">
+                    <div class="icon-container">
+                         <span class="material-icons-round text-4xl text-blue-500">local_shipping</span>
                     </div>
                     <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
                         Fleet Management Made Simple
@@ -559,21 +477,21 @@
                         Take control of your delivery operations with powerful tools designed specifically for water delivery companies.
                     </p>
                     
-                    <div class="grid grid-cols-1 gap-4 mb-6 max-w-lg mx-auto">
+                    <div class="flex flex-col space-y-3 max-w-md mx-auto">
                         <div class="feature-highlight p-4 rounded-xl text-left">
-                            <h4 class="text-base font-semibold text-brand mb-2">🚚 Driver Tracking</h4>
+                            <h4 class="text-base font-semibold text-brand mb-2 flex items-center gap-2"><span class="material-icons-round text-lg">directions_car</span> Driver Tracking</h4>
                             <p class="text-gray-400 text-sm">Monitor driver locations, routes, and performance in real-time</p>
                         </div>
                         <div class="feature-highlight p-4 rounded-xl text-left">
-                            <h4 class="text-base font-semibold text-brand mb-2">📊 Analytics Dashboard</h4>
+                            <h4 class="text-base font-semibold text-brand mb-2 flex items-center gap-2"><span class="material-icons-round text-lg">insights</span> Analytics Dashboard</h4>
                             <p class="text-gray-400 text-sm">Get insights into delivery efficiency and customer satisfaction</p>
                         </div>
                         <div class="feature-highlight p-4 rounded-xl text-left">
-                            <h4 class="text-base font-semibold text-brand mb-2">🔄 Route Optimization</h4>
+                            <h4 class="text-base font-semibold text-brand mb-2 flex items-center gap-2"><span class="material-icons-round text-lg">alt_route</span> Route Optimization</h4>
                             <p class="text-gray-400 text-sm">AI-powered route planning for maximum efficiency</p>
                         </div>
                         <div class="feature-highlight p-4 rounded-xl text-left">
-                            <h4 class="text-base font-semibold text-brand mb-2">📱 Mobile App</h4>
+                            <h4 class="text-base font-semibold text-brand mb-2">smartphone</h4>
                             <p class="text-gray-400 text-sm">Driver app for seamless communication and updates</p>
                         </div>
                     </div>
@@ -594,8 +512,8 @@
             <!-- Step 3 -->
             <div id="step-3" class="step">
                 <div class="text-center">
-                    <div class="icon-container w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center bounce-in">
-                        <img src="https://placehold.co/48x48/3b74ff/ffffff?text=📦" alt="Order Management" class="h-12 w-12 rounded-lg">
+                    <div class="icon-container">
+                        <span class="material-icons-round text-4xl text-blue-500">inventory_2</span>
                     </div>
                     <h2 class="text-3xl md:text-4xl font-bold mb-4 text-white">
                         Streamline Your Operations
@@ -604,21 +522,21 @@
                         From order intake to delivery completion, manage everything seamlessly in one platform.
                     </p>
                     
-                    <div class="grid grid-cols-1 gap-4 mb-6 max-w-lg mx-auto">
+                    <div class="flex flex-col space-y-3 max-w-md mx-auto">
                         <div class="feature-highlight p-4 rounded-xl text-left">
-                            <h4 class="text-base font-semibold text-brand mb-2">📋 Order Management</h4>
+                            <h4 class="text-base font-semibold text-brand mb-2 flex items-center gap-2"><span class="material-icons-round text-lg">assignment</span> Order Management</h4>
                             <p class="text-gray-400 text-sm">Handle requests, schedule deliveries, and track fulfillment</p>
                         </div>
                         <div class="feature-highlight p-4 rounded-xl text-left">
-                            <h4 class="text-base font-semibold text-brand mb-2">💰 Payment Processing</h4>
+                            <h4 class="text-base font-semibold text-brand mb-2 flex items-center gap-2"><span class="material-icons-round text-lg">payments</span> Payment Processing</h4>
                             <p class="text-gray-400 text-sm">Secure transactions and automated billing</p>
                         </div>
                         <div class="feature-highlight p-4 rounded-xl text-left">
-                            <h4 class="text-base font-semibold text-brand mb-2">🏢 Branch Management</h4>
+                            <h4 class="text-base font-semibold text-brand mb-2 flex items-center gap-2"><span class="material-icons-round text-lg">business</span> Branch Management</h4>
                             <p class="text-gray-400 text-sm">Scale your business with multi-location support</p>
                         </div>
                         <div class="feature-highlight p-4 rounded-xl text-left">
-                            <h4 class="text-base font-semibold text-brand mb-2">📈 Performance Metrics</h4>
+                            <h4 class="text-base font-semibold text-brand mb-2">bar_chart</h4>
                             <p class="text-gray-400 text-sm">Track KPIs and business growth indicators</p>
                         </div>
                     </div>
@@ -639,10 +557,10 @@
             <!-- Step 4 -->
             <div id="step-4" class="step">
                 <div class="text-center">
-                    <div class="icon-container w-20 h-20 mx-auto mb-6 rounded-2xl flex items-center justify-center bounce-in">
-                        <img src="https://placehold.co/48x48/3b74ff/ffffff?text=👤" alt="Ready to go" class="h-12 w-12 rounded-lg">
+                    <div class="icon-container">
+                        <span class="material-icons-round text-4xl text-blue-500">check_circle</span>
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gradient">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4 text-gradient">
                         You're All Set!
                     </h2>
                     <p class="text-base text-gray-300 mb-6 max-w-lg mx-auto leading-relaxed">
@@ -651,14 +569,14 @@
                     </p>
                     
                     <div class="feature-highlight p-6 rounded-xl mb-6 max-w-lg mx-auto">
-                        <h3 class="text-lg font-bold text-brand mb-3">🎉 Ready to Launch?</h3>
-                        <p class="text-gray-300 mb-4 text-sm">
+                        <h3 class="text-lg font-bold text-brand mb-3 flex items-center justify-center gap-2"><span class="material-icons-round text-2xl">rocket_launch</span> Ready to Launch?</h3>
+                        <p class="text-gray-400 mb-6 max-w-md mx-auto text-sm md:text-base">
                             Join thousands of companies already using Phluowise to grow their business
                         </p>
                         <div class="text-xs text-gray-400 space-y-1">
-                            <p>✓ No setup fees</p>
-                            <p>✓ Free trial available</p>
-                            <p>✓ 24/7 support</p>
+                            <p class="flex items-center gap-2"><span class="material-icons-round text-sm">check_circle</span> No setup fees</p>
+                            <p class="flex items-center gap-2"><span class="material-icons-round text-sm">check_circle</span> Free trial available</p>
+                            <p class="flex items-center gap-2"><span class="material-icons-round text-sm">check_circle</span> 24/7 support</p>
                         </div>
                     </div>
 
@@ -692,35 +610,52 @@
                             </div>
 
                             <div class="survey-question">
-                                <label class="text-sm font-medium text-gray-300 mb-2 block">How many drivers do you currently manage?</label>
-                                <input type="number" name="driver_count" class="survey-input" placeholder="Enter number of drivers" min="1" required>
+                                <p class="text-sm font-medium text-gray-300 mb-2">What's your current method for managing deliveries?</p>
+                                <div class="survey-options">
+                                    <label class="survey-option">
+                                        <input type="radio" name="current_method" value="manual_spreadsheets" required>
+                                        <span>Manual/Spreadsheets</span>
+                                    </label>
+                                    <label class="survey-option">
+                                        <input type="radio" name="current_method" value="basic_software" required>
+                                        <span>Basic Delivery Software</span>
+                                    </label>
+                                    <label class="survey-option">
+                                        <input type="radio" name="current_method" value="custom_solution" required>
+                                        <span>Custom Solution</span>
+                                    </label>
+                                    <label class="survey-option">
+                                        <input type="radio" name="current_method" value="first_time" required>
+                                        <span>First Time Using a System</span>
+                                    </label>
+                                </div>
                             </div>
 
                             <div class="survey-question">
-                                <label class="text-sm font-medium text-gray-300 mb-2 block">What's your biggest challenge?</label>
+                                <p class="text-sm font-medium text-gray-300 mb-2">What's your biggest operational challenge?</p>
                                 <div class="survey-options">
                                     <label class="survey-option">
                                         <input type="radio" name="biggest_challenge" value="route_optimization" required>
-                                        <span>Route optimization</span>
+                                        <span>Route Optimization</span>
                                     </label>
                                     <label class="survey-option">
-                                        <input type="radio" name="biggest_challenge" value="driver_management" required>
-                                        <span>Driver management</span>
+                                        <input type="radio" name="biggest_challenge" value="inventory_management" required>
+                                        <span>Inventory Management</span>
                                     </label>
                                     <label class="survey-option">
                                         <input type="radio" name="biggest_challenge" value="customer_communication" required>
-                                        <span>Customer communication</span>
+                                        <span>Customer Communication</span>
                                     </label>
                                     <label class="survey-option">
-                                        <input type="radio" name="biggest_challenge" value="payment_processing" required>
-                                        <span>Payment processing</span>
+                                        <input type="radio" name="biggest_challenge" value="team_coordination" required>
+                                        <span>Team Coordination</span>
                                     </label>
                                 </div>
                             </div>
                         </form>
                     </div>
 
-                    <div class="button-container">
+                    <div class="mt-8">
                         <div class="flex flex-col sm:flex-row justify-center items-center gap-3">
                             <button onclick="prevStep(3)" class="btn-secondary font-semibold px-4 py-2.5 rounded-lg text-sm">
                                 ← Back
@@ -743,6 +678,7 @@
     </div>
 
     <script>
+        // Simple step navigation
         let currentStep = 1;
         const totalSteps = 4;
         const progressBar = document.getElementById('progressBar');
@@ -750,30 +686,40 @@
         const onboardingContainer = document.querySelector('.onboarding-container');
 
         function updateStepIndicators(step) {
-            document.querySelectorAll('.step-dot').forEach((dot, index) => {
-                dot.classList.remove('active', 'completed');
-                if (index + 1 === step) {
-                    dot.classList.add('active');
-                } else if (index + 1 < step) {
+            const indicators = document.querySelectorAll('.step-dot');
+            indicators.forEach((dot, index) => {
+                if (index < step - 1) {
                     dot.classList.add('completed');
+                    dot.classList.remove('active');
+                } else if (index === step - 1) {
+                    dot.classList.add('active');
+                    dot.classList.remove('completed');
+                } else {
+                    dot.classList.remove('active', 'completed');
                 }
             });
         }
 
         function showStep(step) {
-            document.querySelectorAll('.step').forEach(el => el.classList.remove('active'));
-            document.getElementById(`step-${step}`).classList.add('active');
+            // Hide all steps
+            document.querySelectorAll('.step').forEach(stepEl => {
+                stepEl.classList.remove('active');
+            });
             
-            const progress = (step / totalSteps) * 100;
-            progressBar.style.width = `${progress}%`;
-            progressText.textContent = `${Math.round(progress)}%`;
+            // Show current step with fade effect
+            const currentStepEl = document.getElementById(`step-${step}`);
+            if (currentStepEl) {
+                currentStepEl.classList.add('active');
+            }
             
+            // Update step indicators
             updateStepIndicators(step);
             
-            // Scroll to the top of the container when changing steps
-            if(onboardingContainer) {
-               onboardingContainer.scrollTop = 0;
-            }
+            // Update current step
+            currentStep = step;
+            
+            // Scroll to top of step
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function nextStep(step) {
@@ -932,6 +878,39 @@
                 submitButton.textContent = 'Try Again';
                 submitButton.disabled = false;
             }
+        }
+    </script>
+    
+    <!-- Load non-critical CSS asynchronously -->
+    <script>
+        // Load non-critical CSS
+        function loadCSS(href, before, media) {
+            var ss = window.document.createElement('link');
+            var ref = before || window.document.getElementsByTagName('script')[0];
+            ss.rel = 'stylesheet';
+            ss.href = href;
+            ss.media = 'only x';
+            ref.parentNode.insertBefore(ss, before);
+            setTimeout(function() { ss.media = media || 'all'; });
+            return ss;
+        }
+        
+        // Load remaining stylesheets
+        if (window.requestIdleCallback) {
+            window.requestIdleCallback(function() {
+                loadCSS('https://fonts.googleapis.com/icon?family=Material+Icons+Round');
+            });
+        }
+        
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful');
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
         }
     </script>
 </body>
